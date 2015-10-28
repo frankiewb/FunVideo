@@ -1,0 +1,536 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1046C4EB1BE0A30000E1AB3C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1046C4EA1BE0A30000E1AB3C /* main.m */; };
+		1046C4EE1BE0A30000E1AB3C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1046C4ED1BE0A30000E1AB3C /* AppDelegate.m */; };
+		1046C4F11BE0A30000E1AB3C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1046C4F01BE0A30000E1AB3C /* ViewController.m */; };
+		1046C4F41BE0A30000E1AB3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1046C4F21BE0A30000E1AB3C /* Main.storyboard */; };
+		1046C4F71BE0A30000E1AB3C /* FunVideo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1046C4F51BE0A30000E1AB3C /* FunVideo.xcdatamodeld */; };
+		1046C4F91BE0A30000E1AB3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1046C4F81BE0A30000E1AB3C /* Assets.xcassets */; };
+		1046C4FC1BE0A30000E1AB3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1046C4FA1BE0A30000E1AB3C /* LaunchScreen.storyboard */; };
+		1046C5071BE0A30000E1AB3C /* FunVideoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1046C5061BE0A30000E1AB3C /* FunVideoTests.m */; };
+		1046C5121BE0A30000E1AB3C /* FunVideoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1046C5111BE0A30000E1AB3C /* FunVideoUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1046C5031BE0A30000E1AB3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1046C4DE1BE0A30000E1AB3C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1046C4E51BE0A30000E1AB3C;
+			remoteInfo = FunVideo;
+		};
+		1046C50E1BE0A30000E1AB3C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1046C4DE1BE0A30000E1AB3C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1046C4E51BE0A30000E1AB3C;
+			remoteInfo = FunVideo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1046C4E61BE0A30000E1AB3C /* FunVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1046C4EA1BE0A30000E1AB3C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1046C4EC1BE0A30000E1AB3C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1046C4ED1BE0A30000E1AB3C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1046C4EF1BE0A30000E1AB3C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		1046C4F01BE0A30000E1AB3C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		1046C4F31BE0A30000E1AB3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		1046C4F61BE0A30000E1AB3C /* FunVideo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FunVideo.xcdatamodel; sourceTree = "<group>"; };
+		1046C4F81BE0A30000E1AB3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1046C4FB1BE0A30000E1AB3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1046C4FD1BE0A30000E1AB3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1046C5021BE0A30000E1AB3C /* FunVideoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunVideoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1046C5061BE0A30000E1AB3C /* FunVideoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FunVideoTests.m; sourceTree = "<group>"; };
+		1046C5081BE0A30000E1AB3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1046C50D1BE0A30000E1AB3C /* FunVideoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunVideoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1046C5111BE0A30000E1AB3C /* FunVideoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FunVideoUITests.m; sourceTree = "<group>"; };
+		1046C5131BE0A30000E1AB3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1046C4E31BE0A30000E1AB3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1046C4FF1BE0A30000E1AB3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1046C50A1BE0A30000E1AB3C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1046C4DD1BE0A30000E1AB3C = {
+			isa = PBXGroup;
+			children = (
+				1046C4E81BE0A30000E1AB3C /* FunVideo */,
+				1046C5051BE0A30000E1AB3C /* FunVideoTests */,
+				1046C5101BE0A30000E1AB3C /* FunVideoUITests */,
+				1046C4E71BE0A30000E1AB3C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1046C4E71BE0A30000E1AB3C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1046C4E61BE0A30000E1AB3C /* FunVideo.app */,
+				1046C5021BE0A30000E1AB3C /* FunVideoTests.xctest */,
+				1046C50D1BE0A30000E1AB3C /* FunVideoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1046C4E81BE0A30000E1AB3C /* FunVideo */ = {
+			isa = PBXGroup;
+			children = (
+				1046C4EC1BE0A30000E1AB3C /* AppDelegate.h */,
+				1046C4ED1BE0A30000E1AB3C /* AppDelegate.m */,
+				1046C4EF1BE0A30000E1AB3C /* ViewController.h */,
+				1046C4F01BE0A30000E1AB3C /* ViewController.m */,
+				1046C4F21BE0A30000E1AB3C /* Main.storyboard */,
+				1046C4F81BE0A30000E1AB3C /* Assets.xcassets */,
+				1046C4FA1BE0A30000E1AB3C /* LaunchScreen.storyboard */,
+				1046C4FD1BE0A30000E1AB3C /* Info.plist */,
+				1046C4F51BE0A30000E1AB3C /* FunVideo.xcdatamodeld */,
+				1046C4E91BE0A30000E1AB3C /* Supporting Files */,
+			);
+			path = FunVideo;
+			sourceTree = "<group>";
+		};
+		1046C4E91BE0A30000E1AB3C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1046C4EA1BE0A30000E1AB3C /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1046C5051BE0A30000E1AB3C /* FunVideoTests */ = {
+			isa = PBXGroup;
+			children = (
+				1046C5061BE0A30000E1AB3C /* FunVideoTests.m */,
+				1046C5081BE0A30000E1AB3C /* Info.plist */,
+			);
+			path = FunVideoTests;
+			sourceTree = "<group>";
+		};
+		1046C5101BE0A30000E1AB3C /* FunVideoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				1046C5111BE0A30000E1AB3C /* FunVideoUITests.m */,
+				1046C5131BE0A30000E1AB3C /* Info.plist */,
+			);
+			path = FunVideoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1046C4E51BE0A30000E1AB3C /* FunVideo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1046C5161BE0A30000E1AB3C /* Build configuration list for PBXNativeTarget "FunVideo" */;
+			buildPhases = (
+				1046C4E21BE0A30000E1AB3C /* Sources */,
+				1046C4E31BE0A30000E1AB3C /* Frameworks */,
+				1046C4E41BE0A30000E1AB3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FunVideo;
+			productName = FunVideo;
+			productReference = 1046C4E61BE0A30000E1AB3C /* FunVideo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1046C5011BE0A30000E1AB3C /* FunVideoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1046C5191BE0A30000E1AB3C /* Build configuration list for PBXNativeTarget "FunVideoTests" */;
+			buildPhases = (
+				1046C4FE1BE0A30000E1AB3C /* Sources */,
+				1046C4FF1BE0A30000E1AB3C /* Frameworks */,
+				1046C5001BE0A30000E1AB3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1046C5041BE0A30000E1AB3C /* PBXTargetDependency */,
+			);
+			name = FunVideoTests;
+			productName = FunVideoTests;
+			productReference = 1046C5021BE0A30000E1AB3C /* FunVideoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1046C50C1BE0A30000E1AB3C /* FunVideoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1046C51C1BE0A30000E1AB3C /* Build configuration list for PBXNativeTarget "FunVideoUITests" */;
+			buildPhases = (
+				1046C5091BE0A30000E1AB3C /* Sources */,
+				1046C50A1BE0A30000E1AB3C /* Frameworks */,
+				1046C50B1BE0A30000E1AB3C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1046C50F1BE0A30000E1AB3C /* PBXTargetDependency */,
+			);
+			name = FunVideoUITests;
+			productName = FunVideoUITests;
+			productReference = 1046C50D1BE0A30000E1AB3C /* FunVideoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1046C4DE1BE0A30000E1AB3C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = FrankieCompany;
+				TargetAttributes = {
+					1046C4E51BE0A30000E1AB3C = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					1046C5011BE0A30000E1AB3C = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 1046C4E51BE0A30000E1AB3C;
+					};
+					1046C50C1BE0A30000E1AB3C = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 1046C4E51BE0A30000E1AB3C;
+					};
+				};
+			};
+			buildConfigurationList = 1046C4E11BE0A30000E1AB3C /* Build configuration list for PBXProject "FunVideo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1046C4DD1BE0A30000E1AB3C;
+			productRefGroup = 1046C4E71BE0A30000E1AB3C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1046C4E51BE0A30000E1AB3C /* FunVideo */,
+				1046C5011BE0A30000E1AB3C /* FunVideoTests */,
+				1046C50C1BE0A30000E1AB3C /* FunVideoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1046C4E41BE0A30000E1AB3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1046C4FC1BE0A30000E1AB3C /* LaunchScreen.storyboard in Resources */,
+				1046C4F91BE0A30000E1AB3C /* Assets.xcassets in Resources */,
+				1046C4F41BE0A30000E1AB3C /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1046C5001BE0A30000E1AB3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1046C50B1BE0A30000E1AB3C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1046C4E21BE0A30000E1AB3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1046C4F11BE0A30000E1AB3C /* ViewController.m in Sources */,
+				1046C4F71BE0A30000E1AB3C /* FunVideo.xcdatamodeld in Sources */,
+				1046C4EE1BE0A30000E1AB3C /* AppDelegate.m in Sources */,
+				1046C4EB1BE0A30000E1AB3C /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1046C4FE1BE0A30000E1AB3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1046C5071BE0A30000E1AB3C /* FunVideoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1046C5091BE0A30000E1AB3C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1046C5121BE0A30000E1AB3C /* FunVideoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1046C5041BE0A30000E1AB3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1046C4E51BE0A30000E1AB3C /* FunVideo */;
+			targetProxy = 1046C5031BE0A30000E1AB3C /* PBXContainerItemProxy */;
+		};
+		1046C50F1BE0A30000E1AB3C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1046C4E51BE0A30000E1AB3C /* FunVideo */;
+			targetProxy = 1046C50E1BE0A30000E1AB3C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1046C4F21BE0A30000E1AB3C /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1046C4F31BE0A30000E1AB3C /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		1046C4FA1BE0A30000E1AB3C /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1046C4FB1BE0A30000E1AB3C /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1046C5141BE0A30000E1AB3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1046C5151BE0A30000E1AB3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1046C5171BE0A30000E1AB3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = FunVideo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FrankieWB.FunVideo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1046C5181BE0A30000E1AB3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = FunVideo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FrankieWB.FunVideo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		1046C51A1BE0A30000E1AB3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FunVideoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FrankieWB.FunVideoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FunVideo.app/FunVideo";
+			};
+			name = Debug;
+		};
+		1046C51B1BE0A30000E1AB3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FunVideoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FrankieWB.FunVideoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FunVideo.app/FunVideo";
+			};
+			name = Release;
+		};
+		1046C51D1BE0A30000E1AB3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = FunVideoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FrankieWB.FunVideoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FunVideo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		1046C51E1BE0A30000E1AB3C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = FunVideoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = FrankieWB.FunVideoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FunVideo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1046C4E11BE0A30000E1AB3C /* Build configuration list for PBXProject "FunVideo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1046C5141BE0A30000E1AB3C /* Debug */,
+				1046C5151BE0A30000E1AB3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1046C5161BE0A30000E1AB3C /* Build configuration list for PBXNativeTarget "FunVideo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1046C5171BE0A30000E1AB3C /* Debug */,
+				1046C5181BE0A30000E1AB3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1046C5191BE0A30000E1AB3C /* Build configuration list for PBXNativeTarget "FunVideoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1046C51A1BE0A30000E1AB3C /* Debug */,
+				1046C51B1BE0A30000E1AB3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		1046C51C1BE0A30000E1AB3C /* Build configuration list for PBXNativeTarget "FunVideoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1046C51D1BE0A30000E1AB3C /* Debug */,
+				1046C51E1BE0A30000E1AB3C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1046C4F51BE0A30000E1AB3C /* FunVideo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1046C4F61BE0A30000E1AB3C /* FunVideo.xcdatamodel */,
+			);
+			currentVersion = 1046C4F61BE0A30000E1AB3C /* FunVideo.xcdatamodel */;
+			path = FunVideo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1046C4DE1BE0A30000E1AB3C /* Project object */;
+}
