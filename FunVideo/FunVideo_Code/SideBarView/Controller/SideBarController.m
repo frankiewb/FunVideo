@@ -59,17 +59,15 @@ static const CGFloat kBackgroundView_Width           = 60;
     //表明Sidebar是否打开
     BOOL SideBarIsOpen;
     
+    
+    //存放4个导航按钮的View
+    UIView * BackgroundMenuView;
+    
+    //展开存放导航按钮View的Button
+    UIButton * MainViewButton;
+    
 }
 
-/**
- *存放4个导航按钮的View
- **/
-@property(nonatomic,strong) UIView * BackgroundMenuView;
-
-/**
- *展开存放导航按钮View的Button
- **/
-@property(nonatomic,strong) UIButton * MainViewButton;
 
 @end
 
@@ -108,19 +106,19 @@ static const CGFloat kBackgroundView_Width           = 60;
     ButtonList = [[NSMutableArray alloc]initWithCapacity:ImageList.count];
     
     //设置BackgroundMenuView
-    _BackgroundMenuView = [[UIView alloc]init];
-    _BackgroundMenuView.frame = CGRectMake(FrankieAppWidth, 0,kBackgroundView_Width,FrankieAppHeigth);
-    _BackgroundMenuView.backgroundColor = UISIDEBARCOLOR;
-    [self.view addSubview:_BackgroundMenuView];
+    BackgroundMenuView = [[UIView alloc]init];
+    BackgroundMenuView.frame = CGRectMake(FrankieAppWidth, 0,kBackgroundView_Width,FrankieAppHeigth);
+    BackgroundMenuView.backgroundColor = UISIDEBARCOLOR;
+    [self.view addSubview:BackgroundMenuView];
 
     
     //设置MainViewButton
-    _MainViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _MainViewButton.bounds = CGRectMake(0,0,kMainButton_Width,kMainButton_Height);
-    [_MainViewButton setImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
-    [_MainViewButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
-    _MainViewButton.frame = CGRectMake(kMainButton_Xpoint, kMainButton_Ypoint, kMainButton_Width, kMainButton_Height);
-    [self.view addSubview:_MainViewButton];
+    MainViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    MainViewButton.bounds = CGRectMake(0,0,kMainButton_Width,kMainButton_Height);
+    [MainViewButton setImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
+    [MainViewButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
+    MainViewButton.frame = CGRectMake(kMainButton_Xpoint, kMainButton_Ypoint, kMainButton_Width, kMainButton_Height);
+    [self.view addSubview:MainViewButton];
     UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
                                                                                 action:@selector(dismissMenu)];
     singleTap.cancelsTouchesInView = NO;
@@ -142,7 +140,7 @@ static const CGFloat kBackgroundView_Width           = 60;
         button.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 70, 0);
         
         [button addTarget:self action:@selector(OnMenuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [_BackgroundMenuView addSubview:button];
+        [BackgroundMenuView addSubview:button];
         [ButtonList addObject:button];
         buttonIndexTag++;
     }
@@ -211,9 +209,9 @@ static const CGFloat kBackgroundView_Width           = 60;
 {
     [UIView animateWithDuration:0.4 animations:^{
        
-        _MainViewButton.alpha = 1.0;
-        _MainViewButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, 0);
-        _BackgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, 0);
+        MainViewButton.alpha = 1.0;
+        MainViewButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, 0);
+        BackgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, 0);
     }];
     dispatch_async(dispatch_get_main_queue(), ^{
         for (UIButton * button in ButtonList)
@@ -242,9 +240,9 @@ static const CGFloat kBackgroundView_Width           = 60;
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.4 animations:^{
            
-            _MainViewButton.alpha = 0.0;
-            _MainViewButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -70, 0);
-            _BackgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -kBackgroundView_Width, 0);
+            MainViewButton.alpha = 0.0;
+            MainViewButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -70, 0);
+            BackgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -kBackgroundView_Width, 0);
         }];
     });
     

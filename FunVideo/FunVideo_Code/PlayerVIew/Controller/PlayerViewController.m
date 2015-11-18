@@ -68,33 +68,35 @@ static const CGFloat kPlayerImage_Y_point    = 40;
  */
     DoubanServer * doubanServer;
     
+/**
+* PlayerView上的控件，改为全部代码生成
+*/
+    
+    UIImageView *PlayerImage;
+    
+    UIImageView *PlayerImageBlock;
+    
+    UIProgressView *TimeProgressBar;
+    
+    UILabel *TimeLabel;
+    
+    UILabel *ChannelTitle;
+    
+    UILabel *SongTitle;
+    
+    UILabel *SongArtist;
+    
+    UIButton *PauseButton;
+    
+    UIButton *LikeButton;
+    
+    UIButton *DeleteButton;
+    
+    UIButton *SkipButton;
+    
 }
 
-/**
- * PlayerView上的控件，改为全部代码生成
- */
 
-@property(nonatomic,strong) UIImageView *PlayerImage;
-
-@property(nonatomic,strong) UIImageView *PlayerImageBlock;
-
-@property(nonatomic,strong) UIProgressView *TimeProgressBar;
-
-@property(nonatomic,strong) UILabel *TimeLabel;
-
-@property(nonatomic,strong) UILabel *ChannelTitle;
-
-@property(nonatomic,strong) UILabel *SongTitle;
-
-@property(nonatomic,strong) UILabel *SongArtist;
-
-@property(nonatomic,strong) UIButton *PauseButton;
-
-@property(nonatomic,strong) UIButton *LikeButton;
-
-@property(nonatomic,strong) UIButton *DeleteButton;
-
-@property(nonatomic,strong) UIButton *SkipButton;
 
 @end
 
@@ -118,8 +120,8 @@ static const CGFloat kPlayerImage_Y_point    = 40;
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    _PlayerImage.layer.cornerRadius = _PlayerImage.bounds.size.width/2.0;
-    _PlayerImage.layer.masksToBounds = YES;
+    PlayerImage.layer.cornerRadius = PlayerImage.bounds.size.width/2.0;
+    PlayerImage.layer.masksToBounds = YES;
     [super viewDidAppear:animated];
     [self FlashSongInfo];
 }
@@ -147,7 +149,7 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     CurrentTImeSeconds = (unsigned)appDelegate.VideoPlayer.currentPlaybackTime%60;
     
     //专辑图片旋转
-    _PlayerImage.transform = CGAffineTransformRotate(_PlayerImage.transform, M_PI / 1440);
+    PlayerImage.transform = CGAffineTransformRotate(PlayerImage.transform, M_PI / 1440);
     if(CurrentTImeSeconds < 10)
     {
         CurrentTimeString = [NSMutableString stringWithFormat:@"%d:0%d",CurrentTimeMinutes,CurrentTImeSeconds];
@@ -157,8 +159,8 @@ static const CGFloat kPlayerImage_Y_point    = 40;
         CurrentTimeString = [NSMutableString stringWithFormat:@"%d:%d",CurrentTimeMinutes,CurrentTImeSeconds];
     }
     TimerLabelString = [NSMutableString stringWithFormat:@"%@/%@",CurrentTimeString,TotalTImeString];
-    _TimeLabel.text = TimerLabelString;
-    _TimeProgressBar.progress = appDelegate.VideoPlayer.currentPlaybackTime/[appDelegate.playerInfo.CurrentSong.SongTimeLong intValue];
+    TimeLabel.text = TimerLabelString;
+    TimeProgressBar.progress = appDelegate.VideoPlayer.currentPlaybackTime/[appDelegate.playerInfo.CurrentSong.SongTimeLong intValue];
 }
 
 
@@ -187,10 +189,10 @@ static const CGFloat kPlayerImage_Y_point    = 40;
 
 -(void)SetupGesture
 {
-    _PlayerImage.userInteractionEnabled = YES;
+    PlayerImage.userInteractionEnabled = YES;
     UITapGestureRecognizer *SingleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(PauseButton)];
     [SingleTap setNumberOfTouchesRequired:1];
-    [_PlayerImage addGestureRecognizer:SingleTap];
+    [PlayerImage addGestureRecognizer:SingleTap];
 }
 
 
@@ -213,19 +215,19 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     }
     
     //重置旋转图片角度
-    _PlayerImage.image = nil;
+    PlayerImage.image = nil;
     NSString * playerImageName = [NSString stringWithFormat:@"%@_imageName",appDelegate.playerInfo.CurrentSong.SongTitle];
     NSURL * imageURL = [NSURL URLWithString:appDelegate.playerInfo.CurrentSong.SongPictureUrl];
     //[_PlayerImage setImageWithURL:imageURL
                  //placeholderImage:[UIImage imageNamed:playerImageName]];
     //采用SDIMageCache技术缓存
-    [_PlayerImage sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"playerImageName"]];
-    NSLog(@"%@",_PlayerImage.image);
+    [PlayerImage sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"playerImageName"]];
+    NSLog(@"%@",PlayerImage.image);
     
     //初始化各UI界面
-    _ChannelTitle.text = [NSString stringWithFormat:@"♪%@♪",appDelegate.playerInfo.CurrentChannel.ChannelName];
-    _SongArtist.text = appDelegate.playerInfo.CurrentSong.SongArtist;
-    _SongTitle.text = appDelegate.playerInfo.CurrentSong.SongTitle;
+    ChannelTitle.text = [NSString stringWithFormat:@"♪%@♪",appDelegate.playerInfo.CurrentChannel.ChannelName];
+    SongArtist.text = appDelegate.playerInfo.CurrentSong.SongArtist;
+    SongTitle.text = appDelegate.playerInfo.CurrentSong.SongTitle;
     //Chanel没设计呢
     
     //初始化TimeLable的总时间
@@ -243,11 +245,11 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     //初始化likeButton的图像
     if(![appDelegate.playerInfo.CurrentSong.SongIsLike intValue])
     {
-        [_LikeButton setBackgroundImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
+        [LikeButton setBackgroundImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
     }
     else
     {
-        [_LikeButton setBackgroundImage:[UIImage imageNamed:@"heart2"] forState:UIControlStateNormal];
+        [LikeButton setBackgroundImage:[UIImage imageNamed:@"heart2"] forState:UIControlStateNormal];
     }
     [Timer setFireDate:[NSDate date]];
     [self ConfigVideoPlayerInfo];
@@ -263,7 +265,7 @@ static const CGFloat kPlayerImage_Y_point    = 40;
             NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
             [dict setObject:appDelegate.playerInfo.CurrentSong.SongTitle forKey:MPMediaItemPropertyTitle];
             [dict setObject:appDelegate.playerInfo.CurrentSong.SongArtist forKey:MPMediaItemPropertyArtist];
-            UIImage * PlayerViewImage = _PlayerImage.image;
+            UIImage * PlayerViewImage = PlayerImage.image;
             if(PlayerViewImage != nil)
             {
                 [dict setObject:[[MPMediaItemArtwork alloc]initWithImage:PlayerViewImage]forKey:MPMediaItemPropertyArtwork];
@@ -280,89 +282,89 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     self.view.backgroundColor = UIBACKGROUNDCOLOR;
     
     //初始化PlyaerImage界面
-    _PlayerImage = [[UIImageView alloc]init];
-    _PlayerImage.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point, kPlayerImageWidth, kPlayerImageHeight);
-    _PlayerImage.layer.masksToBounds = YES;
-    _PlayerImage.layer.cornerRadius = 10;
-    [self.view addSubview:_PlayerImage];
+    PlayerImage = [[UIImageView alloc]init];
+    PlayerImage.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point, kPlayerImageWidth, kPlayerImageHeight);
+    PlayerImage.layer.masksToBounds = YES;
+    PlayerImage.layer.cornerRadius = 10;
+    [self.view addSubview:PlayerImage];
     
    
     //初始化PlayerImageBlock界面
-    _PlayerImageBlock = [[UIImageView alloc]init];
-    _PlayerImageBlock.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point, kPlayerImageWidth, kPlayerImageHeight);
-    [_PlayerImageBlock setImage:[UIImage imageNamed:@"albumBlock"]];
-    _PlayerImageBlock.layer.masksToBounds = YES;
-    _PlayerImageBlock.layer.cornerRadius = 10;
-    [self.view addSubview:_PlayerImageBlock];
+    PlayerImageBlock = [[UIImageView alloc]init];
+    PlayerImageBlock.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point, kPlayerImageWidth, kPlayerImageHeight);
+    [PlayerImageBlock setImage:[UIImage imageNamed:@"albumBlock"]];
+    PlayerImageBlock.layer.masksToBounds = YES;
+    PlayerImageBlock.layer.cornerRadius = 10;
+    [self.view addSubview:PlayerImageBlock];
     
     //初始化TimeLabel
-    _TimeLabel = [[UILabel alloc]init];
-    _TimeLabel.backgroundColor = UIBACKGROUNDCOLOR;
-    _TimeLabel.font = [UIFont systemFontOfSize:15];
-    _TimeLabel.textColor = [UIColor blackColor];
-    _TimeLabel.textAlignment = NSTextAlignmentCenter;
-    _TimeLabel.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 1, kLabel_Width, kLabel_Height);
-    [self.view addSubview:_TimeLabel];
+    TimeLabel = [[UILabel alloc]init];
+    TimeLabel.backgroundColor = UIBACKGROUNDCOLOR;
+    TimeLabel.font = [UIFont systemFontOfSize:15];
+    TimeLabel.textColor = [UIColor blackColor];
+    TimeLabel.textAlignment = NSTextAlignmentCenter;
+    TimeLabel.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 1, kLabel_Width, kLabel_Height);
+    [self.view addSubview:TimeLabel];
 
     //初始化TimeProgressBar
-    _TimeProgressBar = [[UIProgressView alloc]init];
-     _TimeProgressBar.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 3, kLabel_Width, kLabel_Height);
-    [self.view addSubview:_TimeProgressBar];
+    TimeProgressBar = [[UIProgressView alloc]init];
+    TimeProgressBar.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 3, kLabel_Width, kLabel_Height);
+    [self.view addSubview:TimeProgressBar];
     
     //初始化ChannelLabel
-    _ChannelTitle = [[UILabel alloc]init];
-    _ChannelTitle.backgroundColor = UIBACKGROUNDCOLOR;
-    _ChannelTitle.font = [UIFont systemFontOfSize:15];
-    _ChannelTitle.textColor = [UIColor blackColor];
-    _ChannelTitle.textAlignment = NSTextAlignmentCenter;
-    _ChannelTitle.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 5, kLabel_Width, kLabel_Height);
-    [self.view addSubview:_ChannelTitle];
+    ChannelTitle = [[UILabel alloc]init];
+    ChannelTitle.backgroundColor = UIBACKGROUNDCOLOR;
+    ChannelTitle.font = [UIFont systemFontOfSize:15];
+    ChannelTitle.textColor = [UIColor blackColor];
+    ChannelTitle.textAlignment = NSTextAlignmentCenter;
+    ChannelTitle.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 5, kLabel_Width, kLabel_Height);
+    [self.view addSubview:ChannelTitle];
     
     //初始化SongTitle
-    _SongTitle = [[UILabel alloc]init];
-    _SongTitle.backgroundColor = UIBACKGROUNDCOLOR;
-    _SongTitle.font = [UIFont systemFontOfSize:25];
-    _SongTitle.textColor = [UIColor blackColor];
-    _SongTitle.textAlignment = NSTextAlignmentCenter;
-    _SongTitle.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 7, kLabel_Width, kLabel_Height);
-    [self.view addSubview:_SongTitle];
+    SongTitle = [[UILabel alloc]init];
+    SongTitle.backgroundColor = UIBACKGROUNDCOLOR;
+    SongTitle.font = [UIFont systemFontOfSize:25];
+    SongTitle.textColor = [UIColor blackColor];
+    SongTitle.textAlignment = NSTextAlignmentCenter;
+    SongTitle.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 7, kLabel_Width, kLabel_Height);
+    [self.view addSubview:SongTitle];
     
     //初始化SongArtist
-    _SongArtist = [[UILabel alloc]init];
-    _SongArtist.backgroundColor = UIBACKGROUNDCOLOR;
-    _SongArtist.font = [UIFont systemFontOfSize:15];
-    _SongArtist.textColor = [UIColor blackColor];
-    _SongArtist.textAlignment = NSTextAlignmentCenter;
-    _SongArtist.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 9, kLabel_Width, kLabel_Height);
-    [self.view addSubview:_SongArtist];
+    SongArtist = [[UILabel alloc]init];
+    SongArtist.backgroundColor = UIBACKGROUNDCOLOR;
+    SongArtist.font = [UIFont systemFontOfSize:15];
+    SongArtist.textColor = [UIColor blackColor];
+    SongArtist.textAlignment = NSTextAlignmentCenter;
+    SongArtist.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 9, kLabel_Width, kLabel_Height);
+    [self.view addSubview:SongArtist];
     
     //初始化PauseButton
-    _PauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_PauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
-    [_PauseButton addTarget:self action:@selector(PauseButton) forControlEvents:UIControlEventTouchUpInside];
-    _PauseButton.frame = CGRectMake(kButton_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance, kButton_Width, kButton_Height);
-    [self.view addSubview:_PauseButton];
+    PauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [PauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
+    [PauseButton addTarget:self action:@selector(PauseButton) forControlEvents:UIControlEventTouchUpInside];
+    PauseButton.frame = CGRectMake(kButton_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance, kButton_Width, kButton_Height);
+    [self.view addSubview:PauseButton];
     
     //初始化LikeButton
-    _LikeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_LikeButton setImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
-    [_LikeButton addTarget:self action:@selector(LikeButton) forControlEvents:UIControlEventTouchUpInside];
-    _LikeButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 1,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
-    [self.view addSubview:_LikeButton];
+    LikeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [LikeButton setImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
+    [LikeButton addTarget:self action:@selector(LikeButton) forControlEvents:UIControlEventTouchUpInside];
+    LikeButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 1,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
+    [self.view addSubview:LikeButton];
     
     //初始化DeleteButton
-    _DeleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_DeleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
-    [_DeleteButton addTarget:self action:@selector(DeleteButton) forControlEvents:UIControlEventTouchUpInside];
-    _DeleteButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 2,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
-    [self.view addSubview:_DeleteButton];
+    DeleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [DeleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+    [DeleteButton addTarget:self action:@selector(DeleteButton) forControlEvents:UIControlEventTouchUpInside];
+    DeleteButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 2,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
+    [self.view addSubview:DeleteButton];
     
     //初始化SkipButton
-    _SkipButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_SkipButton setImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
-    [_SkipButton addTarget:self action:@selector(SkipButton) forControlEvents:UIControlEventTouchUpInside];
-    _SkipButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 3,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
-    [self.view addSubview:_SkipButton];
+    SkipButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [SkipButton setImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
+    [SkipButton addTarget:self action:@selector(SkipButton) forControlEvents:UIControlEventTouchUpInside];
+    SkipButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 3,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
+    [self.view addSubview:SkipButton];
 
 }
 
@@ -372,9 +374,9 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     if(isPlaying)
     {
         isPlaying = NO;
-        _PlayerImage.alpha = 0.2f;
-        _PlayerImageBlock.image = [UIImage imageNamed:@"albumBlock2"];
-        [_PauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+        PlayerImage.alpha = 0.2f;
+        PlayerImageBlock.image = [UIImage imageNamed:@"albumBlock2"];
+        [PauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
         [appDelegate.VideoPlayer pause];
         //关闭计时器
         [Timer setFireDate:[NSDate distantFuture]];
@@ -382,9 +384,9 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     else
     {
         isPlaying = YES;
-        _PlayerImage.alpha = 1.0f;
-        _PlayerImageBlock.image = [UIImage imageNamed:@"albumBlock"];
-        [_PauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
+        PlayerImage.alpha = 1.0f;
+        PlayerImageBlock.image = [UIImage imageNamed:@"albumBlock"];
+        [PauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
         [appDelegate.VideoPlayer play];
         //开启计时器
         [Timer setFireDate:[NSDate date]];
@@ -396,14 +398,14 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     if(![appDelegate.playerInfo.CurrentSong.SongIsLike intValue])
     {
         appDelegate.playerInfo.CurrentSong.SongIsLike = @"1";
-        [_LikeButton setImage:[UIImage imageNamed:@"heart2"] forState:UIControlStateNormal];
+        [LikeButton setImage:[UIImage imageNamed:@"heart2"] forState:UIControlStateNormal];
         [doubanServer DoubanSongOperationWithType:@"r"];
         
     }
     else
     {
         appDelegate.playerInfo.CurrentSong.SongIsLike = @"0";
-        [_LikeButton setImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
+        [LikeButton setImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
     }
 }
 
@@ -412,10 +414,10 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     if(!isPlaying)
     {
         isPlaying = YES;
-        _PlayerImage.alpha = 1.0f;
-        _PlayerImageBlock.image = [UIImage imageNamed:@"albumBlock"];
+        PlayerImage.alpha = 1.0f;
+        PlayerImageBlock.image = [UIImage imageNamed:@"albumBlock"];
         [appDelegate.VideoPlayer play];
-        [_PauseButton setBackgroundImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
+        [PauseButton setBackgroundImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
     }
     [doubanServer DoubanSongOperationWithType:@"b"];
 
@@ -427,8 +429,8 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     [appDelegate.VideoPlayer pause];
     if(!isPlaying)
     {
-        _PlayerImage.alpha = 1.0f;
-        _PlayerImageBlock.image = [UIImage imageNamed:@"albumBlock"];
+        PlayerImage.alpha = 1.0f;
+        PlayerImageBlock.image = [UIImage imageNamed:@"albumBlock"];
     }
     [doubanServer DoubanSongOperationWithType:@"s"];
 }
