@@ -14,6 +14,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import "UIKIT+AFNetworking.h"
 #import "UIImageView+WebCache.h"
+#import "SongInfo.h"
+#import "ChannelInfo.h"
 
 
 @interface PlayerViewController ()

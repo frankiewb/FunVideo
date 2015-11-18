@@ -7,6 +7,8 @@
 //
 
 #import "PlayerInfo.h"
+#import "SongInfo.h"
+#import "ChannelInfo.h"
 
 @implementation PlayerInfo
 

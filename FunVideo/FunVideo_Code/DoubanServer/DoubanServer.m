@@ -11,6 +11,12 @@
 #import "AppDelegate.h"
 #import "UserInfo.h"
 #import "Commons.h"
+#import "PlayerInfo.h"
+#import "LoginInfo.h"
+#import "CaptchaImageInfo.h"
+#import "ChannelGroup.h"
+#import "ChannelInfo.h"
+#import "SongInfo.h"
 
 
 

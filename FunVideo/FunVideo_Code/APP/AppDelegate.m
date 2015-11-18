@@ -8,7 +8,11 @@
 
 #import "AppDelegate.h"
 #import <AVFoundation/AVFoundation.h>
-#import "DoubanServer.h"ß
+#import "DoubanServer.h"
+#import "UserInfo.h"
+#import "PlayerInfo.h"
+#import "ChannelGroup.h"
+#import "SongInfo.h"
 
 @interface AppDelegate ()
 {

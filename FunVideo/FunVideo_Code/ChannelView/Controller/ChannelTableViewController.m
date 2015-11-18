@@ -8,6 +8,7 @@
 
 #import "ChannelTableViewController.h"
 #import "AppDelegate.h"
+#import "ChannelGroup.h"
 #import "ChannelInfo.h"
 #import "PlayerInfo.h"
 #import "UIKIT+AFNetworking.h"

@@ -8,6 +8,7 @@
 
 #import "ChannelGroup.h"
 #import "Commons.h"
+#import "ChannelInfo.h"
 
 
 @implementation ChannelGroup

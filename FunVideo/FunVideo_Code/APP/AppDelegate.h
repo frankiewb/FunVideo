@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import "UserInfo.h"
-#import "PlayerInfo.h"
-#import "ChannelGroup.h"
+
+
+@class UserInfo;
+@class PlayerInfo;
+@class ChannelGroup;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

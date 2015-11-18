@@ -212,8 +212,8 @@
 		10228DE01BE8870600249B4E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				10228DE91BE8892E00249B4E /* ChannelTableViewController.m */,
 				10228DE81BE8892E00249B4E /* ChannelTableViewController.h */,
+				10228DE91BE8892E00249B4E /* ChannelTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";

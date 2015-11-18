@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "UserViewController.h"
 #include "UserInfo.h"
+#import "ChannelInfo.h"
 #include "ChannelGroup.h"
 #include "DoubanServer.h"
 #import "UIKIT+AFNetworking.h"

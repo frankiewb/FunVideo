@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ChannelInfo.h"
+
 
 @interface ChannelGroup : NSObject<NSCoding>
 

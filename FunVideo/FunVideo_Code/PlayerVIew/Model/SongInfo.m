@@ -15,13 +15,13 @@
 {
     if(self = [super init])
     {
-        self.SongArtist = [Dic objectForKey:@"artist"];
-        self.SongTitle = [Dic objectForKey:@"title"];
-        self.SongUrl = [Dic objectForKey:@"url"];
+        self.SongArtist     = [Dic objectForKey:@"artist"];
+        self.SongTitle      = [Dic objectForKey:@"title"];
+        self.SongUrl        = [Dic objectForKey:@"url"];
         self.SongPictureUrl = [Dic objectForKey:@"picture"];
-        self.SongTimeLong = [Dic objectForKey:@"length"];
-        self.SongIsLike = [Dic objectForKey:@"like"];
-        self.SongId = [Dic objectForKey:@"sid"];
+        self.SongTimeLong   = [Dic objectForKey:@"length"];
+        self.SongIsLike     = [Dic objectForKey:@"like"];
+        self.SongId         = [Dic objectForKey:@"sid"];
     }
         return self;
 }
@@ -47,13 +47,13 @@
 {
     if([self init])
     {
-        _SongArtist = [aDecoder decodeObjectForKey:@"artist"];
-        _SongTitle = [aDecoder decodeObjectForKey:@"title"];
-        _SongUrl = [aDecoder decodeObjectForKey:@"songurl"];
+        _SongArtist     = [aDecoder decodeObjectForKey:@"artist"];
+        _SongTitle      = [aDecoder decodeObjectForKey:@"title"];
+        _SongUrl        = [aDecoder decodeObjectForKey:@"songurl"];
         _SongPictureUrl = [aDecoder decodeObjectForKey:@"pictureurl"];
-        _SongTimeLong = [aDecoder decodeObjectForKey:@"timelong"];
-        _SongIsLike = [aDecoder decodeObjectForKey:@"islike"];
-        _SongId = [aDecoder decodeObjectForKey:@"songid"];
+        _SongTimeLong   = [aDecoder decodeObjectForKey:@"timelong"];
+        _SongIsLike     = [aDecoder decodeObjectForKey:@"islike"];
+        _SongId         = [aDecoder decodeObjectForKey:@"songid"];
     }
     return self;
 }

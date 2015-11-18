@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SongInfo.h"
-#import "ChannelInfo.h"
+@class ChannelInfo;
+@class SongInfo;
 
 @interface PlayerInfo : NSObject<NSCoding>
 

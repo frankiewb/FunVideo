@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PlayerInfo.h"
-#import "LoginInfo.h"
-#import "CaptchaImageInfo.h"
-#import "ChannelGroup.h"
+
+
+@class CaptchaImageInfo;
+@class LoginInfo;
+
 
 //使用代理
 @protocol DoubanDelegate <NSObject>
