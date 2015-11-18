@@ -62,6 +62,25 @@
     return self;
 }
 
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"ChannelCoverURL":_ChannelCoverURL,
+                                                                         @"ChannelID":_ChannelID,
+                                                                         @"ChannelName":_ChannelName,
+                                                                         @"ChannelIntro":_ChannelIntro,
+                                                                         @"ChannelBannerURL":_ChannelBannerURL}];
+}
+
+-(NSString *)debugDescription
+{
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"ChannelCoverURL":_ChannelCoverURL,
+                                                                         @"ChannelID":_ChannelID,
+                                                                         @"ChannelName":_ChannelName,
+                                                                         @"ChannelIntro":_ChannelIntro,
+                                                                         @"ChannelBannerURL":_ChannelBannerURL}];
+
+}
+
 
 
 @end

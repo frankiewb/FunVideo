@@ -61,4 +61,26 @@
     return self;
 }
 
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"IsNotLogin":_IsNotLogin,
+                                                                         @"Cookies":_Cookies,
+                                                                         @"UserID":_UserID,
+                                                                         @"UserName":_UserName,
+                                                                         @"Banned":_Banned,
+                                                                         @"Liked":_Liked,
+                                                                         @"Played":_Plyaed}];
+}
+
+-(NSString *)debugDescription
+{
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"IsNotLogin":_IsNotLogin,
+                                                                         @"Cookies":_Cookies,
+                                                                         @"UserID":_UserID,
+                                                                         @"UserName":_UserName,
+                                                                         @"Banned":_Banned,
+                                                                         @"Liked":_Liked,
+                                                                         @"Played":_Plyaed}];
+}
+
 @end

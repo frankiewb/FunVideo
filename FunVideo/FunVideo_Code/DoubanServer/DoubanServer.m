@@ -342,7 +342,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
             }
             else
             {
-                 NSLog(@"当前歌曲：%@",appDelegate.playerInfo.CurrentSong.SongTitle);
+                NSLog(@"当前歌曲：%@",appDelegate.playerInfo.CurrentSong.SongTitle);
                 appDelegate.playerInfo.CurrentSong = [appDelegate.playerInfo.CurrentSong initSongInfoWithDictionary:song];
                 [appDelegate.VideoPlayer setContentURL:[NSURL URLWithString:appDelegate.playerInfo.CurrentSong.SongUrl]];
                 [appDelegate.VideoPlayer play];

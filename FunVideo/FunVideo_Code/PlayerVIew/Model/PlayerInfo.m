@@ -44,4 +44,18 @@
         return self;
 }
 
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"CurrentSong":_CurrentSong,
+                                                                         @"CurrentChannel":_CurrentChannel}];
+
+}
+
+-(NSString *)debugDescription
+{
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"CurrentSong":_CurrentSong,
+                                                                         @"CurrentChannel":_CurrentChannel}];
+}
+
+
 @end

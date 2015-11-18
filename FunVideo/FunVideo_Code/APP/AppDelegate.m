@@ -59,7 +59,7 @@
     NSString * path = [[NSBundle mainBundle]bundlePath];
     
     //归档playerInfo
-    NSLog(@"%@",_playerInfo.CurrentSong.SongTitle);
+    NSLog(@"CurrentSong : %@",_playerInfo.CurrentSong);
     NSString *  playerpath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoPlayerInfo.archiver"];
     BOOL playerInfoflag = [NSKeyedArchiver archiveRootObject:_playerInfo toFile:playerpath];
     if(playerInfoflag)
@@ -73,6 +73,7 @@
     
     
     //归档ChannelGroup
+    NSLog(@"CurrentChannelGroup: %@",_channelGroup);
     NSString * channelgroupinfopath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoChannelInfo.archiver"];
     BOOL channelInfoflag = [NSKeyedArchiver archiveRootObject:_channelGroup toFile:channelgroupinfopath];
     if(channelInfoflag)
@@ -109,8 +110,8 @@
     PlayerInfo * tempPlayerInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:playerpath];
     if(tempPlayerInfo)
     {
-        NSLog(@"%@",_playerInfo.CurrentSong.SongTitle);
         _playerInfo = tempPlayerInfo;
+        NSLog(@"RECurrentSong : %@",_playerInfo.CurrentSong);
         NSLog(@"playerInfo Unarchived");
     }
     else

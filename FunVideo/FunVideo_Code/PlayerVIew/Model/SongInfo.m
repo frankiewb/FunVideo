@@ -58,6 +58,31 @@
     return self;
 }
 
+-(NSString *)description
+{
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"SongArtist":_SongArtist,
+                                                                         @"SongTitle":_SongTitle,
+                                                                         @"SongURL":_SongUrl,
+                                                                         @"SongPictureURL":_SongPictureUrl,
+                                                                         @"SongTimeLong":_SongTimeLong,
+                                                                         @"SongIsLike":_SongIsLike,
+                                                                         @"SongID":_SongId}];
+}
+
+-(NSString *)debugDescription
+{
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"SongArtist":_SongArtist,
+                                                                         @"SongTitle":_SongTitle,
+                                                                         @"SongURL":_SongUrl,
+                                                                         @"SongPictureURL":_SongPictureUrl,
+                                                                         @"SongTimeLong":_SongTimeLong,
+                                                                         @"SongIsLike":_SongIsLike,
+                                                                         @"SongID":_SongId}];
+
+}
+
+
+
 
 
 
