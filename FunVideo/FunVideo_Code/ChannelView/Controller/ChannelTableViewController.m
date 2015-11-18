@@ -16,6 +16,16 @@
 #import "EGORefreshTableHeaderView.h"
 #import "Commons.h"
 
+
+
+static const CGFloat kTITLE_HEIGHT  = 40;
+static const CGFloat kFOOTER_HEIGHT = 1;
+static const CGFloat kROW_HEIGHT    = 60;
+static const CGFloat kORIGIN_X      = 0;
+static const CGFloat kORIGIN_Y      = 0;
+
+
+
 @interface ChannelTableViewController()
 {
     DoubanServer * doubanServer;
@@ -47,7 +57,7 @@
     assert(channelGroup);
 
     //创建分组样式的UItableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(TABLEVIEW_ORIGIN_X, TABLEVIEW_ORIGIN_Y, FrankieAppWidth, FrankieAppHeigth) style:
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(kORIGIN_X, kORIGIN_Y, FrankieAppWidth, FrankieAppHeigth) style:
                       UITableViewStyleGrouped];
     
     //加载refreshHeaderView
@@ -215,21 +225,21 @@
 {
     if(section == 0)
     {
-        return TABLEVIEW_TITLE_HEIGHT + 20;
+        return kTITLE_HEIGHT + 20;
     }
-    return TABLEVIEW_TITLE_HEIGHT;
+    return kTITLE_HEIGHT;
 }
 
 #pragma 设置尾部说明高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return TABLEVIEW_FOOTER_HEIGHT;
+    return kFOOTER_HEIGHT;
 }
 
 #pragma 设置每行高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return TABLEVIEW_ROW_HEIGHT;
+    return kROW_HEIGHT;
 }
 
 #pragma 点击行

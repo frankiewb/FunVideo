@@ -12,6 +12,35 @@
 #import "LoginInfo.h"
 #import "Commons.h"
 
+
+
+#define UILOGINVIEWLABELCOLOR [UIColor whiteColor]
+
+static const CGFloat kOrigin_Xpoint              = 10;
+static const CGFloat kOrigin_Ypoint              = 35;
+static const CGFloat kLabelHeight_Distance       = 30;
+static const CGFloat kTextFieldHeight_Distance   = 20;
+static const CGFloat kCaptchaImageWidth_Distance = 10;
+
+static const CGFloat kLabel_Field_Width          = 300;
+static const CGFloat kLabel_Field_Height         = 50;
+
+static const CGFloat kCaptcha_Width              = 140;
+static const CGFloat kCaptcha_Height             = 50;
+
+static const CGFloat kCaptchaImageView_Width     = 150;
+static const CGFloat kCaptchaImageView_Height    = 50;
+
+static const CGFloat kButtonHeight_Distance      = 50;
+static const CGFloat kButton_Width               = 300;
+static const CGFloat kButton_Heigth              = 50;
+
+
+
+
+
+
+
 @interface LoginViewController()
 {
     
@@ -72,7 +101,7 @@
     _LoginViewTitle.textAlignment = NSTextAlignmentLeft;
     _LoginViewTitle.layer.masksToBounds = YES;
     _LoginViewTitle.layer.cornerRadius = 6;
-    _LoginViewTitle.frame = CGRectMake(LoginView_Origin_Xpoint, LoginView_Origin_Ypoint, LoginView_Label_Field_Width, LoginView_Label_Field_Height);
+    _LoginViewTitle.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint, kLabel_Field_Width, kLabel_Field_Height);
     [self.view addSubview:_LoginViewTitle];
     
     
@@ -103,7 +132,7 @@
     _LoginNameTextField.returnKeyType = UIReturnKeyDone;
     //设置键盘外观
     _LoginNameTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    _LoginNameTextField.frame = CGRectMake(LoginView_Origin_Xpoint, LoginView_Origin_Ypoint + LoginView_Label_Field_Height * 1 + LoginView_LabelHeight_Distance, LoginView_Label_Field_Width, LoginView_Label_Field_Height);
+    _LoginNameTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 1 + kLabelHeight_Distance, kLabel_Field_Width, kLabel_Field_Height);
     [self.view addSubview:_LoginNameTextField];
     
     
@@ -136,7 +165,7 @@
     _LoginPassWordTextField.secureTextEntry = YES;
     //设置键盘外观
     _LoginPassWordTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    _LoginPassWordTextField.frame = CGRectMake(LoginView_Origin_Xpoint, LoginView_Origin_Ypoint + LoginView_Label_Field_Height * 2 + LoginView_LabelHeight_Distance + LoginView_TextFieldHeight_Distance * 1, LoginView_Label_Field_Width, LoginView_Label_Field_Height);
+    _LoginPassWordTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 2 + kLabelHeight_Distance + kTextFieldHeight_Distance * 1, kLabel_Field_Width, kLabel_Field_Height);
     [self.view addSubview:_LoginPassWordTextField];
     
     
@@ -168,7 +197,7 @@
     _CaptchaImageTextField.returnKeyType = UIReturnKeyDone;
     //设置键盘外观
     _CaptchaImageTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    _CaptchaImageTextField.frame = CGRectMake(LoginView_Origin_Xpoint, LoginView_Origin_Ypoint + LoginView_Label_Field_Height * 3 + LoginView_LabelHeight_Distance + LoginView_TextFieldHeight_Distance * 2, LoginView_Captcha_Width, LoginView_Captcha_Height);
+    _CaptchaImageTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 3 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2, kCaptcha_Width, kCaptcha_Height);
     [self.view addSubview:_CaptchaImageTextField];
     
     /*验证码图片*/
@@ -177,7 +206,7 @@
     _CaptchaImageView.layer.cornerRadius = 10;
     _CaptchaImageView.backgroundColor = UILOGINVIEWLABELCOLOR;
     _CaptchaImageView.userInteractionEnabled = YES;
-    _CaptchaImageView.frame = CGRectMake(LoginView_Origin_Xpoint + LoginView_Captcha_Width + LoginView_CaptchaImageWidth_Distance, LoginView_Origin_Ypoint + LoginView_Label_Field_Height * 3 + LoginView_LabelHeight_Distance + LoginView_TextFieldHeight_Distance * 2 , LoginView_CaptchaImageView_Width, LoginView_CaptchaImageView_Height);
+    _CaptchaImageView.frame = CGRectMake(kOrigin_Xpoint + kCaptcha_Width + kCaptchaImageWidth_Distance, kOrigin_Ypoint + kLabel_Field_Height * 3 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 , kCaptchaImageView_Width, kCaptchaImageView_Height);
     [self.view addSubview:_CaptchaImageView];
     
     
@@ -187,7 +216,7 @@
     [_LoginButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     _LoginButton.backgroundColor = UILOGINVIEWLABELCOLOR;
     [_LoginButton addTarget:self action:@selector(Login) forControlEvents:UIControlEventTouchUpInside];
-    _LoginButton.frame = CGRectMake(LoginView_Origin_Xpoint, LoginView_Origin_Ypoint + LoginView_Label_Field_Height * 4 + LoginView_LabelHeight_Distance + LoginView_TextFieldHeight_Distance * 2 + LoginView_ButtonHeight_Distance * 1, LoginView_Button_Width, LoginView_Button_Heigth);
+    _LoginButton.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 4 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 + kButtonHeight_Distance * 1, kButton_Width, kButton_Heigth);
     [self.view addSubview:_LoginButton];
     
     /*登出Button*/
@@ -196,7 +225,7 @@
     [_CancelButton setTitle:@"取 消" forState:UIControlStateNormal];
     [_CancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     [_CancelButton addTarget:self action:@selector(Cancel) forControlEvents:UIControlEventTouchUpInside];
-    _CancelButton.frame = CGRectMake(LoginView_Origin_Xpoint, LoginView_Origin_Ypoint + LoginView_Label_Field_Height * 5 + LoginView_LabelHeight_Distance + LoginView_TextFieldHeight_Distance * 2 + LoginView_ButtonHeight_Distance * 1.5, LoginView_Button_Width, LoginView_Button_Heigth);
+    _CancelButton.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 5 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 + kButtonHeight_Distance * 1.5, kButton_Width, kButton_Heigth);
     [self.view addSubview:_CancelButton];
     
     //添加验证码点击更新事件

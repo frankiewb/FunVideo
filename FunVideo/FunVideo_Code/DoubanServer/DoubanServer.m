@@ -20,6 +20,34 @@
 
 
 
+static const NSString * USERIMAGEURL              = @"http://img3.douban.com/icon/ul%@-1.jpg";
+static const NSString * PLAYERURLFORMATSTRING     = @"http://douban.fm/j/mine/playlist?type=%@&sid=%@&pt=%f&channel=%@&from=mainsite";
+static const NSString * LOGINURLSTRING            = @"http://douban.fm/j/login";
+static const NSString * LOGOUTURLSTRING           = @"http://douban.fm/partner/logout";
+static const NSString * CAPTCHAIDURLSTRING        = @"http://douban.fm/j/new_captcha";
+static const NSString * CAPTCHAIMGURLFORMATSTRING = @"http://douban.fm/misc/captcha?size=m&id=%@";
+static const NSString * LOGINCHANNELURL           = @"http://douban.fm/j/explore/get_login_chls?uk=";
+static const NSString * TOTALCHANNELURL           = @"http://douban.fm/j/explore/up_trending_channels";
+
+//频道：频道ID
+//语言年代兆赫
+static const NSInteger HUAYU_MHz               = 1;
+static const NSInteger OUMEI_MHz               = 2;
+static const NSInteger YUEYU_MHz               = 6;
+static const NSInteger BALING_MHz              = 4;
+static const NSInteger JIULING_MHz             = 5;
+//风格流派兆赫
+static const NSInteger YAOGUN_MHz              = 7;
+static const NSInteger MINYAO_MHz              = 8;
+static const NSInteger QINGYINYUE_MHz          = 9;
+static const NSInteger DIANYINGYUANSHENG_MHz   = 10;
+static const NSInteger XIAOQINGXIN_MHz         = 76;
+static const NSInteger JAZZ_MHz                = 13;
+static const NSInteger GUDIAN_MHz              = 27;
+//心情场景兆赫
+static const NSInteger XINGE_MHz               = 61;
+static const NSInteger COFFEE_MHz              = 32;
+static const NSInteger WORKSTUDY_MHz           = 153;
 
 
 @interface DoubanServer()

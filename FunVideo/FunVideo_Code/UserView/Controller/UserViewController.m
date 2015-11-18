@@ -17,6 +17,36 @@
 #import "UIImageView+WebCache.h"
 #include "Commons.h"
 
+
+
+static const NSString * USERIMAGEURL = @"http://img3.douban.com/icon/ul%@-1.jpg";
+static const CGFloat kOrigin_Xpoint  = 85;
+static const CGFloat kOrigin_Ypoint = 60;
+static const CGFloat kUserImage_Width = 150;
+static const CGFloat kUserImage_Height = 150;
+
+static const CGFloat kUserName_Xpoint = 60;
+static const CGFloat kUserName_Ypoint = 250;
+static const CGFloat kUserName_Width = 200;
+static const CGFloat kUserName_Height = 50;
+
+static const CGFloat kPlayedLabel_Xpoint = 40;
+static const CGFloat kPlayedLabel_Ypoint = 350;
+static const CGFloat kPlayedLabel_Width = 100;
+static const CGFloat kPlayedLabel_Height = 100;
+
+static const CGFloat kBannedLabel_Xpoint = 180;
+static const CGFloat kBannedLabel_Ypoint = 350;
+static const CGFloat kBannedLabel_Width = 100;
+static const CGFloat kBannedLabel_Height = 100;
+
+static const CGFloat kLogoutButton_Xpoint = 0;
+static const CGFloat kLogoutButton_Ypoint = 500;
+static const CGFloat kLogoutButton_Width  = 320;
+static const CGFloat kLogoutButton_Hegiht = 68;
+
+
+
 @interface UserViewController()
 {
     DoubanServer * doubanServer;
@@ -44,6 +74,7 @@
 
 -(void)viewDidLoad
 {
+    
     [super viewDidLoad];
     appDelegate =[[UIApplication sharedApplication]delegate];
     doubanServer = [[DoubanServer alloc]initDoubanServer];
@@ -65,7 +96,7 @@
     {
         _UserViewImage.clipsToBounds = YES;
     }
-    _UserViewImage.frame = CGRectMake(UserView_Origin_Xpoint, UserView_Origin_Ypoint, UserView_UserImage_Width, UserView_UserImage_Height);
+    _UserViewImage.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint, kUserImage_Width, kUserImage_Height);
     _UserViewImage.layer.cornerRadius = _UserViewImage.frame.size.width/2.0;
     
     //给登录图片增加手势
@@ -81,7 +112,7 @@
     _UserNameLabel.backgroundColor = UIBACKGROUNDCOLOR;
     _UserNameLabel.textAlignment = NSTextAlignmentCenter;
     [_UserNameLabel setFont:[UIFont boldSystemFontOfSize:30]];
-    _UserNameLabel.frame = CGRectMake(UserView_UserName_Xpoint, UserView_UserName_Ypoint, UserView_UserName_Width, UserView_UserName_Height);
+    _UserNameLabel.frame = CGRectMake(kUserName_Xpoint, kUserName_Ypoint, kUserName_Width, kUserName_Height);
     [self.view addSubview:_UserNameLabel];
     
     
@@ -91,7 +122,7 @@
     _PlayedLabel.backgroundColor = UIBACKGROUNDCOLOR;
     _PlayedLabel.textAlignment = NSTextAlignmentCenter;
     [_PlayedLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    _PlayedLabel.frame = CGRectMake(UserView_PlayedLabel_Xpoint, UserView_PlayedLabel_Ypoint, UserView_PlayedLabel_Width, UserView_PlayedLabel_Height);
+    _PlayedLabel.frame = CGRectMake(kPlayedLabel_Xpoint, kPlayedLabel_Ypoint, kPlayedLabel_Width, kPlayedLabel_Height);
     [self.view addSubview:_PlayedLabel];
     
     
@@ -101,7 +132,7 @@
     _BannedLabel.backgroundColor = UIBACKGROUNDCOLOR;
     _BannedLabel.textAlignment = NSTextAlignmentCenter;
     [_BannedLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    _BannedLabel.frame = CGRectMake(UserView_BannedLabel_Xpoint, UserView_BannedLabel_Ypoint, UserView_BannedLabel_Width, UserView_BannedLabel_Height);
+    _BannedLabel.frame = CGRectMake(kBannedLabel_Xpoint, kBannedLabel_Ypoint, kBannedLabel_Width, kBannedLabel_Height);
     [self.view addSubview:_BannedLabel];
     
     /*设置LogoutButton*/
@@ -111,7 +142,7 @@
     [_LogoutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     _LogoutButton.backgroundColor = UIBACKGROUNDCOLOR;
     [_LogoutButton addTarget:self action:@selector(Logout) forControlEvents:UIControlEventTouchUpInside];
-    _LogoutButton.frame = CGRectMake(UserView_LogoutButton_Xpoint, UserView_LogoutButton_Ypoint, UserView_LogoutButton_Width, UserView_LogoutButton_Hegiht);
+    _LogoutButton.frame = CGRectMake(kLogoutButton_Xpoint, kLogoutButton_Ypoint, kLogoutButton_Width, kLogoutButton_Hegiht);
     [self.view addSubview:_LogoutButton];
     
     

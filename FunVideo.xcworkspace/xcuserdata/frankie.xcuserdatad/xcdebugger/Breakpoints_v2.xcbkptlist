@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/LoginView/Controller/LoginViewController.m"
-            timestampString = "467990166.574873"
+            timestampString = "469525651.911299"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "-textFieldShouldReturn:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "469507851.139306"
+            timestampString = "469525285.462233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
             landmarkName = "-DoubanLogout"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "469507851.139306"
+            timestampString = "469525285.462233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
             landmarkName = "-DoubanSongOperationWithType:"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "469507851.139306"
+            timestampString = "469525285.462233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "-DoubanGetChannelCellWithURLString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "469507851.139306"
+            timestampString = "469525285.462233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "-DoubanGetChannelCellWithURLString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "469507851.139306"
+            timestampString = "469525285.462233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-DoubanGetChannelCellWithURLString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -170,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "469507851.139306"
+            timestampString = "469525285.462233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "-DoubanGetChannelGroup"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "469507851.139306"
+            timestampString = "469525285.462233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "-DoubanGetChannelGroup"
             landmarkType = "5">
          </BreakpointContent>
@@ -202,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "469507851.139306"
+            timestampString = "469525285.462233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-DoubanGetChannelCellWithURLString:"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/UserView/Controller/UserViewController.m"
-            timestampString = "469507851.139306"
+            timestampString = "469525651.911299"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "-SetUserInfo"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/UserView/Controller/UserViewController.m"
-            timestampString = "469507851.139306"
+            timestampString = "469525651.911299"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "-SetUserInfo"
             landmarkType = "5">
          </BreakpointContent>

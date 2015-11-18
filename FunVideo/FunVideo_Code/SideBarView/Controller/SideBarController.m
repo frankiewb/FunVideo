@@ -13,6 +13,24 @@
 #import "ChannelTableViewController.h"
 #import "Commons.h"
 
+
+#define UISIDEBARCOLOR [UIColor colorWithRed:1/255.0 green:1/255.0 blue:1/255.0 alpha:0.5]
+#define kMainButton_Xpoint FrankieAppWidth - 50
+static const CGFloat kMainButton_Ypoint              = 40;
+static const CGFloat kMainButton_Height              = 40;
+static const CGFloat kMainButton_Width               = 40;
+static const CGFloat kFunctionButton_Xpoint          = 10;
+static const CGFloat kFunctionButton_Ypoint          = 50;
+static const CGFloat kFunctionButton_Heigth_Distance = 80;
+static const CGFloat kFunctionButton_Width           = 40;
+static const CGFloat kFunctionButton_Height          = 40;
+static const CGFloat kBackgroundView_Width           = 60;
+
+
+
+
+
+
 @interface SideBarController()
 {
     //表示侧边栏是否展开
@@ -91,17 +109,17 @@
     
     //设置BackgroundMenuView
     _BackgroundMenuView = [[UIView alloc]init];
-    _BackgroundMenuView.frame = CGRectMake(FrankieAppWidth, 0,SideBarView_BackgroundView_Width,[UIScreen mainScreen].bounds.size.height);
+    _BackgroundMenuView.frame = CGRectMake(FrankieAppWidth, 0,kBackgroundView_Width,FrankieAppHeigth);
     _BackgroundMenuView.backgroundColor = UISIDEBARCOLOR;
     [self.view addSubview:_BackgroundMenuView];
 
     
     //设置MainViewButton
     _MainViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _MainViewButton.bounds = CGRectMake(0,0,SideBarView_MainButton_Width,SideBarView_MainButton_Height);
+    _MainViewButton.bounds = CGRectMake(0,0,kMainButton_Width,kMainButton_Height);
     [_MainViewButton setImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
     [_MainViewButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
-    _MainViewButton.frame = CGRectMake(SideBarView_MainButton_Xpoint, SideBarView_MainButton_Ypoint, SideBarView_MainButton_Width, SideBarView_MainButton_Height);
+    _MainViewButton.frame = CGRectMake(kMainButton_Xpoint, kMainButton_Ypoint, kMainButton_Width, kMainButton_Height);
     [self.view addSubview:_MainViewButton];
     UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
                                                                                 action:@selector(dismissMenu)];
@@ -117,8 +135,8 @@
     {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setImage:image forState:UIControlStateNormal];
-        button.frame = CGRectMake(SideBarView_FunctionButton_Xpoint, SideBarView_FunctionButton_Ypoint +
-                                  SideBarView_FunctionButton_Heigth_Distance * buttonIndexTag, SideBarView_FunctionButton_Width, SideBarView_MainButton_Height);
+        button.frame = CGRectMake(kFunctionButton_Xpoint, kFunctionButton_Ypoint +
+                                  kFunctionButton_Heigth_Distance * buttonIndexTag, kFunctionButton_Width, kMainButton_Height);
         
         button.tag = buttonIndexTag;
         button.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 70, 0);
@@ -226,7 +244,7 @@
            
             _MainViewButton.alpha = 0.0;
             _MainViewButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -70, 0);
-            _BackgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -SideBarView_BackgroundView_Width, 0);
+            _BackgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -kBackgroundView_Width, 0);
         }];
     });
     

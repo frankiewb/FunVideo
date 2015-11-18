@@ -18,6 +18,23 @@
 #import "ChannelInfo.h"
 
 
+#define PlayerImage_X_point (FrankieAppWidth-kPlayerImageWidth)/2
+static const CGFloat kLabel_Height_Distance  = 20;
+static const CGFloat kLabel_Height           = 30;
+static const CGFloat kLabel_Width            = 200;
+static const CGFloat kButton_X_point         = 35;
+static const CGFloat kButton_Height_Distance = 30;
+static const CGFloat kButton_Width_Distance  = 70;
+static const CGFloat kButton_Height          = 40;
+static const CGFloat kButton_Width           = 40;
+static const CGFloat kPlayerImageWidth       = 200;
+static const CGFloat kPlayerImageHeight      = 200;
+static const CGFloat kPlayerImage_Y_point    = 40;
+
+
+
+
+
 @interface PlayerViewController ()
 {
 
@@ -264,7 +281,7 @@
     
     //初始化PlyaerImage界面
     _PlayerImage = [[UIImageView alloc]init];
-    _PlayerImage.frame = CGRectMake(PlayerImage_X_point, PlayerImage_Y_point, PlayerImageWidth, PlayerImageHeight);
+    _PlayerImage.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point, kPlayerImageWidth, kPlayerImageHeight);
     _PlayerImage.layer.masksToBounds = YES;
     _PlayerImage.layer.cornerRadius = 10;
     [self.view addSubview:_PlayerImage];
@@ -272,7 +289,7 @@
    
     //初始化PlayerImageBlock界面
     _PlayerImageBlock = [[UIImageView alloc]init];
-    _PlayerImageBlock.frame = CGRectMake(PlayerImage_X_point, PlayerImage_Y_point, PlayerImageWidth, PlayerImageHeight);
+    _PlayerImageBlock.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point, kPlayerImageWidth, kPlayerImageHeight);
     [_PlayerImageBlock setImage:[UIImage imageNamed:@"albumBlock"]];
     _PlayerImageBlock.layer.masksToBounds = YES;
     _PlayerImageBlock.layer.cornerRadius = 10;
@@ -284,12 +301,12 @@
     _TimeLabel.font = [UIFont systemFontOfSize:15];
     _TimeLabel.textColor = [UIColor blackColor];
     _TimeLabel.textAlignment = NSTextAlignmentCenter;
-    _TimeLabel.frame = CGRectMake(PlayerImage_X_point, PlayerImage_Y_point + PlayerImageHeight + PlayerView_Label_Height_Distance * 1, PlayerView_label_Width, PlayerView_label_Height);
+    _TimeLabel.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 1, kLabel_Width, kLabel_Height);
     [self.view addSubview:_TimeLabel];
 
     //初始化TimeProgressBar
     _TimeProgressBar = [[UIProgressView alloc]init];
-     _TimeProgressBar.frame = CGRectMake(PlayerImage_X_point, PlayerImage_Y_point + PlayerImageHeight + PlayerView_Label_Height_Distance * 3, PlayerView_label_Width, PlayerView_label_Height);
+     _TimeProgressBar.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 3, kLabel_Width, kLabel_Height);
     [self.view addSubview:_TimeProgressBar];
     
     //初始化ChannelLabel
@@ -298,7 +315,7 @@
     _ChannelTitle.font = [UIFont systemFontOfSize:15];
     _ChannelTitle.textColor = [UIColor blackColor];
     _ChannelTitle.textAlignment = NSTextAlignmentCenter;
-    _ChannelTitle.frame = CGRectMake(PlayerImage_X_point, PlayerImage_Y_point + PlayerImageHeight + PlayerView_Label_Height_Distance * 5, PlayerView_label_Width, PlayerView_label_Height);
+    _ChannelTitle.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 5, kLabel_Width, kLabel_Height);
     [self.view addSubview:_ChannelTitle];
     
     //初始化SongTitle
@@ -307,7 +324,7 @@
     _SongTitle.font = [UIFont systemFontOfSize:25];
     _SongTitle.textColor = [UIColor blackColor];
     _SongTitle.textAlignment = NSTextAlignmentCenter;
-    _SongTitle.frame = CGRectMake(PlayerImage_X_point, PlayerImage_Y_point + PlayerImageHeight + PlayerView_Label_Height_Distance * 7, PlayerView_label_Width, PlayerView_label_Height);
+    _SongTitle.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 7, kLabel_Width, kLabel_Height);
     [self.view addSubview:_SongTitle];
     
     //初始化SongArtist
@@ -316,35 +333,35 @@
     _SongArtist.font = [UIFont systemFontOfSize:15];
     _SongArtist.textColor = [UIColor blackColor];
     _SongArtist.textAlignment = NSTextAlignmentCenter;
-    _SongArtist.frame = CGRectMake(PlayerImage_X_point, PlayerImage_Y_point + PlayerImageHeight + PlayerView_Label_Height_Distance * 9, PlayerView_label_Width, PlayerView_label_Height);
+    _SongArtist.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 9, kLabel_Width, kLabel_Height);
     [self.view addSubview:_SongArtist];
     
     //初始化PauseButton
     _PauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_PauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
     [_PauseButton addTarget:self action:@selector(PauseButton) forControlEvents:UIControlEventTouchUpInside];
-    _PauseButton.frame = CGRectMake(PlayerView_Button_X_point, PlayerImage_Y_point + PlayerImageHeight + PlayerView_Label_Height_Distance * 10 + PlayerView_Button_Height_Distance, PlayerView_Button_Width, PlayerView_Button_Height);
+    _PauseButton.frame = CGRectMake(kButton_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance, kButton_Width, kButton_Height);
     [self.view addSubview:_PauseButton];
     
     //初始化LikeButton
     _LikeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_LikeButton setImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
     [_LikeButton addTarget:self action:@selector(LikeButton) forControlEvents:UIControlEventTouchUpInside];
-    _LikeButton.frame = CGRectMake(PlayerView_Button_X_point + PlayerView_Button_Width_Distance * 1,PlayerImage_Y_point + PlayerImageHeight + PlayerView_Label_Height_Distance * 10 + PlayerView_Button_Height_Distance , PlayerView_Button_Width, PlayerView_Button_Height);
+    _LikeButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 1,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
     [self.view addSubview:_LikeButton];
     
     //初始化DeleteButton
     _DeleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_DeleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
     [_DeleteButton addTarget:self action:@selector(DeleteButton) forControlEvents:UIControlEventTouchUpInside];
-    _DeleteButton.frame = CGRectMake(PlayerView_Button_X_point + PlayerView_Button_Width_Distance * 2,PlayerImage_Y_point + PlayerImageHeight + PlayerView_Label_Height_Distance * 10 + PlayerView_Button_Height_Distance , PlayerView_Button_Width, PlayerView_Button_Height);
+    _DeleteButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 2,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
     [self.view addSubview:_DeleteButton];
     
     //初始化SkipButton
     _SkipButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_SkipButton setImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
     [_SkipButton addTarget:self action:@selector(SkipButton) forControlEvents:UIControlEventTouchUpInside];
-    _SkipButton.frame = CGRectMake(PlayerView_Button_X_point + PlayerView_Button_Width_Distance * 3,PlayerImage_Y_point + PlayerImageHeight + PlayerView_Label_Height_Distance * 10 + PlayerView_Button_Height_Distance , PlayerView_Button_Width, PlayerView_Button_Height);
+    _SkipButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 3,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
     [self.view addSubview:_SkipButton];
 
 }
