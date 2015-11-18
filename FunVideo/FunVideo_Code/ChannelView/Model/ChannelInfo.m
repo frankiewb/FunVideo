@@ -14,11 +14,11 @@
 {
     if(self = [super init])
     {
-        _ChannelCoverURL = [dic objectForKey:@"cover"];
-        _ChannelID = [dic objectForKey:@"id"];
-        _ChannelName = [dic objectForKey:@"name"];
-        _ChannelIntro = [dic objectForKey:@"intro"];
-        _ChannelBannerURL = [dic objectForKey:@"banner"];
+        _ChannelCoverURL = dic[@"cover"];
+        _ChannelID = dic[@"id"];
+        _ChannelName = dic[@"name"];
+        _ChannelIntro = dic[@"intro"];
+        _ChannelBannerURL = dic[@"banner"];
     }
     return self;
 }

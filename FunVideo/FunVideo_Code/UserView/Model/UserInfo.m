@@ -15,17 +15,17 @@
 {
     if(self = [super init])
     {
-        _IsNotLogin = [dic valueForKey:@"r"];
+        _IsNotLogin = dic[@"r"];
         
-        NSDictionary *tempUserInfoDic = [dic valueForKey:@"user_info"];
-        _Cookies = [tempUserInfoDic valueForKey:@"ck"];
-        _UserID = [tempUserInfoDic valueForKey:@"id"];
-        _UserName = [tempUserInfoDic valueForKey:@"name"];
+        NSDictionary *tempUserInfoDic = dic[@"user_info"];
+        _Cookies = tempUserInfoDic[@"ck"];
+        _UserID = tempUserInfoDic[@"id"];
+        _UserName = tempUserInfoDic[@"name"];
         
-        NSDictionary *tempPlayRecordDic = [tempUserInfoDic valueForKey:@"play_record"];
-        _Banned = [NSString stringWithFormat:@"%@",[tempPlayRecordDic valueForKey:@"banned"]];
-        _Liked = [NSString stringWithFormat:@"%@",[tempPlayRecordDic valueForKey:@"liked"]];
-        _Plyaed = [NSString stringWithFormat:@"%@",[tempPlayRecordDic valueForKey:@"played"]];
+        NSDictionary *tempPlayRecordDic = tempUserInfoDic[@"play_record"];
+        _Banned = [NSString stringWithFormat:@"%@",tempPlayRecordDic[@"banned"]];
+        _Liked = [NSString stringWithFormat:@"%@",tempPlayRecordDic[@"liked"]];
+        _Plyaed = [NSString stringWithFormat:@"%@",tempPlayRecordDic[@"played"]];
         
     }
     return self;

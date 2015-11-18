@@ -207,7 +207,7 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSLog(@"生成组(组%li)名称",(long)section);
-    return [channelGroup.ChannelGroupTitleArray objectAtIndex:section];
+    return channelGroup.ChannelGroupTitleArray[section];
 }
 
 #pragma 设置分组标题内容高度

@@ -58,7 +58,7 @@
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSDictionary * tempchannelsDictionary = responseObject;
-         NSDictionary * channelsDictionary = [tempchannelsDictionary objectForKey:@"data"];
+         NSDictionary * channelsDictionary = tempchannelsDictionary[@"data"];
                   
          if([ChannelURLString isEqualToString:[NSString stringWithFormat:@"%@%@",LOGINCHANNELURL,appDelegate.userInfo.UserID]])
          {
@@ -70,8 +70,8 @@
              [channelGroup.MyRedHeartChannelCellArray addObject:channelCell];
              
              //再插入用户喜爱频道
-             NSDictionary * fav_chlsChannel = [channelsDictionary objectForKey:@"res"];
-             for(NSDictionary * redHeartChannel in [fav_chlsChannel objectForKey:@"fav_chls"])
+             NSDictionary * fav_chlsChannel = channelsDictionary[@"res"];
+             for(NSDictionary * redHeartChannel in fav_chlsChannel[@"fav_chls"])
              {
                  ChannelInfo * channelCell = [[ChannelInfo alloc]initWithDictionary:redHeartChannel];
                  [channelGroup.MyRedHeartChannelCellArray addObject:channelCell];
@@ -83,7 +83,7 @@
          else if([ChannelURLString isEqualToString:TOTALCHANNELURL])
          {
              [appDelegate.channelGroup removeCommonChannelGroupObject];
-             for(NSDictionary * channelCellInfo in [channelsDictionary objectForKey:@"channels"])
+             for(NSDictionary * channelCellInfo in channelsDictionary[@"channels"])
              {
                 ChannelInfo * channelCell = [[ChannelInfo alloc]initWithDictionary:channelCellInfo];
                 [self AddingIntoChannelArrayWithChannelCell:channelCell];
@@ -207,7 +207,7 @@
      {
          NSDictionary *tempLoginInfoDictionary = responseObject;
          //r = 0 login successful
-         if([(NSNumber *)[tempLoginInfoDictionary valueForKey:@"r"]intValue] == 0)
+         if([(NSNumber *)tempLoginInfoDictionary[@"r"]intValue] == 0)
          {
              [userInfo initWithDictionary:tempLoginInfoDictionary];
              [_delegate LoginSuccessful];
@@ -301,14 +301,14 @@
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSDictionary * songDictionary = responseObject;
-         for(NSDictionary * song in [songDictionary objectForKey:@"song"])
+         for(NSDictionary * song in songDictionary[@"song"])
          {
             //subtype = T 为广告标示位，如果为T，则不加入播放列表（去广告）
-            if([[song objectForKey:@"subtype"]isEqualToString:@"T"])
+            if([song[@"subtype"]isEqualToString:@"T"])
             {
                 continue;
             }
-            if(Type == @"r")
+            if([Type isEqualToString: @"r"])
             {
                 NSLog(@"喜欢！");
             }

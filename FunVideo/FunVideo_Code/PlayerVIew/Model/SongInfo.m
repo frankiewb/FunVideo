@@ -13,15 +13,15 @@
 //默认init直接赋值为空
 -(instancetype)initSongInfoWithDictionary:(NSDictionary *)Dic
 {
-    if(self = [super init])
+    if(self             = [super init])
     {
-        self.SongArtist     = [Dic objectForKey:@"artist"];
-        self.SongTitle      = [Dic objectForKey:@"title"];
-        self.SongUrl        = [Dic objectForKey:@"url"];
-        self.SongPictureUrl = [Dic objectForKey:@"picture"];
-        self.SongTimeLong   = [Dic objectForKey:@"length"];
-        self.SongIsLike     = [Dic objectForKey:@"like"];
-        self.SongId         = [Dic objectForKey:@"sid"];
+    self.SongArtist     = Dic[@"artist"];
+    self.SongTitle      = Dic[@"title"];
+    self.SongUrl        = Dic[@"url"];
+    self.SongPictureUrl = Dic[@"picture"];
+    self.SongTimeLong   = Dic[@"length"];
+    self.SongIsLike     = Dic[@"like"];
+    self.SongId         = Dic[@"sid"];
     }
         return self;
 }
