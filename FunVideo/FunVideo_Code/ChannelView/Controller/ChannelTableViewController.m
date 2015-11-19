@@ -155,12 +155,12 @@ static const CGFloat kORIGIN_Y      = 0;
 
 
 
--(void)reloadTableView
+-(void)doubanDelegate_reloadTableView
 {
     [self.tableView reloadData];
 }
 
--(void)reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath
+-(void)doubanDelegate_reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationAutomatic];
 }

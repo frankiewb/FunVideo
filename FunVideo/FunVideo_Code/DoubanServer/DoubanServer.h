@@ -18,17 +18,17 @@
 
 @optional
 
--(void)setCaptchaImageWithURL:(NSString *) captchaImageURL;
+-(void)doubanDelegate_setCaptchaImageWithURL:(NSString *) captchaImageURL;
 
--(void)setUserInfo;
+-(void)doubanDelegate_setUserInfo;
 
--(void)loginSuccessful;
+-(void)doubanDelegate_loginSuccessful;
 
--(void)logoutSuccessful;
+-(void)doubanDelegate_logoutSuccessful;
 
--(void)reloadTableView;
+-(void)doubanDelegate_reloadTableView;
 
--(void)reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath;
+-(void)doubanDelegate_reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath;
 
 
 //主屏幕显示哪个页面

@@ -131,7 +131,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
              NSLog(@"GETCHANNELCELL_URL_TYPE_ERROR:%@",channelURLString);
          }
          //刷新ChannelTableView
-         [self.delegate reloadTableView];
+         [self.delegate doubanDelegate_reloadTableView];
          
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError * error)
@@ -202,7 +202,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          [tempCaptchaID replaceOccurrencesOfString:@"\"" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [tempCaptchaID length])];
          _captchaImageInfo.captchaID = tempCaptchaID;
          _captchaImageInfo.capthaImgURL = [NSString stringWithFormat:CAPTCHAIMGURLFORMATSTRING,tempCaptchaID];
-         [_delegate setCaptchaImageWithURL:_captchaImageInfo.capthaImgURL];
+         [_delegate doubanDelegate_setCaptchaImageWithURL:_captchaImageInfo.capthaImgURL];
      }
                      failure:^(AFHTTPRequestOperation * operation, NSError *error)
      {
@@ -238,7 +238,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          if([(NSNumber *)tempLoginInfoDictionary[@"r"]intValue] == 0)
          {
              [userInfo initWithDictionary:tempLoginInfoDictionary];
-             [_delegate loginSuccessful];
+             [_delegate doubanDelegate_loginSuccessful];
              
          }
          else// login fail
@@ -292,7 +292,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
      {
          
          appDelegate.userInfo.Cookies = nil;
-         [_delegate logoutSuccessful];
+         [_delegate doubanDelegate_logoutSuccessful];
      }
                      failure:^(AFHTTPRequestOperation * operation, NSError * error)
      {

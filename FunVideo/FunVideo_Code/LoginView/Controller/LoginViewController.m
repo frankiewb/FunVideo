@@ -243,16 +243,16 @@ static const CGFloat kButton_Heigth              = 50;
     [self p_loadCaptchaImage];
 }
 
--(void)loginSuccessful
+-(void)doubanDelegate_loginSuccessful
 {
-    [_delegate setUserInfo];
+    [_delegate doubanDelegate_setUserInfo];
     NSLog(@"LOGIN_SUCCESSFUL");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 
--(void)setCaptchaImageWithURL:(NSString *) captchaImageURL
+-(void)doubanDelegate_setCaptchaImageWithURL:(NSString *) captchaImageURL
 {
     [captchaImageView setImageWithURL:[NSURL URLWithString:captchaImageURL] placeholderImage:nil];
 }

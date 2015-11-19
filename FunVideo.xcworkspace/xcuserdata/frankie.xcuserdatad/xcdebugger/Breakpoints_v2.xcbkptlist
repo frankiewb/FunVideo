@@ -223,7 +223,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "215"
             endingLineNumber = "215"
-            landmarkName = "-p_setUserInfo"
+            landmarkName = "-doubanDelegate_setUserInfo"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -239,7 +239,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "234"
             endingLineNumber = "234"
-            landmarkName = "-p_setUserInfo"
+            landmarkName = "-doubanDelegate_setUserInfo"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

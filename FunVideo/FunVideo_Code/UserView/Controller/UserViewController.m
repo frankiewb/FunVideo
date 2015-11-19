@@ -83,7 +83,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     userInfo = appDelegate.userInfo;
     doubanServer.delegate = self;
     [self p_setupUI];
-    [self setUserInfo];
+    [self doubanDelegate_setUserInfo];
 }
 
 -(void)p_setupUI
@@ -150,9 +150,9 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     
 }
 
--(void)logoutSuccessful
+-(void)doubanDelegate_logoutSuccessful
 {
-    [self setUserInfo];
+    [self doubanDelegate_setUserInfo];
     NSLog(@"LOGOUT_SUCCESSFUL");
 }
 
@@ -195,7 +195,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     }
 }
 
--(void)setUserInfo
+-(void)doubanDelegate_setUserInfo
 {
     if(doubanServer == nil)
     {
@@ -218,7 +218,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
             userChannelInfo.channelName = userInfo.userName;
             userChannelInfo.channelCoverURL = [NSString stringWithFormat:USERIMAGEURL,userInfo.userID];
             NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.delegate reloadTableViewCellWithIndexPath:indexpath];
+            [self.delegate doubanDelegate_reloadTableViewCellWithIndexPath:indexpath];
         }
     }
     else
@@ -236,7 +236,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
             ChannelInfo * UserChannelInfo = [appDelegate.channelGroup.myRedHeartChannelCellArray objectAtIndex:0];
             UserChannelInfo.channelName = @"未登录";
             NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.delegate reloadTableViewCellWithIndexPath:indexpath];
+            [self.delegate doubanDelegate_reloadTableViewCellWithIndexPath:indexpath];
         }
         
     }
