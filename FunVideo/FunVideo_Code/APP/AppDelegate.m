@@ -29,12 +29,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [self initSharedVideoPlayer];
+    [self p_initSharedVideoPlayer];
     return YES;
 }
 
 
-- (void)initSharedVideoPlayer
+- (void)p_initSharedVideoPlayer
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -44,7 +44,7 @@
         _playerInfo = [[PlayerInfo alloc]initPlayerInfo];
         _channelGroup = [[ChannelGroup alloc]init];
         doubanServer = [[DoubanServer alloc]initDoubanServer];
-        [self unArchiveVideoInfo];
+        [self p_unArchiveVideoInfo];
                 
         //后台播放FrankieVideoPlayer
         AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -54,7 +54,7 @@
 }
 
 //归档
--(void)archiveVideoInfo
+-(void)p_archiveVideoInfo
 {
     NSString * path = [[NSBundle mainBundle]bundlePath];
     
@@ -101,7 +101,7 @@
 }
 
 //解档
--(void)unArchiveVideoInfo
+-(void)p_unArchiveVideoInfo
 {
     NSString * path = [[NSBundle mainBundle]bundlePath];
     
@@ -176,7 +176,7 @@
     
     //当app进入后台需要将playerInfo以及ChannelInfo保存
     
-    [self archiveVideoInfo];
+    [self p_archiveVideoInfo];
     
 }
 
@@ -185,7 +185,7 @@
     
     //当app进入前台时解档读取playerInfo及ChannelInfo
     
-    [self unArchiveVideoInfo];
+    [self p_unArchiveVideoInfo];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

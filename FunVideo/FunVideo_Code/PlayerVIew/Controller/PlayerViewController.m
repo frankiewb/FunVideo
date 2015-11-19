@@ -106,14 +106,14 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     appDelegate =[[UIApplication sharedApplication]delegate];
-    [self setUpUI];
-    [self setupPlayerInfo];
-    [self addNotification];
-    [self setupGesture];
+    [self p_setUpUI];
+    [self p_setupPlayerInfo];
+    [self p_addNotification];
+    [self p_setupGesture];
     
     timer = [NSTimer scheduledTimerWithTimeInterval:0.02
                                              target:self
-                                           selector:@selector(updateProgress)
+                                           selector:@selector(p_updateProgress)
                                            userInfo:nil
                                             repeats:YES];
 }
@@ -123,7 +123,7 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     playerImage.layer.cornerRadius = playerImage.bounds.size.width/2.0;
     playerImage.layer.masksToBounds = YES;
     [super viewDidAppear:animated];
-    [self flashSongInfo];
+    [self p_flashSongInfo];
 }
 
 
@@ -143,7 +143,7 @@ static const CGFloat kPlayerImage_Y_point    = 40;
 }
 */
 
--(void)updateProgress
+-(void)p_updateProgress
 {
     currentTimeMinutes = (unsigned)appDelegate.VideoPlayer.currentPlaybackTime/60;
     currentTImeSeconds = (unsigned)appDelegate.VideoPlayer.currentPlaybackTime%60;
@@ -167,36 +167,36 @@ static const CGFloat kPlayerImage_Y_point    = 40;
 
 
 
--(void)addNotification
+-(void)p_addNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(startPlay)
+                                             selector:@selector(p_startPlay)
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(flashSongInfo)
+                                             selector:@selector(p_flashSongInfo)
                                                  name:MPMoviePlayerLoadStateDidChangeNotification
                                                object:nil];
 }
 
 
--(void)setupPlayerInfo
+-(void)p_setupPlayerInfo
 {
     doubanServer = [[DoubanServer alloc]initDoubanServer];
     [doubanServer doubanSongOperationWithType:@"n"];
 
 }
 
--(void)setupGesture
+-(void)p_setupGesture
 {
     playerImage.userInteractionEnabled = YES;
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pauseButton)];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(p_pauseButton)];
     [singleTap setNumberOfTouchesRequired:1];
     [playerImage addGestureRecognizer:singleTap];
 }
 
 
--(void)startPlay
+-(void)p_startPlay
 {
     doubanServer = [[DoubanServer alloc]initDoubanServer];
     [doubanServer doubanSongOperationWithType:@"p"];
@@ -204,7 +204,7 @@ static const CGFloat kPlayerImage_Y_point    = 40;
 
 
 
--(void)flashSongInfo
+-(void)p_flashSongInfo
 {
     isPlaying = YES;
     if(![self isFirstResponder])
@@ -252,11 +252,11 @@ static const CGFloat kPlayerImage_Y_point    = 40;
         [likeButton setBackgroundImage:[UIImage imageNamed:@"heart2"] forState:UIControlStateNormal];
     }
     [timer setFireDate:[NSDate date]];
-    [self configVideoPlayerInfo];
+    [self p_configVideoPlayerInfo];
     
 }
 
--(void)configVideoPlayerInfo
+-(void)p_configVideoPlayerInfo
 {
     if(NSClassFromString(@"MPNowPlayingInfoCenter"))
     {
@@ -276,7 +276,7 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     }
 }
 
--(void)setUpUI
+-(void)p_setUpUI
 {
     //初始化背景颜色
     self.view.backgroundColor = UIBACKGROUNDCOLOR;
@@ -341,35 +341,35 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     //初始化PauseButton
     pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [pauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
-    [pauseButton addTarget:self action:@selector(pauseButton) forControlEvents:UIControlEventTouchUpInside];
+    [pauseButton addTarget:self action:@selector(p_pauseButton) forControlEvents:UIControlEventTouchUpInside];
     pauseButton.frame = CGRectMake(kButton_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance, kButton_Width, kButton_Height);
     [self.view addSubview:pauseButton];
     
     //初始化LikeButton
     likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [likeButton setImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
-    [likeButton addTarget:self action:@selector(likeButton) forControlEvents:UIControlEventTouchUpInside];
+    [likeButton addTarget:self action:@selector(p_likeButton) forControlEvents:UIControlEventTouchUpInside];
     likeButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 1,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
     [self.view addSubview:likeButton];
     
     //初始化DeleteButton
     deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [deleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
-    [deleteButton addTarget:self action:@selector(deleteButton) forControlEvents:UIControlEventTouchUpInside];
+    [deleteButton addTarget:self action:@selector(p_deleteButton) forControlEvents:UIControlEventTouchUpInside];
     deleteButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 2,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
     [self.view addSubview:deleteButton];
     
     //初始化SkipButton
     skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [skipButton setImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
-    [skipButton addTarget:self action:@selector(skipButton) forControlEvents:UIControlEventTouchUpInside];
+    [skipButton addTarget:self action:@selector(p_skipButton) forControlEvents:UIControlEventTouchUpInside];
     skipButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 3,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
     [self.view addSubview:skipButton];
 
 }
 
 
-- (IBAction)pauseButton
+- (IBAction)p_pauseButton
 {
     if(isPlaying)
     {
@@ -393,7 +393,7 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     }
 }
 
-- (IBAction)likeButton
+- (IBAction)p_likeButton
 {
     if(![appDelegate.playerInfo.currentSong.songIsLike intValue])
     {
@@ -409,7 +409,7 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     }
 }
 
-- (IBAction)deleteButton
+- (IBAction)p_deleteButton
 {
     if(!isPlaying)
     {
@@ -423,7 +423,7 @@ static const CGFloat kPlayerImage_Y_point    = 40;
 
 }
 
-- (IBAction)skipButton
+- (IBAction)p_skipButton
 {
     [timer setFireDate:[NSDate distantFuture]];
     [appDelegate.VideoPlayer pause];

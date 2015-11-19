@@ -75,7 +75,7 @@ static const CGFloat kORIGIN_Y      = 0;
 
 #pragma mark Data Source Loading / Reloading Methods
 
--(void)reloadTableViewDataSource
+-(void)p_reloadTableViewDataSource
 {
     //  should be calling your tableviews data source model to reload
     //[appDelegate.channelGroup removeAllChannelGroupObject];
@@ -83,7 +83,7 @@ static const CGFloat kORIGIN_Y      = 0;
     _isReloading = YES;
 }
 
--(void)doneLoadingTableViewData
+-(void)p_doneLoadingTableViewData
 {
     //  model should call this when its done loading
     _isReloading = NO;
@@ -113,8 +113,8 @@ static const CGFloat kORIGIN_Y      = 0;
 
 -(void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {
-    [self reloadTableViewDataSource];
-    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:2.0];
+    [self p_reloadTableViewDataSource];
+    [self performSelector:@selector(p_doneLoadingTableViewData) withObject:nil afterDelay:2.0];
 }
 
 -(BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view

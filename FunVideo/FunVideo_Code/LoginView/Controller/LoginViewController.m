@@ -78,10 +78,10 @@ static const CGFloat kButton_Heigth              = 50;
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupUI];
+    [self p_setupUI];
 }
 
--(void)setupUI
+-(void)p_setupUI
 {
     self.view.backgroundColor =  UIBACKGROUNDCOLOR;
     doubanServer = [[DoubanServer alloc]initDoubanServer];
@@ -217,7 +217,7 @@ static const CGFloat kButton_Heigth              = 50;
     [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
     [loginButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     loginButton.backgroundColor = UILOGINVIEWLABELCOLOR;
-    [loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    [loginButton addTarget:self action:@selector(p_login) forControlEvents:UIControlEventTouchUpInside];
     loginButton.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 4 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 + kButtonHeight_Distance * 1, kButton_Width, kButton_Heigth);
     [self.view addSubview:loginButton];
     
@@ -226,12 +226,12 @@ static const CGFloat kButton_Heigth              = 50;
     cancelButton.backgroundColor = UILOGINVIEWLABELCOLOR;
     [cancelButton setTitle:@"取 消" forState:UIControlStateNormal];
     [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    [cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+    [cancelButton addTarget:self action:@selector(p_cancel) forControlEvents:UIControlEventTouchUpInside];
     cancelButton.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 5 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 + kButtonHeight_Distance * 1.5, kButton_Width, kButton_Heigth);
     [self.view addSubview:cancelButton];
     
     //添加验证码点击更新事件
-    UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(loadCaptchaImage)];
+    UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(p_loadCaptchaImage)];
     [singleTap setNumberOfTapsRequired:1];
     [captchaImageView addGestureRecognizer:singleTap];
     
@@ -240,7 +240,7 @@ static const CGFloat kButton_Heigth              = 50;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self loadCaptchaImage];
+    [self p_loadCaptchaImage];
 }
 
 -(void)loginSuccessful
@@ -259,14 +259,14 @@ static const CGFloat kButton_Heigth              = 50;
 
 
 
--(void)loadCaptchaImage
+-(void)p_loadCaptchaImage
 {
     [doubanServer doubanLoadCaptchaImage];
 }
 
 
 
--(void)login
+-(void)p_login
 {
     loginInfo = [[LoginInfo alloc]init];
     loginInfo.loginName = loginNameTextField.text;
@@ -276,7 +276,7 @@ static const CGFloat kButton_Heigth              = 50;
 }
 
 
--(void)cancel
+-(void)p_cancel
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

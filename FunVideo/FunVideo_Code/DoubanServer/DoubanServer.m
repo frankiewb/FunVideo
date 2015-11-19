@@ -114,7 +114,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
              for(NSDictionary * channelCellInfo in channelsDictionary[@"channels"])
              {
                 ChannelInfo * channelCell = [[ChannelInfo alloc]initWithDictionary:channelCellInfo];
-                [self addingIntoChannelArrayWithChannelCell:channelCell];
+                [self p_addingIntoChannelArrayWithChannelCell:channelCell];
              }
              if ([channelGroup.myRedHeartChannelCellArray count] == 0)
              {
@@ -158,7 +158,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 
 
 
--(void)addingIntoChannelArrayWithChannelCell:(ChannelInfo *)channelCell
+-(void)p_addingIntoChannelArrayWithChannelCell:(ChannelInfo *)channelCell
 {
     int channelID = [channelCell.channelID intValue];
     switch (channelID) {

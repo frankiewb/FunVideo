@@ -82,11 +82,11 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     doubanServer = [[DoubanServer alloc]initDoubanServer];
     userInfo = appDelegate.userInfo;
     doubanServer.delegate = self;
-    [self setupUI];
+    [self p_setupUI];
     [self setUserInfo];
 }
 
--(void)setupUI
+-(void)p_setupUI
 {
     /*设置主View背景*/
     self.view.backgroundColor = UIBACKGROUNDCOLOR;
@@ -103,7 +103,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     
     //给登录图片增加手势
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
-                                                                               action:@selector(loginImageTapped)];
+                                                                               action:@selector(p_loginImageTapped)];
     [singleTap setNumberOfTapsRequired:1];
     [userViewImage addGestureRecognizer:singleTap];
     [self.view addSubview:userViewImage];
@@ -143,7 +143,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     [logoutButton setTitle:@"登 出" forState:UIControlStateNormal];
     [logoutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     logoutButton.backgroundColor = UIBACKGROUNDCOLOR;
-    [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    [logoutButton addTarget:self action:@selector(p_logout) forControlEvents:UIControlEventTouchUpInside];
     logoutButton.frame = CGRectMake(kLogoutButton_Xpoint, kLogoutButton_Ypoint, kLogoutButton_Width, kLogoutButton_Hegiht);
     [self.view addSubview:logoutButton];
     
@@ -158,7 +158,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
 
 
 
--(void)loginImageTapped
+-(void)p_loginImageTapped
 {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController * loginVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"loginVC"];
@@ -173,7 +173,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     [self presentViewController:loginVC animated:YES completion:nil];
 }
 
--(void)logout
+-(void)p_logout
 {
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"登出"
                                                        message:@"主人，你这就要走了咩。。"

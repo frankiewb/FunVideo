@@ -80,7 +80,7 @@ static const CGFloat kBackgroundView_Width           = 60;
     [super viewDidLoad];
     doubanServer = [[DoubanServer alloc]init];
     doubanServer.delegate = self;
-    [self setUpUI];
+    [self p_setUpUI];
     UIStoryboard * mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     playerVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"playerVC"];
     loginVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"loginVC"];
@@ -94,7 +94,7 @@ static const CGFloat kBackgroundView_Width           = 60;
 }
 
 
--(void)setUpUI
+-(void)p_setUpUI
 {
     self.tabBar.hidden = YES;
     //初始化Image队列
@@ -116,11 +116,11 @@ static const CGFloat kBackgroundView_Width           = 60;
     mainViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     mainViewButton.bounds = CGRectMake(0,0,kMainButton_Width,kMainButton_Height);
     [mainViewButton setImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
-    [mainViewButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
+    [mainViewButton addTarget:self action:@selector(p_showMenu) forControlEvents:UIControlEventTouchUpInside];
     mainViewButton.frame = CGRectMake(kMainButton_Xpoint, kMainButton_Ypoint, kMainButton_Width, kMainButton_Height);
     [self.view addSubview:mainViewButton];
     UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
-                                                                                action:@selector(dismissMenu)];
+                                                                                action:@selector(p_dismissMenu)];
     singleTap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:singleTap];
     
@@ -139,7 +139,7 @@ static const CGFloat kBackgroundView_Width           = 60;
         button.tag = buttonIndexTag;
         button.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 70, 0);
         
-        [button addTarget:self action:@selector(onMenuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(p_onMenuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [backgroundMenuView addSubview:button];
         [buttonList addObject:button];
         buttonIndexTag++;
@@ -168,17 +168,17 @@ static const CGFloat kBackgroundView_Width           = 60;
 }
 
 
--(void)onMenuButtonClick:(UIButton *)button
+-(void)p_onMenuButtonClick:(UIButton *)button
 {
     NSInteger index = button.tag;
     [self showViewWithIndex:index];
-    [self dismissMenuWithSelection:button];
+    [self p_dismissMenuWithSelection:button];
 }
 
 
 
 //以下为SideBar的推出动作
--(void)dismissMenuWithSelection:(UIButton *)button
+-(void)p_dismissMenuWithSelection:(UIButton *)button
 {
   [UIView animateWithDuration:0.3
                         delay:0.0
@@ -188,24 +188,24 @@ static const CGFloat kBackgroundView_Width           = 60;
                    animations:^{
                        button.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
                    }completion:^(BOOL finished){
-                       [self dismissMenu];
+                       [self p_dismissMenu];
                    }];
 }
 
 
 
 
--(void)dismissMenu
+-(void)p_dismissMenu
 {
     if(isSideBarOpen)
     {
         isSideBarOpen = false;
-        [self performSelectorInBackground:@selector(performDismissAnimation) withObject:nil];
+        [self performSelectorInBackground:@selector(p_performDismissAnimation) withObject:nil];
     }
 }
 
 
--(void)performDismissAnimation
+-(void)p_performDismissAnimation
 {
     [UIView animateWithDuration:0.4 animations:^{
        
@@ -225,17 +225,17 @@ static const CGFloat kBackgroundView_Width           = 60;
 }
 
 //以下为SideBar的推入动作
--(void)showMenu
+-(void)p_showMenu
 {
     if(!isSideBarOpen)
     {
         isSideBarOpen = true;
-        [self performSelectorInBackground:@selector(performOpenAnimation) withObject:nil];
+        [self performSelectorInBackground:@selector(p_performOpenAnimation) withObject:nil];
     }
 }
 
 
--(void)performOpenAnimation
+-(void)p_performOpenAnimation
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.4 animations:^{
