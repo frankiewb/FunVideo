@@ -10,13 +10,13 @@
 
 @interface UserInfo : NSObject<NSCoding>
 
-@property (nonatomic,copy) NSString *IsNotLogin;
-@property (nonatomic,copy) NSString *Cookies;
-@property (nonatomic,copy) NSString *UserID;
-@property (nonatomic,copy) NSString *UserName;
-@property (nonatomic,copy) NSString *Banned;
-@property (nonatomic,copy) NSString *Liked;
-@property (nonatomic,copy) NSString *Plyaed;
+@property (nonatomic,copy) NSString *isNotLogin;
+@property (nonatomic,copy) NSString *cookies;
+@property (nonatomic,copy) NSString *userID;
+@property (nonatomic,copy) NSString *userName;
+@property (nonatomic,copy) NSString *banned;
+@property (nonatomic,copy) NSString *liked;
+@property (nonatomic,copy) NSString *plyaed;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dic;
 

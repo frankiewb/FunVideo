@@ -53,7 +53,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 @interface DoubanServer()
 {
     AppDelegate * appDelegate;
-    AFHTTPRequestOperationManager * DoubanServerManager;
+    AFHTTPRequestOperationManager * doubanServerManager;
     ChannelGroup * channelGroup;
     UserInfo * userInfo;
 }
@@ -69,7 +69,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
     if(self = [super init])
     {
         appDelegate = [[UIApplication sharedApplication]delegate];
-        DoubanServerManager = [AFHTTPRequestOperationManager manager];
+        doubanServerManager = [AFHTTPRequestOperationManager manager];
         channelGroup = appDelegate.channelGroup;
         userInfo = appDelegate.userInfo;
         _captchaImageInfo = [[CaptchaImageInfo alloc]init];
@@ -79,59 +79,59 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 }
 
 //向服务器获取ChannelCell信息
--(void)DoubanGetChannelCellWithURLString:(NSString *)ChannelURLString
+-(void)doubanGetChannelCellWithURLString:(NSString *)channelURLString
 {
-    [DoubanServerManager GET:ChannelURLString
+    [doubanServerManager GET:channelURLString
                   parameters:nil
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         NSDictionary * tempchannelsDictionary = responseObject;
-         NSDictionary * channelsDictionary = tempchannelsDictionary[@"data"];
+         NSDictionary * tempChannelsDictionary = responseObject;
+         NSDictionary * channelsDictionary = tempChannelsDictionary[@"data"];
                   
-         if([ChannelURLString isEqualToString:[NSString stringWithFormat:@"%@%@",LOGINCHANNELURL,appDelegate.userInfo.UserID]])
+         if([channelURLString isEqualToString:[NSString stringWithFormat:@"%@%@",LOGINCHANNELURL,appDelegate.userInfo.userID]])
          {
              [appDelegate.channelGroup removeMyChannelObject];
              //先插入用户labelcell
              ChannelInfo * channelCell = [[ChannelInfo alloc]init];
-             channelCell.ChannelName = appDelegate.userInfo.UserName;
-             channelCell.ChannelCoverURL = [NSString stringWithFormat:USERIMAGEURL,userInfo.UserID];
-             [channelGroup.MyRedHeartChannelCellArray addObject:channelCell];
+             channelCell.channelName = appDelegate.userInfo.userName;
+             channelCell.channelCoverURL = [NSString stringWithFormat:USERIMAGEURL,userInfo.userID];
+             [channelGroup.myRedHeartChannelCellArray addObject:channelCell];
              
              //再插入用户喜爱频道
              NSDictionary * fav_chlsChannel = channelsDictionary[@"res"];
              for(NSDictionary * redHeartChannel in fav_chlsChannel[@"fav_chls"])
              {
                  ChannelInfo * channelCell = [[ChannelInfo alloc]initWithDictionary:redHeartChannel];
-                 [channelGroup.MyRedHeartChannelCellArray addObject:channelCell];
-                 NSLog(@"填充redHeart歌曲:%@",channelCell.ChannelName);
+                 [channelGroup.myRedHeartChannelCellArray addObject:channelCell];
+                 NSLog(@"填充redHeart歌曲:%@",channelCell.channelName);
              }
              channelGroup.isEmpty = NO;
 
          }
-         else if([ChannelURLString isEqualToString:TOTALCHANNELURL])
+         else if([channelURLString isEqualToString:TOTALCHANNELURL])
          {
              [appDelegate.channelGroup removeCommonChannelGroupObject];
              for(NSDictionary * channelCellInfo in channelsDictionary[@"channels"])
              {
                 ChannelInfo * channelCell = [[ChannelInfo alloc]initWithDictionary:channelCellInfo];
-                [self AddingIntoChannelArrayWithChannelCell:channelCell];
+                [self addingIntoChannelArrayWithChannelCell:channelCell];
              }
-             if ([channelGroup.MyRedHeartChannelCellArray count] == 0)
+             if ([channelGroup.myRedHeartChannelCellArray count] == 0)
              {
                  ChannelInfo * channelCell = [[ChannelInfo alloc]init];
-                 channelCell.ChannelName = @"未登录";
-                 channelCell.ChannelCoverURL = nil;
-                 [channelGroup.MyRedHeartChannelCellArray addObject:channelCell];
+                 channelCell.channelName = @"未登录";
+                 channelCell.channelCoverURL = nil;
+                 [channelGroup.myRedHeartChannelCellArray addObject:channelCell];
              }
              channelGroup.isEmpty = NO;
              
          }
          else
          {
-             NSLog(@"GETCHANNELCELL_URL_TYPE_ERROR:%@",ChannelURLString);
+             NSLog(@"GETCHANNELCELL_URL_TYPE_ERROR:%@",channelURLString);
          }
          //刷新ChannelTableView
-         [self.delegate ReloadTableView];
+         [self.delegate reloadTableView];
          
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError * error)
@@ -143,24 +143,24 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 
 
 //向服务器获取ChannelGroup信息
--(void)DoubanGetChannelGroup
+-(void)doubanGetChannelGroup
 {
     
-    if(userInfo.Cookies)
+    if(userInfo.cookies)
     {
-        NSString * LoginChannelUrl = [NSString stringWithFormat:@"%@%@",LOGINCHANNELURL,appDelegate.userInfo.UserID];
-        [self DoubanGetChannelCellWithURLString:LoginChannelUrl];
+        NSString * loginChannelUrl = [NSString stringWithFormat:@"%@%@",LOGINCHANNELURL,appDelegate.userInfo.userID];
+        [self doubanGetChannelCellWithURLString:loginChannelUrl];
     }
-    [self DoubanGetChannelCellWithURLString:TOTALCHANNELURL];
+    [self doubanGetChannelCellWithURLString:TOTALCHANNELURL];
     
 }
 
 
 
 
--(void)AddingIntoChannelArrayWithChannelCell:(ChannelInfo *)channelCell
+-(void)addingIntoChannelArrayWithChannelCell:(ChannelInfo *)channelCell
 {
-    int channelID = [channelCell.ChannelID intValue];
+    int channelID = [channelCell.channelID intValue];
     switch (channelID) {
 
         case HUAYU_MHz:
@@ -168,7 +168,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
         case YUEYU_MHz:
         case BALING_MHz:
         case JIULING_MHz:
-            [channelGroup.LaguageChannelCellArray addObject:channelCell];
+            [channelGroup.laguageChannelCellArray addObject:channelCell];
             break;
         case YAOGUN_MHz:
         case MINYAO_MHz:
@@ -177,32 +177,32 @@ static const NSInteger WORKSTUDY_MHz           = 153;
         case XIAOQINGXIN_MHz:
         case JAZZ_MHz:
         case GUDIAN_MHz:
-            [channelGroup.SongStyleChannelCellArray addObject:channelCell];
+            [channelGroup.songStyleChannelCellArray addObject:channelCell];
             break;
         case XINGE_MHz:
         case COFFEE_MHz:
         case WORKSTUDY_MHz:
-            [channelGroup.FeelingChannelCellArray addObject:channelCell];
+            [channelGroup.feelingChannelCellArray addObject:channelCell];
             break;
         default:
-            [channelGroup.RecomandChannelCellArray addObject:channelCell];
+            [channelGroup.recomandChannelCellArray addObject:channelCell];
             break;
     }
 }
 
 //向服务器获取验证码的图片URL
--(void)DoubanLoadCaptchaImage
+-(void)doubanLoadCaptchaImage
 {
-    DoubanServerManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    [DoubanServerManager GET:CAPTCHAIDURLSTRING
+    doubanServerManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [doubanServerManager GET:CAPTCHAIDURLSTRING
                   parameters:nil
                      success:^(AFHTTPRequestOperation * operation, id responseObject)
      {
-         NSMutableString *temCaptchaID = [[NSMutableString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-         [temCaptchaID replaceOccurrencesOfString:@"\"" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [temCaptchaID length])];
-         _captchaImageInfo.captchaID = temCaptchaID;
-         _captchaImageInfo.capthaImgURL = [NSString stringWithFormat:CAPTCHAIMGURLFORMATSTRING,temCaptchaID];
-         [_delegate SetCaptchaImageWithURL:_captchaImageInfo.capthaImgURL];
+         NSMutableString *tempCaptchaID = [[NSMutableString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+         [tempCaptchaID replaceOccurrencesOfString:@"\"" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [tempCaptchaID length])];
+         _captchaImageInfo.captchaID = tempCaptchaID;
+         _captchaImageInfo.capthaImgURL = [NSString stringWithFormat:CAPTCHAIMGURLFORMATSTRING,tempCaptchaID];
+         [_delegate setCaptchaImageWithURL:_captchaImageInfo.capthaImgURL];
      }
                      failure:^(AFHTTPRequestOperation * operation, NSError *error)
      {
@@ -218,18 +218,18 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 //alias:xxxx%40gmail.com
 //form_password:password
 //captcha_id:jOtEZsPFiDVRR9ldW3ELsy57%3en
--(void)DoubanLoginWithLoginInfo:(LoginInfo *)loginInfo
+-(void)doubanLoginWithLoginInfo:(LoginInfo *)loginInfo
 {
     NSDictionary * doubanLoginParam = @{@"remember":@"off",
                                         @"source":@"radio",
-                                        @"captcha_solution":loginInfo.CapthchaInputWord,
-                                        @"alias":loginInfo.LoginName,
-                                        @"form_password":loginInfo.PassWord,
+                                        @"captcha_solution":loginInfo.capthchaInputWord,
+                                        @"alias":loginInfo.loginName,
+                                        @"form_password":loginInfo.passWord,
                                         @"captcha_id":_captchaImageInfo.captchaID};
-    DoubanServerManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    doubanServerManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     
-    [DoubanServerManager POST:LOGINURLSTRING
+    [doubanServerManager POST:LOGINURLSTRING
                    parameters:doubanLoginParam
                       success:^(AFHTTPRequestOperation * operation, id responseObject)
      {
@@ -238,14 +238,14 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          if([(NSNumber *)tempLoginInfoDictionary[@"r"]intValue] == 0)
          {
              [userInfo initWithDictionary:tempLoginInfoDictionary];
-             [_delegate LoginSuccessful];
+             [_delegate loginSuccessful];
              
          }
          else// login fail
          {
              UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"yoo～～登陆失败了咩" message:[tempLoginInfoDictionary valueForKey:@"err_msg"] delegate:self cancelButtonTitle:@"GET" otherButtonTitles: nil];
              [alertView show];
-             [self DoubanLoadCaptchaImage];
+             [self doubanLoadCaptchaImage];
          }
          
      }
@@ -270,29 +270,29 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 //value y #### Response none #### Example none
 
 
--(void)DoubanLogout
+-(void)doubanLogout
 {
     NSDictionary * logoutParameters = @{@"source": @"radio",
-                                        @"ck":userInfo.Cookies,
+                                        @"ck":userInfo.cookies,
                                         @"no_login": @"y"};
     
     
     
     //注意这里！！
-    DoubanServerManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    doubanServerManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
     
     
     
     
     
-    [DoubanServerManager GET:LOGOUTURLSTRING
+    [doubanServerManager GET:LOGOUTURLSTRING
                   parameters:logoutParameters
                      success:^(AFHTTPRequestOperation * operation, id responseObject)
      {
          
          appDelegate.userInfo.Cookies = nil;
-         [_delegate LogoutSuccessful];
+         [_delegate logoutSuccessful];
      }
                      failure:^(AFHTTPRequestOperation * operation, NSError * error)
      {
@@ -318,13 +318,13 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 //p : Use to get a song list when the song in playlist was all played.
 //sid : the song's id
 
--(void)DoubanSongOperationWithType:(NSString *)Type
+-(void)doubanSongOperationWithType:(NSString *)type
 {
     //组织服务器请求URL
-    NSString * PlayListUrl = [NSString stringWithFormat:PLAYERURLFORMATSTRING,Type,appDelegate.playerInfo.CurrentSong.SongId,appDelegate.VideoPlayer.currentPlaybackTime, appDelegate.playerInfo.CurrentChannel.ChannelID];
+    NSString * PlayListUrl = [NSString stringWithFormat:PLAYERURLFORMATSTRING,type,appDelegate.playerInfo.currentSong.songId,appDelegate.VideoPlayer.currentPlaybackTime, appDelegate.playerInfo.currentChannel.channelID];
     
-    DoubanServerManager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [DoubanServerManager GET:PlayListUrl
+    doubanServerManager.responseSerializer = [AFJSONResponseSerializer serializer];
+    [doubanServerManager GET:PlayListUrl
                   parameters:nil
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
@@ -336,17 +336,17 @@ static const NSInteger WORKSTUDY_MHz           = 153;
             {
                 continue;
             }
-            if([Type isEqualToString: @"r"])
+            if([type isEqualToString: @"r"])
             {
                 NSLog(@"喜欢！");
             }
             else
             {
-                NSLog(@"当前歌曲：%@",appDelegate.playerInfo.CurrentSong.SongTitle);
-                appDelegate.playerInfo.CurrentSong = [appDelegate.playerInfo.CurrentSong initSongInfoWithDictionary:song];
-                [appDelegate.VideoPlayer setContentURL:[NSURL URLWithString:appDelegate.playerInfo.CurrentSong.SongUrl]];
+                NSLog(@"当前歌曲：%@",appDelegate.playerInfo.currentSong.songTitle);
+                appDelegate.playerInfo.currentSong = [appDelegate.playerInfo.currentSong initSongInfoWithDictionary:song];
+                [appDelegate.VideoPlayer setContentURL:[NSURL URLWithString:appDelegate.playerInfo.currentSong.songUrl]];
                 [appDelegate.VideoPlayer play];
-                NSLog(@"即将播放歌曲：%@",appDelegate.playerInfo.CurrentSong.SongTitle);
+                NSLog(@"即将播放歌曲：%@",appDelegate.playerInfo.currentSong.songTitle);
 
             }
         }

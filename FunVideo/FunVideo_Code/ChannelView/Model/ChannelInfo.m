@@ -14,11 +14,11 @@
 {
     if(self = [super init])
     {
-        _ChannelCoverURL = dic[@"cover"];
-        _ChannelID = dic[@"id"];
-        _ChannelName = dic[@"name"];
-        _ChannelIntro = dic[@"intro"];
-        _ChannelBannerURL = dic[@"banner"];
+        _channelCoverURL = dic[@"cover"];
+        _channelID = dic[@"id"];
+        _channelName = dic[@"name"];
+        _channelIntro = dic[@"intro"];
+        _channelBannerURL = dic[@"banner"];
     }
     return self;
 }
@@ -27,11 +27,11 @@
 {
     if(self = [super init])
     {
-        _ChannelCoverURL = channelInfo.ChannelCoverURL;
-        _ChannelID = channelInfo.ChannelID;
-        _ChannelName = channelInfo.ChannelName;
-        _ChannelIntro = channelInfo.ChannelIntro;
-        _ChannelBannerURL = channelInfo.ChannelBannerURL;
+        _channelCoverURL = channelInfo.channelCoverURL;
+        _channelID = channelInfo.channelID;
+        _channelName = channelInfo.channelName;
+        _channelIntro = channelInfo.channelIntro;
+        _channelBannerURL = channelInfo.channelBannerURL;
     }
     return self;
 }
@@ -39,11 +39,11 @@
 //编译为二进制
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:_ChannelCoverURL forKey:@"channelcover"];
-    [aCoder encodeObject:_ChannelID forKey:@"channelid"];
-    [aCoder encodeObject:_ChannelName forKey:@"channelname"];
-    [aCoder encodeObject:_ChannelIntro forKey:@"channelintro"];
-    [aCoder encodeObject:_ChannelBannerURL forKey:@"channelbanner"];
+    [aCoder encodeObject:_channelCoverURL forKey:@"channelcover"];
+    [aCoder encodeObject:_channelID forKey:@"channelid"];
+    [aCoder encodeObject:_channelName forKey:@"channelname"];
+    [aCoder encodeObject:_channelIntro forKey:@"channelintro"];
+    [aCoder encodeObject:_channelBannerURL forKey:@"channelbanner"];
     
 }
 
@@ -53,31 +53,31 @@
 {
     if([self init])
     {
-        _ChannelCoverURL = [aDecoder decodeObjectForKey:@"channelcover"];
-        _ChannelID = [aDecoder decodeObjectForKey:@"channelid"];
-        _ChannelName = [aDecoder decodeObjectForKey:@"channelname"];
-        _ChannelIntro = [aDecoder decodeObjectForKey:@"channelintro"];
-        _ChannelBannerURL = [aDecoder decodeObjectForKey:@"channelbanner"];
+        _channelCoverURL = [aDecoder decodeObjectForKey:@"channelcover"];
+        _channelID = [aDecoder decodeObjectForKey:@"channelid"];
+        _channelName = [aDecoder decodeObjectForKey:@"channelname"];
+        _channelIntro = [aDecoder decodeObjectForKey:@"channelintro"];
+        _channelBannerURL = [aDecoder decodeObjectForKey:@"channelbanner"];
     }
     return self;
 }
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"ChannelCoverURL":_ChannelCoverURL,
-                                                                         @"ChannelID":_ChannelID,
-                                                                         @"ChannelName":_ChannelName,
-                                                                         @"ChannelIntro":_ChannelIntro,
-                                                                         @"ChannelBannerURL":_ChannelBannerURL}];
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"ChannelCoverURL":_channelCoverURL,
+                                                                         @"ChannelID":_channelID,
+                                                                         @"ChannelName":_channelName,
+                                                                         @"ChannelIntro":_channelIntro,
+                                                                         @"ChannelBannerURL":_channelBannerURL}];
 }
 
 -(NSString *)debugDescription
 {
-    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"ChannelCoverURL":_ChannelCoverURL,
-                                                                         @"ChannelID":_ChannelID,
-                                                                         @"ChannelName":_ChannelName,
-                                                                         @"ChannelIntro":_ChannelIntro,
-                                                                         @"ChannelBannerURL":_ChannelBannerURL}];
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"ChannelCoverURL":_channelCoverURL,
+                                                                         @"ChannelID":_channelID,
+                                                                         @"ChannelName":_channelName,
+                                                                         @"ChannelIntro":_channelIntro,
+                                                                         @"ChannelBannerURL":_channelBannerURL}];
 
 }
 

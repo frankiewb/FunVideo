@@ -12,16 +12,16 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"LoginName":_LoginName,
-                                                                         @"LoginPassWord":_PassWord,
-                                                                         @"CaptchaInputWord":_CapthchaInputWord}];
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"LoginName":_loginName,
+                                                                         @"LoginPassWord":_passWord,
+                                                                         @"CaptchaInputWord":_capthchaInputWord}];
 }
 
 -(NSString *)debugDescription
 {
-    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"LoginName":_LoginName,
-                                                                         @"LoginPassWord":_PassWord,
-                                                                         @"CaptchaInputWord":_CapthchaInputWord}];
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"LoginName":_loginName,
+                                                                         @"LoginPassWord":_passWord,
+                                                                         @"CaptchaInputWord":_capthchaInputWord}];
 
 }
 

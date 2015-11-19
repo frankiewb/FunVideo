@@ -18,33 +18,33 @@
 {
     if(self = [super init])
     {
-        _MyRedHeartChannelCellArray = [[NSMutableArray alloc]init];
-        _RecomandChannelCellArray = [[NSMutableArray alloc]init];
-        _LaguageChannelCellArray = [[NSMutableArray alloc]init];
-        _SongStyleChannelCellArray = [[NSMutableArray alloc]init];
-        _FeelingChannelCellArray = [[NSMutableArray alloc]init];
-        _TotalChannelArray = [[NSMutableArray alloc]init];
-        _ChannelGroupTitleArray = [[NSMutableArray alloc]init];
+        _myRedHeartChannelCellArray = [[NSMutableArray alloc]init];
+        _recomandChannelCellArray = [[NSMutableArray alloc]init];
+        _laguageChannelCellArray = [[NSMutableArray alloc]init];
+        _songStyleChannelCellArray = [[NSMutableArray alloc]init];
+        _feelingChannelCellArray = [[NSMutableArray alloc]init];
+        _totalChannelArray = [[NSMutableArray alloc]init];
+        _channelGroupTitleArray = [[NSMutableArray alloc]init];
         
-        [_TotalChannelArray addObject:_MyRedHeartChannelCellArray];
-        NSString * RedHeartChannelTitle = @"我的红心兆赫";
-        [_ChannelGroupTitleArray addObject:RedHeartChannelTitle];
+        [_totalChannelArray addObject:_myRedHeartChannelCellArray];
+        NSString * redHeartChannelTitle = @"我的红心兆赫";
+        [_channelGroupTitleArray addObject:redHeartChannelTitle];
         
-        [_TotalChannelArray addObject:_RecomandChannelCellArray];
-        NSString * ReconmandChannelTitle = @"推荐兆赫";
-        [_ChannelGroupTitleArray addObject:ReconmandChannelTitle];
+        [_totalChannelArray addObject:_recomandChannelCellArray];
+        NSString * reconmandChannelTitle = @"推荐兆赫";
+        [_channelGroupTitleArray addObject:reconmandChannelTitle];
                 
-        [_TotalChannelArray addObject:_LaguageChannelCellArray];
-        NSString * LanguageChannelCellTitle = @"语言年代兆赫";
-        [_ChannelGroupTitleArray addObject:LanguageChannelCellTitle];
+        [_totalChannelArray addObject:_laguageChannelCellArray];
+        NSString * languageChannelCellTitle = @"语言年代兆赫";
+        [_channelGroupTitleArray addObject:languageChannelCellTitle];
         
-        [_TotalChannelArray addObject:_SongStyleChannelCellArray];
-        NSString * SongStyleChannelCellTitle = @"风格流派兆赫";
-        [_ChannelGroupTitleArray addObject:SongStyleChannelCellTitle];
+        [_totalChannelArray addObject:_songStyleChannelCellArray];
+        NSString * songStyleChannelCellTitle = @"风格流派兆赫";
+        [_channelGroupTitleArray addObject:songStyleChannelCellTitle];
         
-        [_TotalChannelArray addObject:_FeelingChannelCellArray];
-        NSString * FeelingChannelCellTitle = @"心情场景兆赫";
-        [_ChannelGroupTitleArray addObject:FeelingChannelCellTitle];
+        [_totalChannelArray addObject:_feelingChannelCellArray];
+        NSString * feelingChannelCellTitle = @"心情场景兆赫";
+        [_channelGroupTitleArray addObject:feelingChannelCellTitle];
         
         _isEmpty = YES;
     
@@ -54,9 +54,9 @@
 
 -(void)removeMyChannelObject
 {
-    if(_MyRedHeartChannelCellArray)
+    if(_myRedHeartChannelCellArray)
     {
-        [_MyRedHeartChannelCellArray removeAllObjects];
+        [_myRedHeartChannelCellArray removeAllObjects];
     }
 }
 
@@ -64,21 +64,21 @@
 
 -(void)removeCommonChannelGroupObject
 {
-    if(_RecomandChannelCellArray)
+    if(_recomandChannelCellArray)
     {
-        [_RecomandChannelCellArray removeAllObjects];
+        [_recomandChannelCellArray removeAllObjects];
     }
-    if(_LaguageChannelCellArray)
+    if(_laguageChannelCellArray)
     {
-        [_LaguageChannelCellArray removeAllObjects];
+        [_laguageChannelCellArray removeAllObjects];
     }
-    if(_SongStyleChannelCellArray)
+    if(_songStyleChannelCellArray)
     {
-        [_SongStyleChannelCellArray removeAllObjects];
+        [_songStyleChannelCellArray removeAllObjects];
     }
-    if(_FeelingChannelCellArray)
+    if(_feelingChannelCellArray)
     {
-        [_FeelingChannelCellArray removeAllObjects];
+        [_feelingChannelCellArray removeAllObjects];
     }
     _isEmpty = YES;
     
@@ -92,13 +92,13 @@
     //int不能直接转为id类型
     NSNumber *isEmpty = [NSNumber numberWithInt:_isEmpty];
     [aCoder encodeObject:isEmpty forKey:@"isEmpty"];
-    [aCoder encodeObject:_MyRedHeartChannelCellArray forKey:@"redHeart"];
-    [aCoder encodeObject:_RecomandChannelCellArray forKey:@"recomand"];
-    [aCoder encodeObject:_LaguageChannelCellArray forKey:@"language"];
-    [aCoder encodeObject:_SongStyleChannelCellArray forKey:@"songstyle"];
-    [aCoder encodeObject:_FeelingChannelCellArray forKey:@"feeling"];
-    [aCoder encodeObject:_TotalChannelArray forKey:@"total"];
-    [aCoder encodeObject:_ChannelGroupTitleArray forKey:@"channelname"];
+    [aCoder encodeObject:_myRedHeartChannelCellArray forKey:@"redHeart"];
+    [aCoder encodeObject:_recomandChannelCellArray forKey:@"recomand"];
+    [aCoder encodeObject:_laguageChannelCellArray forKey:@"language"];
+    [aCoder encodeObject:_songStyleChannelCellArray forKey:@"songstyle"];
+    [aCoder encodeObject:_feelingChannelCellArray forKey:@"feeling"];
+    [aCoder encodeObject:_totalChannelArray forKey:@"total"];
+    [aCoder encodeObject:_channelGroupTitleArray forKey:@"channelname"];
 }
 
 -(id)initWithCoder:(NSCoder *)aDecoder
@@ -108,13 +108,13 @@
         NSNumber * isEmpty = [aDecoder decodeObjectForKey:@"isEmpty"];
         _isEmpty = [isEmpty intValue];
         
-        _MyRedHeartChannelCellArray = [aDecoder decodeObjectForKey:@"redHeart"];
-        _RecomandChannelCellArray = [aDecoder decodeObjectForKey:@"recomand"];
-        _LaguageChannelCellArray = [aDecoder decodeObjectForKey:@"language"];
-        _SongStyleChannelCellArray = [aDecoder decodeObjectForKey:@"songstyle"];
-        _FeelingChannelCellArray = [aDecoder decodeObjectForKey:@"feeling"];
-        _TotalChannelArray = [aDecoder decodeObjectForKey:@"total"];
-        _ChannelGroupTitleArray = [aDecoder decodeObjectForKey:@"channelname"];
+        _myRedHeartChannelCellArray = [aDecoder decodeObjectForKey:@"redHeart"];
+        _recomandChannelCellArray = [aDecoder decodeObjectForKey:@"recomand"];
+        _laguageChannelCellArray = [aDecoder decodeObjectForKey:@"language"];
+        _songStyleChannelCellArray = [aDecoder decodeObjectForKey:@"songstyle"];
+        _feelingChannelCellArray = [aDecoder decodeObjectForKey:@"feeling"];
+        _totalChannelArray = [aDecoder decodeObjectForKey:@"total"];
+        _channelGroupTitleArray = [aDecoder decodeObjectForKey:@"channelname"];
     }
     return self;
     

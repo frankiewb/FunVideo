@@ -18,17 +18,17 @@
 
 @optional
 
--(void)SetCaptchaImageWithURL:(NSString *) captchaImageURL;
+-(void)setCaptchaImageWithURL:(NSString *) captchaImageURL;
 
--(void)SetUserInfo;
+-(void)setUserInfo;
 
--(void)LoginSuccessful;
+-(void)loginSuccessful;
 
--(void)LogoutSuccessful;
+-(void)logoutSuccessful;
 
--(void)ReloadTableView;
+-(void)reloadTableView;
 
--(void)ReloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath;
+-(void)reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath;
 
 
 //主屏幕显示哪个页面
@@ -36,7 +36,7 @@
 //index : 2  ChannelView
 //index : 3  LoginView
 //index : 4  self
--(void)ShowViewWithIndex:(NSInteger)Index;
+-(void)showViewWithIndex:(NSInteger)index;
 
 @end
 
@@ -52,16 +52,16 @@
 
 -(instancetype)initDoubanServer;
 
--(void)DoubanSongOperationWithType:(NSString *)Type;
+-(void)doubanSongOperationWithType:(NSString *)type;
 
--(void)DoubanLoginWithLoginInfo:(LoginInfo *)loginInfo;
+-(void)doubanLoginWithLoginInfo:(LoginInfo *)loginInfo;
 
--(void)DoubanLogout;
+-(void)doubanLogout;
 
--(void)DoubanLoadCaptchaImage;
+-(void)doubanLoadCaptchaImage;
 
--(void)DoubanGetChannelGroup;
+-(void)doubanGetChannelGroup;
 
--(void)DoubanGetChannelCellWithURLString:(NSString *)ChannelURLString;
+-(void)doubanGetChannelCellWithURLString:(NSString *)channelURLString;
 
 @end

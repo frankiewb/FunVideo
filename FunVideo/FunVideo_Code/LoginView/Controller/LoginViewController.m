@@ -48,19 +48,19 @@ static const CGFloat kButton_Heigth              = 50;
     
     LoginInfo * loginInfo;
     
-    UILabel * LoginViewTitle;
+    UILabel * loginViewTitle;
     
-    UITextField * LoginNameTextField;
+    UITextField * loginNameTextField;
     
-    UITextField * LoginPassWordTextField;
+    UITextField * loginPassWordTextField;
     
-    UITextField * CaptchaImageTextField;
+    UITextField * captchaImageTextField;
     
-    UIImageView * CaptchaImageView;
+    UIImageView * captchaImageView;
     
-    UIButton * LoginButton;
+    UIButton * loginButton;
     
-    UIButton * CancelButton;
+    UIButton * cancelButton;
     
 }
 
@@ -78,10 +78,10 @@ static const CGFloat kButton_Heigth              = 50;
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self SetupUI];
+    [self setupUI];
 }
 
--(void)SetupUI
+-(void)setupUI
 {
     self.view.backgroundColor =  UIBACKGROUNDCOLOR;
     doubanServer = [[DoubanServer alloc]initDoubanServer];
@@ -95,197 +95,197 @@ static const CGFloat kButton_Heigth              = 50;
     
     
     /*“登录”标签*/
-    LoginViewTitle = [[UILabel alloc]init];
-    LoginViewTitle.text = @"用户登录";
-    LoginViewTitle.backgroundColor = UIBACKGROUNDCOLOR;
-    LoginViewTitle.font = [UIFont systemFontOfSize:30];
-    LoginViewTitle.textColor = [UIColor blackColor];
-    LoginViewTitle.textAlignment = NSTextAlignmentLeft;
-    LoginViewTitle.layer.masksToBounds = YES;
-    LoginViewTitle.layer.cornerRadius = 6;
-    LoginViewTitle.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint, kLabel_Field_Width, kLabel_Field_Height);
-    [self.view addSubview:LoginViewTitle];
+    loginViewTitle = [[UILabel alloc]init];
+    loginViewTitle.text = @"用户登录";
+    loginViewTitle.backgroundColor = UIBACKGROUNDCOLOR;
+    loginViewTitle.font = [UIFont systemFontOfSize:30];
+    loginViewTitle.textColor = [UIColor blackColor];
+    loginViewTitle.textAlignment = NSTextAlignmentLeft;
+    loginViewTitle.layer.masksToBounds = YES;
+    loginViewTitle.layer.cornerRadius = 6;
+    loginViewTitle.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint, kLabel_Field_Width, kLabel_Field_Height);
+    [self.view addSubview:loginViewTitle];
     
     
     /*用户名输入框*/
-    LoginNameTextField = [[UITextField alloc]init];
-    LoginNameTextField.delegate = self;
-    LoginNameTextField.placeholder = @"邮箱／用户名";
-    LoginNameTextField.textColor = [UIColor blackColor];
-    LoginNameTextField.backgroundColor = UILOGINVIEWLABELCOLOR;
-    LoginNameTextField.borderStyle = UITextBorderStyleRoundedRect;
-    LoginNameTextField.textAlignment = NSTextAlignmentLeft;
-    LoginNameTextField.font = [UIFont systemFontOfSize:18];
+    loginNameTextField = [[UITextField alloc]init];
+    loginNameTextField.delegate = self;
+    loginNameTextField.placeholder = @"邮箱／用户名";
+    loginNameTextField.textColor = [UIColor blackColor];
+    loginNameTextField.backgroundColor = UILOGINVIEWLABELCOLOR;
+    loginNameTextField.borderStyle = UITextBorderStyleRoundedRect;
+    loginNameTextField.textAlignment = NSTextAlignmentLeft;
+    loginNameTextField.font = [UIFont systemFontOfSize:18];
     //设置输入框右侧一次性清除小叉的按钮
-    LoginNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    loginNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     //设置自动纠错
-    LoginNameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    loginNameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     //设置再次编辑时输入框为空
-    LoginNameTextField.clearsOnBeginEditing = NO;
+    loginNameTextField.clearsOnBeginEditing = NO;
     //设置内容垂直对齐方式
-    LoginNameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    loginNameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     //设置内容自适应输入框大小
-    LoginNameTextField.adjustsFontSizeToFitWidth = YES;
+    loginNameTextField.adjustsFontSizeToFitWidth = YES;
     //设置键盘样式(方便Email输入）
-    LoginNameTextField.keyboardType = UIKeyboardTypeEmailAddress;
+    loginNameTextField.keyboardType = UIKeyboardTypeEmailAddress;
     //设置首字母是否大写
-    LoginNameTextField.autocapitalizationType = UITextBorderStyleNone;
+    loginNameTextField.autocapitalizationType = UITextBorderStyleNone;
     //设置Return键字样
-    LoginNameTextField.returnKeyType = UIReturnKeyDone;
+    loginNameTextField.returnKeyType = UIReturnKeyDone;
     //设置键盘外观
-    LoginNameTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    LoginNameTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 1 + kLabelHeight_Distance, kLabel_Field_Width, kLabel_Field_Height);
-    [self.view addSubview:LoginNameTextField];
+    loginNameTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    loginNameTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 1 + kLabelHeight_Distance, kLabel_Field_Width, kLabel_Field_Height);
+    [self.view addSubview:loginNameTextField];
     
     
     /*密码输入框*/
-    LoginPassWordTextField = [[UITextField alloc]init];
-    LoginPassWordTextField.delegate = self;
-    LoginPassWordTextField.placeholder = @"密码";
-    LoginPassWordTextField.textColor = [UIColor blackColor];
-    LoginPassWordTextField.backgroundColor = UILOGINVIEWLABELCOLOR;
-    LoginPassWordTextField.borderStyle = UITextBorderStyleRoundedRect;
-    LoginPassWordTextField.textAlignment = NSTextAlignmentLeft;
-    LoginPassWordTextField.font = [UIFont systemFontOfSize:18];
+    loginPassWordTextField = [[UITextField alloc]init];
+    loginPassWordTextField.delegate = self;
+    loginPassWordTextField.placeholder = @"密码";
+    loginPassWordTextField.textColor = [UIColor blackColor];
+    loginPassWordTextField.backgroundColor = UILOGINVIEWLABELCOLOR;
+    loginPassWordTextField.borderStyle = UITextBorderStyleRoundedRect;
+    loginPassWordTextField.textAlignment = NSTextAlignmentLeft;
+    loginPassWordTextField.font = [UIFont systemFontOfSize:18];
     //设置输入框右侧一次性清除小叉的按钮
-    LoginPassWordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    loginPassWordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     //设置自动纠错
-    LoginPassWordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    loginPassWordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     //设置再次编辑时输入框为空
-    LoginPassWordTextField.clearsOnBeginEditing = NO;
+    loginPassWordTextField.clearsOnBeginEditing = NO;
     //设置内容垂直对齐方式
-    LoginPassWordTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    loginPassWordTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     //设置内容自适应输入框大小
-    LoginPassWordTextField.adjustsFontSizeToFitWidth = YES;
+    loginPassWordTextField.adjustsFontSizeToFitWidth = YES;
     //设置键盘样式(方便Email输入）
-    LoginPassWordTextField.keyboardType = UIKeyboardAppearanceDefault;
+    loginPassWordTextField.keyboardType = UIKeyboardAppearanceDefault;
     //设置首字母是否大写
-    LoginPassWordTextField.autocapitalizationType = UITextBorderStyleNone;
+    loginPassWordTextField.autocapitalizationType = UITextBorderStyleNone;
     //设置Return键字样
-    LoginPassWordTextField.returnKeyType = UIReturnKeyDone;
+    loginPassWordTextField.returnKeyType = UIReturnKeyDone;
     //设置输入密码保护
-    LoginPassWordTextField.secureTextEntry = YES;
+    loginPassWordTextField.secureTextEntry = YES;
     //设置键盘外观
-    LoginPassWordTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    LoginPassWordTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 2 + kLabelHeight_Distance + kTextFieldHeight_Distance * 1, kLabel_Field_Width, kLabel_Field_Height);
-    [self.view addSubview:LoginPassWordTextField];
+    loginPassWordTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    loginPassWordTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 2 + kLabelHeight_Distance + kTextFieldHeight_Distance * 1, kLabel_Field_Width, kLabel_Field_Height);
+    [self.view addSubview:loginPassWordTextField];
     
     
     
     /*验证码输入框*/
-    CaptchaImageTextField = [[UITextField alloc]init];
-    CaptchaImageTextField.delegate = self;
-    CaptchaImageTextField.placeholder = @"验证码";
-    CaptchaImageTextField.textColor = [UIColor blackColor];
-    CaptchaImageTextField.backgroundColor = UILOGINVIEWLABELCOLOR;
-    CaptchaImageTextField.borderStyle = UITextBorderStyleRoundedRect;
-    CaptchaImageTextField.textAlignment = NSTextAlignmentLeft;
-    CaptchaImageTextField.font = [UIFont systemFontOfSize:18];
+    captchaImageTextField = [[UITextField alloc]init];
+    captchaImageTextField.delegate = self;
+    captchaImageTextField.placeholder = @"验证码";
+    captchaImageTextField.textColor = [UIColor blackColor];
+    captchaImageTextField.backgroundColor = UILOGINVIEWLABELCOLOR;
+    captchaImageTextField.borderStyle = UITextBorderStyleRoundedRect;
+    captchaImageTextField.textAlignment = NSTextAlignmentLeft;
+    captchaImageTextField.font = [UIFont systemFontOfSize:18];
     //设置输入框右侧一次性清除小叉的按钮
-    CaptchaImageTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    captchaImageTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     //设置自动纠错
-    CaptchaImageTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    captchaImageTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     //设置再次编辑时输入框为空
-    CaptchaImageTextField.clearsOnBeginEditing = NO;
+    captchaImageTextField.clearsOnBeginEditing = NO;
     //设置内容垂直对齐方式
-    CaptchaImageTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    captchaImageTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     //设置内容自适应输入框大小
-    CaptchaImageTextField.adjustsFontSizeToFitWidth = YES;
+    captchaImageTextField.adjustsFontSizeToFitWidth = YES;
     //设置键盘样式(方便Email输入）
-    CaptchaImageTextField.keyboardType = UIKeyboardAppearanceDefault;
+    captchaImageTextField.keyboardType = UIKeyboardAppearanceDefault;
     //设置首字母是否大写
-    CaptchaImageTextField.autocapitalizationType = UITextBorderStyleNone;
+    captchaImageTextField.autocapitalizationType = UITextBorderStyleNone;
     //设置Return键字样
-    CaptchaImageTextField.returnKeyType = UIReturnKeyDone;
+    captchaImageTextField.returnKeyType = UIReturnKeyDone;
     //设置键盘外观
-    CaptchaImageTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    CaptchaImageTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 3 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2, kCaptcha_Width, kCaptcha_Height);
-    [self.view addSubview:CaptchaImageTextField];
+    captchaImageTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    captchaImageTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 3 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2, kCaptcha_Width, kCaptcha_Height);
+    [self.view addSubview:captchaImageTextField];
     
     /*验证码图片*/
-    CaptchaImageView = [[UIImageView alloc]init];
-    CaptchaImageView.layer.masksToBounds = YES;
-    CaptchaImageView.layer.cornerRadius = 10;
-    CaptchaImageView.backgroundColor = UILOGINVIEWLABELCOLOR;
-    CaptchaImageView.userInteractionEnabled = YES;
-    CaptchaImageView.frame = CGRectMake(kOrigin_Xpoint + kCaptcha_Width + kCaptchaImageWidth_Distance, kOrigin_Ypoint + kLabel_Field_Height * 3 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 , kCaptchaImageView_Width, kCaptchaImageView_Height);
-    [self.view addSubview:CaptchaImageView];
+    captchaImageView = [[UIImageView alloc]init];
+    captchaImageView.layer.masksToBounds = YES;
+    captchaImageView.layer.cornerRadius = 10;
+    captchaImageView.backgroundColor = UILOGINVIEWLABELCOLOR;
+    captchaImageView.userInteractionEnabled = YES;
+    captchaImageView.frame = CGRectMake(kOrigin_Xpoint + kCaptcha_Width + kCaptchaImageWidth_Distance, kOrigin_Ypoint + kLabel_Field_Height * 3 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 , kCaptchaImageView_Width, kCaptchaImageView_Height);
+    [self.view addSubview:captchaImageView];
     
     
     /*登录Button*/
-    LoginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [LoginButton setTitle:@"登 录" forState:UIControlStateNormal];
-    [LoginButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    LoginButton.backgroundColor = UILOGINVIEWLABELCOLOR;
-    [LoginButton addTarget:self action:@selector(Login) forControlEvents:UIControlEventTouchUpInside];
-    LoginButton.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 4 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 + kButtonHeight_Distance * 1, kButton_Width, kButton_Heigth);
-    [self.view addSubview:LoginButton];
+    loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
+    [loginButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    loginButton.backgroundColor = UILOGINVIEWLABELCOLOR;
+    [loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    loginButton.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 4 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 + kButtonHeight_Distance * 1, kButton_Width, kButton_Heigth);
+    [self.view addSubview:loginButton];
     
     /*登出Button*/
-    CancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    CancelButton.backgroundColor = UILOGINVIEWLABELCOLOR;
-    [CancelButton setTitle:@"取 消" forState:UIControlStateNormal];
-    [CancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    [CancelButton addTarget:self action:@selector(Cancel) forControlEvents:UIControlEventTouchUpInside];
-    CancelButton.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 5 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 + kButtonHeight_Distance * 1.5, kButton_Width, kButton_Heigth);
-    [self.view addSubview:CancelButton];
+    cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    cancelButton.backgroundColor = UILOGINVIEWLABELCOLOR;
+    [cancelButton setTitle:@"取 消" forState:UIControlStateNormal];
+    [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    [cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+    cancelButton.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 5 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 + kButtonHeight_Distance * 1.5, kButton_Width, kButton_Heigth);
+    [self.view addSubview:cancelButton];
     
     //添加验证码点击更新事件
-    UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(LoadCaptchaImage)];
+    UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(loadCaptchaImage)];
     [singleTap setNumberOfTapsRequired:1];
-    [CaptchaImageView addGestureRecognizer:singleTap];
+    [captchaImageView addGestureRecognizer:singleTap];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self LoadCaptchaImage];
+    [self loadCaptchaImage];
 }
 
--(void)LoginSuccessful
+-(void)loginSuccessful
 {
-    [_delegate SetUserInfo];
+    [_delegate setUserInfo];
     NSLog(@"LOGIN_SUCCESSFUL");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 
--(void)SetCaptchaImageWithURL:(NSString *) captchaImageURL
+-(void)setCaptchaImageWithURL:(NSString *) captchaImageURL
 {
-    [CaptchaImageView setImageWithURL:[NSURL URLWithString:captchaImageURL] placeholderImage:nil];
+    [captchaImageView setImageWithURL:[NSURL URLWithString:captchaImageURL] placeholderImage:nil];
 }
 
 
 
--(void)LoadCaptchaImage
+-(void)loadCaptchaImage
 {
-    [doubanServer DoubanLoadCaptchaImage];
+    [doubanServer doubanLoadCaptchaImage];
 }
 
 
 
--(void)Login
+-(void)login
 {
     loginInfo = [[LoginInfo alloc]init];
-    loginInfo.LoginName = LoginNameTextField.text;
-    loginInfo.PassWord = LoginPassWordTextField.text;
-    loginInfo.CapthchaInputWord = CaptchaImageTextField.text;
-    [doubanServer DoubanLoginWithLoginInfo:loginInfo];
+    loginInfo.loginName = loginNameTextField.text;
+    loginInfo.passWord = loginPassWordTextField.text;
+    loginInfo.capthchaInputWord = captchaImageTextField.text;
+    [doubanServer doubanLoginWithLoginInfo:loginInfo];
 }
 
 
--(void)Cancel
+-(void)cancel
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [LoginNameTextField resignFirstResponder];
-    [LoginPassWordTextField resignFirstResponder];
-    [CaptchaImageTextField resignFirstResponder];
+    [loginNameTextField resignFirstResponder];
+    [loginPassWordTextField resignFirstResponder];
+    [captchaImageTextField resignFirstResponder];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField

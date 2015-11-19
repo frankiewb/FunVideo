@@ -35,7 +35,7 @@ static const CGFloat kORIGIN_Y      = 0;
     
     //refreshView
     EGORefreshTableHeaderView * _refreshHeaderView;
-    BOOL _IsReloading;
+    BOOL _isReloading;
 }
 
 @end
@@ -50,7 +50,7 @@ static const CGFloat kORIGIN_Y      = 0;
     //初始化工具
     appDelegate = [[UIApplication sharedApplication]delegate];
     doubanServer = [[DoubanServer alloc]initDoubanServer];
-    [doubanServer DoubanGetChannelGroup];
+    [doubanServer doubanGetChannelGroup];
     channelGroup = appDelegate.channelGroup;
     playerInfo = appDelegate.playerInfo;
     doubanServer.delegate = self;
@@ -66,7 +66,7 @@ static const CGFloat kORIGIN_Y      = 0;
         _refreshHeaderView = [[EGORefreshTableHeaderView alloc]initWithFrame:CGRectMake(0, 0-self.tableView.bounds.size.height, self.tableView.bounds.size.width, self.tableView.bounds.size.height) arrowImageName:@"blackArrow@2x" textColor:[UIColor blackColor]];
         _refreshHeaderView.delegate = self;
         [self.tableView addSubview:_refreshHeaderView];
-        _IsReloading = NO;
+        _isReloading = NO;
         
     }
 
@@ -75,18 +75,18 @@ static const CGFloat kORIGIN_Y      = 0;
 
 #pragma mark Data Source Loading / Reloading Methods
 
--(void)ReloadTableViewDataSource
+-(void)reloadTableViewDataSource
 {
     //  should be calling your tableviews data source model to reload
     //[appDelegate.channelGroup removeAllChannelGroupObject];
-    [doubanServer DoubanGetChannelGroup];
-    _IsReloading = YES;
+    [doubanServer doubanGetChannelGroup];
+    _isReloading = YES;
 }
 
--(void)DoneLoadingTableViewData
+-(void)doneLoadingTableViewData
 {
     //  model should call this when its done loading
-    _IsReloading = NO;
+    _isReloading = NO;
     [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
 }
 
@@ -113,14 +113,14 @@ static const CGFloat kORIGIN_Y      = 0;
 
 -(void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {
-    [self ReloadTableViewDataSource];
-    [self performSelector:@selector(DoneLoadingTableViewData) withObject:nil afterDelay:2.0];
+    [self reloadTableViewDataSource];
+    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:2.0];
 }
 
 -(BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
 {
     // should return if data source model is reloading
-    return _IsReloading;
+    return _isReloading;
 }
 
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
@@ -132,11 +132,11 @@ static const CGFloat kORIGIN_Y      = 0;
 
 -(void)initTableViewCellWithChannelInfo:(ChannelInfo *)channelInfo TableViewCell:(UITableViewCell *)cell
 {
-    cell.textLabel.text = channelInfo.ChannelName;
-    cell.detailTextLabel.text = channelInfo.ChannelIntro;
+    cell.textLabel.text = channelInfo.channelName;
+    cell.detailTextLabel.text = channelInfo.channelIntro;
     cell.imageView.layer.cornerRadius = cell.imageView.bounds.size.width/2.0;
     cell.imageView.layer.masksToBounds = YES;
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:channelInfo.ChannelCoverURL] placeholderImage:[UIImage imageNamed:@"defaultcell"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:channelInfo.channelCoverURL] placeholderImage:[UIImage imageNamed:@"defaultcell"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
     {
         NSLog(@"LoadPic successful");
     }];
@@ -144,8 +144,8 @@ static const CGFloat kORIGIN_Y      = 0;
 
 -(void)initUserLabelCellWithChannelInfo:(ChannelInfo *)channelInfo TableViewCell:(UITableViewCell *)cell
 {
-    cell.textLabel.text = channelInfo.ChannelName;
-    cell.detailTextLabel.text = channelInfo.ChannelIntro;
+    cell.textLabel.text = channelInfo.channelName;
+    cell.detailTextLabel.text = channelInfo.channelIntro;
     cell.imageView.layer.cornerRadius = cell.imageView.bounds.size.width/2.0;
     cell.imageView.layer.masksToBounds = YES;
     [cell.imageView setImage:[UIImage imageNamed:@"noneuser.png"]];
@@ -155,12 +155,12 @@ static const CGFloat kORIGIN_Y      = 0;
 
 
 
--(void)ReloadTableView
+-(void)reloadTableView
 {
     [self.tableView reloadData];
 }
 
--(void)ReloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath
+-(void)reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -171,14 +171,14 @@ static const CGFloat kORIGIN_Y      = 0;
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSLog(@"计算分组数");
-    return [channelGroup.TotalChannelArray count];
+    return [channelGroup.totalChannelArray count];
 }
 
 #pragma mark 返回每组行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"计算每组(组%li)行数",(long)section);
-    return [[channelGroup.TotalChannelArray objectAtIndex:section] count];
+    return [[channelGroup.totalChannelArray objectAtIndex:section] count];
     
 }
 
@@ -187,7 +187,7 @@ static const CGFloat kORIGIN_Y      = 0;
 {
     //NSIndexPath是一个结构体，记录了组和行的信息
     NSLog(@"生成单元格(组:%li,行%li)",(long)indexPath.section,indexPath.row);
-    ChannelInfo * channelInfoCell = [[channelGroup.TotalChannelArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    ChannelInfo * channelInfoCell = [[channelGroup.totalChannelArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     //此方法调用频繁，cell标示声明为静态变量有利于性能优化，此ID表明的是UItableViewCell的类型，有几个类型声明几个ID
     static NSString * reuseCellID = @"CellIDKey";
     //首先根据标识去缓存池取
@@ -201,7 +201,7 @@ static const CGFloat kORIGIN_Y      = 0;
     //初始化cell
     if(indexPath.section == 0 && indexPath.row == 0)
     {
-        if([channelInfoCell.ChannelName isEqualToString:@"未登录"])
+        if([channelInfoCell.channelName isEqualToString:@"未登录"])
         {
             [self initUserLabelCellWithChannelInfo:channelInfoCell TableViewCell:cell];
             return cell;
@@ -217,7 +217,7 @@ static const CGFloat kORIGIN_Y      = 0;
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSLog(@"生成组(组%li)名称",(long)section);
-    return channelGroup.ChannelGroupTitleArray[section];
+    return channelGroup.channelGroupTitleArray[section];
 }
 
 #pragma 设置分组标题内容高度
@@ -245,17 +245,17 @@ static const CGFloat kORIGIN_Y      = 0;
 #pragma 点击行
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ChannelInfo * channelInfo = [[channelGroup.TotalChannelArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    ChannelInfo * channelInfo = [[channelGroup.totalChannelArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if(indexPath.section == 0 && indexPath.row == 0)
     {
         //跳转至登录页面
-        [_delegate ShowViewWithIndex:2];
+        [_delegate showViewWithIndex:2];
     }
     else
     {
-        playerInfo.CurrentChannel = [playerInfo.CurrentChannel initWithChannelInfo:channelInfo];
-        [doubanServer DoubanSongOperationWithType:@"n"];
-        [_delegate ShowViewWithIndex:0];
+        playerInfo.currentChannel = [playerInfo.currentChannel initWithChannelInfo:channelInfo];
+        [doubanServer doubanSongOperationWithType:@"n"];
+        [_delegate showViewWithIndex:0];
 
     }
     

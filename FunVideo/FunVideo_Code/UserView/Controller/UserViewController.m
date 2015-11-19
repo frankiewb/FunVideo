@@ -55,15 +55,15 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     
     UserInfo * userInfo;
     
-    UIImageView * UserViewImage;
+    UIImageView * userViewImage;
     
-    UILabel * UserNameLabel;
+    UILabel * userNameLabel;
     
-    UILabel * PlayedLabel;
+    UILabel * playedLabel;
     
-    UILabel * BannedLabel;
+    UILabel * bannedLabel;
     
-    UIButton * LogoutButton;
+    UIButton * logoutButton;
 }
 
 
@@ -82,77 +82,77 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     doubanServer = [[DoubanServer alloc]initDoubanServer];
     userInfo = appDelegate.userInfo;
     doubanServer.delegate = self;
-    [self SetupUI];
-    [self SetUserInfo];
+    [self setupUI];
+    [self setUserInfo];
 }
 
--(void)SetupUI
+-(void)setupUI
 {
     /*设置主View背景*/
     self.view.backgroundColor = UIBACKGROUNDCOLOR;
     /*设置LoginImage */
-    UserViewImage = [[UIImageView alloc]init];
-    UserViewImage.backgroundColor = UIBACKGROUNDCOLOR;
-    UserViewImage.contentMode = UIViewContentModeScaleAspectFill;
-    if(!UserViewImage.clipsToBounds)
+    userViewImage = [[UIImageView alloc]init];
+    userViewImage.backgroundColor = UIBACKGROUNDCOLOR;
+    userViewImage.contentMode = UIViewContentModeScaleAspectFill;
+    if(!userViewImage.clipsToBounds)
     {
-        UserViewImage.clipsToBounds = YES;
+        userViewImage.clipsToBounds = YES;
     }
-    UserViewImage.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint, kUserImage_Width, kUserImage_Height);
-    UserViewImage.layer.cornerRadius = UserViewImage.frame.size.width/2.0;
+    userViewImage.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint, kUserImage_Width, kUserImage_Height);
+    userViewImage.layer.cornerRadius = userViewImage.frame.size.width/2.0;
     
     //给登录图片增加手势
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
                                                                                action:@selector(loginImageTapped)];
     [singleTap setNumberOfTapsRequired:1];
-    [UserViewImage addGestureRecognizer:singleTap];
-    [self.view addSubview:UserViewImage];
+    [userViewImage addGestureRecognizer:singleTap];
+    [self.view addSubview:userViewImage];
     
     
     /*设置UserNameLabel*/
-    UserNameLabel = [[UILabel alloc]init];
-    UserNameLabel.backgroundColor = UIBACKGROUNDCOLOR;
-    UserNameLabel.textAlignment = NSTextAlignmentCenter;
-    [UserNameLabel setFont:[UIFont boldSystemFontOfSize:30]];
-    UserNameLabel.frame = CGRectMake(kUserName_Xpoint, kUserName_Ypoint, kUserName_Width, kUserName_Height);
-    [self.view addSubview:UserNameLabel];
+    userNameLabel = [[UILabel alloc]init];
+    userNameLabel.backgroundColor = UIBACKGROUNDCOLOR;
+    userNameLabel.textAlignment = NSTextAlignmentCenter;
+    [userNameLabel setFont:[UIFont boldSystemFontOfSize:30]];
+    userNameLabel.frame = CGRectMake(kUserName_Xpoint, kUserName_Ypoint, kUserName_Width, kUserName_Height);
+    [self.view addSubview:userNameLabel];
     
     
     /*设置PlayedLabel*/
-    PlayedLabel = [[UILabel alloc]init];
-    PlayedLabel.numberOfLines = 0;
-    PlayedLabel.backgroundColor = UIBACKGROUNDCOLOR;
-    PlayedLabel.textAlignment = NSTextAlignmentCenter;
-    [PlayedLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    PlayedLabel.frame = CGRectMake(kPlayedLabel_Xpoint, kPlayedLabel_Ypoint, kPlayedLabel_Width, kPlayedLabel_Height);
-    [self.view addSubview:PlayedLabel];
+    playedLabel = [[UILabel alloc]init];
+    playedLabel.numberOfLines = 0;
+    playedLabel.backgroundColor = UIBACKGROUNDCOLOR;
+    playedLabel.textAlignment = NSTextAlignmentCenter;
+    [playedLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    playedLabel.frame = CGRectMake(kPlayedLabel_Xpoint, kPlayedLabel_Ypoint, kPlayedLabel_Width, kPlayedLabel_Height);
+    [self.view addSubview:playedLabel];
     
     
     /*设置BannedLabel*/
-    BannedLabel = [[UILabel alloc]init];
-    BannedLabel.numberOfLines = 0;
-    BannedLabel.backgroundColor = UIBACKGROUNDCOLOR;
-    BannedLabel.textAlignment = NSTextAlignmentCenter;
-    [BannedLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    BannedLabel.frame = CGRectMake(kBannedLabel_Xpoint, kBannedLabel_Ypoint, kBannedLabel_Width, kBannedLabel_Height);
-    [self.view addSubview:BannedLabel];
+    bannedLabel = [[UILabel alloc]init];
+    bannedLabel.numberOfLines = 0;
+    bannedLabel.backgroundColor = UIBACKGROUNDCOLOR;
+    bannedLabel.textAlignment = NSTextAlignmentCenter;
+    [bannedLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    bannedLabel.frame = CGRectMake(kBannedLabel_Xpoint, kBannedLabel_Ypoint, kBannedLabel_Width, kBannedLabel_Height);
+    [self.view addSubview:bannedLabel];
     
     /*设置LogoutButton*/
     
-    LogoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [LogoutButton setTitle:@"登 出" forState:UIControlStateNormal];
-    [LogoutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    LogoutButton.backgroundColor = UIBACKGROUNDCOLOR;
-    [LogoutButton addTarget:self action:@selector(Logout) forControlEvents:UIControlEventTouchUpInside];
-    LogoutButton.frame = CGRectMake(kLogoutButton_Xpoint, kLogoutButton_Ypoint, kLogoutButton_Width, kLogoutButton_Hegiht);
-    [self.view addSubview:LogoutButton];
+    logoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [logoutButton setTitle:@"登 出" forState:UIControlStateNormal];
+    [logoutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    logoutButton.backgroundColor = UIBACKGROUNDCOLOR;
+    [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
+    logoutButton.frame = CGRectMake(kLogoutButton_Xpoint, kLogoutButton_Ypoint, kLogoutButton_Width, kLogoutButton_Hegiht);
+    [self.view addSubview:logoutButton];
     
     
 }
 
--(void)LogoutSuccessful
+-(void)logoutSuccessful
 {
-    [self SetUserInfo];
+    [self setUserInfo];
     NSLog(@"LOGOUT_SUCCESSFUL");
 }
 
@@ -173,7 +173,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     [self presentViewController:loginVC animated:YES completion:nil];
 }
 
--(void)Logout
+-(void)logout
 {
     UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"登出"
                                                        message:@"主人，你这就要走了咩。。"
@@ -189,54 +189,54 @@ static const CGFloat kLogoutButton_Hegiht = 68;
         case 0:
             break;
         case 1:
-            [doubanServer DoubanLogout];
+            [doubanServer doubanLogout];
         default:
             break;
     }
 }
 
--(void)SetUserInfo
+-(void)setUserInfo
 {
     if(doubanServer == nil)
     {
         doubanServer = [doubanServer initDoubanServer];
     }
-    if(userInfo.Cookies)
+    if(userInfo.cookies)
     {
-        [UserViewImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:USERIMAGEURL,userInfo.UserID]]];
-        UserViewImage.userInteractionEnabled = NO;
+        [userViewImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:USERIMAGEURL,userInfo.userID]]];
+        userViewImage.userInteractionEnabled = NO;
         
-        UserNameLabel.text = userInfo.UserName;
-        PlayedLabel.text = [NSString stringWithFormat:@"Played \n \n %@",userInfo.Plyaed];
-        BannedLabel.text = [NSString stringWithFormat:@"Banned \n \n %@",userInfo.Banned];
-        LogoutButton.hidden = NO;
+        userNameLabel.text = userInfo.userName;
+        playedLabel.text = [NSString stringWithFormat:@"Played \n \n %@",userInfo.plyaed];
+        bannedLabel.text = [NSString stringWithFormat:@"Banned \n \n %@",userInfo.banned];
+        logoutButton.hidden = NO;
         
         //此时设置ChannelGroup第一数组第一个cell的值
-        if([appDelegate.channelGroup.MyRedHeartChannelCellArray count] != 0)
+        if([appDelegate.channelGroup.myRedHeartChannelCellArray count] != 0)
         {
-            ChannelInfo * UserChannelInfo = [appDelegate.channelGroup.MyRedHeartChannelCellArray objectAtIndex:0];
-            UserChannelInfo.ChannelName = userInfo.UserName;
-            UserChannelInfo.ChannelCoverURL = [NSString stringWithFormat:USERIMAGEURL,userInfo.UserID];
+            ChannelInfo * userChannelInfo = [appDelegate.channelGroup.myRedHeartChannelCellArray objectAtIndex:0];
+            userChannelInfo.channelName = userInfo.userName;
+            userChannelInfo.channelCoverURL = [NSString stringWithFormat:USERIMAGEURL,userInfo.userID];
             NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.delegate ReloadTableViewCellWithIndexPath:indexpath];
+            [self.delegate reloadTableViewCellWithIndexPath:indexpath];
         }
     }
     else
     {
-        [UserViewImage setImage:[UIImage imageNamed:@"login"]];
-        UserViewImage.userInteractionEnabled = YES;
-        UserNameLabel.text = @"";
-        PlayedLabel.text = [NSString stringWithFormat:@"Played \n \n %@",@"0"];;
-        BannedLabel.text = [NSString stringWithFormat:@"Banned \n \n %@",@"0"];
-        LogoutButton.hidden = YES;
+        [userViewImage setImage:[UIImage imageNamed:@"login"]];
+        userViewImage.userInteractionEnabled = YES;
+        userNameLabel.text = @"";
+        playedLabel.text = [NSString stringWithFormat:@"Played \n \n %@",@"0"];;
+        bannedLabel.text = [NSString stringWithFormat:@"Banned \n \n %@",@"0"];
+        logoutButton.hidden = YES;
         
         //此时设置ChannelGroup第一数组第一个cell的值
-        if([appDelegate.channelGroup.MyRedHeartChannelCellArray count] != 0)
+        if([appDelegate.channelGroup.myRedHeartChannelCellArray count] != 0)
         {
-            ChannelInfo * UserChannelInfo = [appDelegate.channelGroup.MyRedHeartChannelCellArray objectAtIndex:0];
-            UserChannelInfo.ChannelName = @"未登录";
+            ChannelInfo * UserChannelInfo = [appDelegate.channelGroup.myRedHeartChannelCellArray objectAtIndex:0];
+            UserChannelInfo.channelName = @"未登录";
             NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.delegate ReloadTableViewCellWithIndexPath:indexpath];
+            [self.delegate reloadTableViewCellWithIndexPath:indexpath];
         }
         
     }

@@ -13,43 +13,43 @@
 /**
  *  歌曲名称
  */
-@property(nonatomic,copy) NSString *SongTitle;
+@property(nonatomic,copy) NSString *songTitle;
 
 /**
  * 歌曲演唱者
  */
-@property(nonatomic,copy) NSString *SongArtist;
+@property(nonatomic,copy) NSString *songArtist;
 
 /**
  *  歌曲图片
  */
-@property(nonatomic,copy) NSString *SongPictureUrl;
+@property(nonatomic,copy) NSString *songPictureUrl;
 
 /**
  *  歌曲时长
  */
-@property(nonatomic,copy) NSString *SongTimeLong;
+@property(nonatomic,copy) NSString *songTimeLong;
 
 /**
  * 该歌曲是否为喜爱歌曲 True：喜爱 False：不喜爱
  */
-@property (nonatomic,copy) NSString *SongIsLike;
+@property (nonatomic,copy) NSString *songIsLike;
 
 /**
  * 该歌曲URL链接
  */
-@property(nonatomic,copy) NSString *SongUrl;
+@property(nonatomic,copy) NSString *songUrl;
 
 /**
  * 歌曲ID
  */
-@property(nonatomic,copy) NSString *SongId;
+@property(nonatomic,copy) NSString *songId;
 
 
 /**
  * 初始化函数带参数
  */
--(instancetype)initSongInfoWithDictionary:(NSDictionary *)Dic;
+-(instancetype)initSongInfoWithDictionary:(NSDictionary *)dic;
 
 
 @end

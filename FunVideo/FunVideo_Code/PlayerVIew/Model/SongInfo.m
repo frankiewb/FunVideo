@@ -11,17 +11,17 @@
 @implementation SongInfo
 
 //默认init直接赋值为空
--(instancetype)initSongInfoWithDictionary:(NSDictionary *)Dic
+-(instancetype)initSongInfoWithDictionary:(NSDictionary *)dic
 {
     if(self             = [super init])
     {
-    self.SongArtist     = Dic[@"artist"];
-    self.SongTitle      = Dic[@"title"];
-    self.SongUrl        = Dic[@"url"];
-    self.SongPictureUrl = Dic[@"picture"];
-    self.SongTimeLong   = Dic[@"length"];
-    self.SongIsLike     = Dic[@"like"];
-    self.SongId         = Dic[@"sid"];
+    self.songArtist     = dic[@"artist"];
+    self.songTitle      = dic[@"title"];
+    self.songUrl        = dic[@"url"];
+    self.songPictureUrl = dic[@"picture"];
+    self.songTimeLong   = dic[@"length"];
+    self.songIsLike     = dic[@"like"];
+    self.songId         = dic[@"sid"];
     }
         return self;
 }
@@ -31,13 +31,13 @@
 //编译为二进制
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:_SongArtist forKey:@"artist"];
-    [aCoder encodeObject:_SongTitle forKey:@"title"];
-    [aCoder encodeObject:_SongUrl forKey:@"songurl"];
-    [aCoder encodeObject:_SongPictureUrl forKey:@"pictureurl"];
-    [aCoder encodeObject:_SongTimeLong forKey:@"timelong"];
-    [aCoder encodeObject:_SongIsLike forKey:@"islike"];
-    [aCoder encodeObject:_SongId forKey:@"songid"];
+    [aCoder encodeObject:_songArtist forKey:@"artist"];
+    [aCoder encodeObject:_songTitle forKey:@"title"];
+    [aCoder encodeObject:_songUrl forKey:@"songurl"];
+    [aCoder encodeObject:_songPictureUrl forKey:@"pictureurl"];
+    [aCoder encodeObject:_songTimeLong forKey:@"timelong"];
+    [aCoder encodeObject:_songIsLike forKey:@"islike"];
+    [aCoder encodeObject:_songId forKey:@"songid"];
 
 }
 
@@ -47,37 +47,37 @@
 {
     if([self init])
     {
-        _SongArtist     = [aDecoder decodeObjectForKey:@"artist"];
-        _SongTitle      = [aDecoder decodeObjectForKey:@"title"];
-        _SongUrl        = [aDecoder decodeObjectForKey:@"songurl"];
-        _SongPictureUrl = [aDecoder decodeObjectForKey:@"pictureurl"];
-        _SongTimeLong   = [aDecoder decodeObjectForKey:@"timelong"];
-        _SongIsLike     = [aDecoder decodeObjectForKey:@"islike"];
-        _SongId         = [aDecoder decodeObjectForKey:@"songid"];
+        _songArtist     = [aDecoder decodeObjectForKey:@"artist"];
+        _songTitle      = [aDecoder decodeObjectForKey:@"title"];
+        _songUrl        = [aDecoder decodeObjectForKey:@"songurl"];
+        _songPictureUrl = [aDecoder decodeObjectForKey:@"pictureurl"];
+        _songTimeLong   = [aDecoder decodeObjectForKey:@"timelong"];
+        _songIsLike     = [aDecoder decodeObjectForKey:@"islike"];
+        _songId         = [aDecoder decodeObjectForKey:@"songid"];
     }
     return self;
 }
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"SongArtist":_SongArtist,
-                                                                         @"SongTitle":_SongTitle,
-                                                                         @"SongURL":_SongUrl,
-                                                                         @"SongPictureURL":_SongPictureUrl,
-                                                                         @"SongTimeLong":_SongTimeLong,
-                                                                         @"SongIsLike":_SongIsLike,
-                                                                         @"SongID":_SongId}];
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"SongArtist":_songArtist,
+                                                                         @"SongTitle":_songTitle,
+                                                                         @"SongURL":_songUrl,
+                                                                         @"SongPictureURL":_songPictureUrl,
+                                                                         @"SongTimeLong":_songTimeLong,
+                                                                         @"SongIsLike":_songIsLike,
+                                                                         @"SongID":_songId}];
 }
 
 -(NSString *)debugDescription
 {
-    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"SongArtist":_SongArtist,
-                                                                         @"SongTitle":_SongTitle,
-                                                                         @"SongURL":_SongUrl,
-                                                                         @"SongPictureURL":_SongPictureUrl,
-                                                                         @"SongTimeLong":_SongTimeLong,
-                                                                         @"SongIsLike":_SongIsLike,
-                                                                         @"SongID":_SongId}];
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"SongArtist":_songArtist,
+                                                                         @"SongTitle":_songTitle,
+                                                                         @"SongURL":_songUrl,
+                                                                         @"SongPictureURL":_songPictureUrl,
+                                                                         @"SongTimeLong":_songTimeLong,
+                                                                         @"SongIsLike":_songIsLike,
+                                                                         @"SongID":_songId}];
 
 }
 

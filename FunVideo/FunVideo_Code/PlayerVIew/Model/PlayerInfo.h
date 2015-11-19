@@ -15,26 +15,18 @@
 /**
  * 当前歌曲所在的频道
  */
-@property(nonatomic,strong) ChannelInfo * CurrentChannel;
+@property(nonatomic,strong) ChannelInfo * currentChannel;
 
 /**
  * 当前歌曲的所有相关信息
  */
-@property(nonatomic,strong) SongInfo * CurrentSong;
+@property(nonatomic,strong) SongInfo * currentSong;
 
 
 /**
  * 初始化PlayerInfo
  */
--(instancetype)InitPlayerInfo;
-
-
-//序列化，压缩为二进制
--(void)encodeWithCoder:(NSCoder *)aCoder;
-
-
-//反序列化，从二进制反编译为实际数据结构
--(id)initWithCoder:(NSCoder *)aDecoder;
+-(instancetype)initPlayerInfo;
 
 
 

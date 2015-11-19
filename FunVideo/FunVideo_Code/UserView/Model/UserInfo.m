@@ -15,17 +15,17 @@
 {
     if(self = [super init])
     {
-        _IsNotLogin = dic[@"r"];
+        _isNotLogin = dic[@"r"];
         
         NSDictionary *tempUserInfoDic = dic[@"user_info"];
-        _Cookies = tempUserInfoDic[@"ck"];
-        _UserID = tempUserInfoDic[@"id"];
-        _UserName = tempUserInfoDic[@"name"];
+        _cookies = tempUserInfoDic[@"ck"];
+        _userID = tempUserInfoDic[@"id"];
+        _userName = tempUserInfoDic[@"name"];
         
         NSDictionary *tempPlayRecordDic = tempUserInfoDic[@"play_record"];
-        _Banned = [NSString stringWithFormat:@"%@",tempPlayRecordDic[@"banned"]];
-        _Liked = [NSString stringWithFormat:@"%@",tempPlayRecordDic[@"liked"]];
-        _Plyaed = [NSString stringWithFormat:@"%@",tempPlayRecordDic[@"played"]];
+        _banned = [NSString stringWithFormat:@"%@",tempPlayRecordDic[@"banned"]];
+        _liked = [NSString stringWithFormat:@"%@",tempPlayRecordDic[@"liked"]];
+        _plyaed = [NSString stringWithFormat:@"%@",tempPlayRecordDic[@"played"]];
         
     }
     return self;
@@ -34,13 +34,13 @@
 //编译为二进制
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:_IsNotLogin forKey:@"login"];
-    [aCoder encodeObject:_Cookies forKey:@"cookies"];
-    [aCoder encodeObject:_UserID forKey:@"userid"];
-    [aCoder encodeObject:_UserName forKey:@"name"];
-    [aCoder encodeObject:_Banned forKey:@"banned"];
-    [aCoder encodeObject:_Liked forKey:@"liked"];
-    [aCoder encodeObject:_Plyaed forKey:@"played"];
+    [aCoder encodeObject:_isNotLogin forKey:@"login"];
+    [aCoder encodeObject:_cookies forKey:@"cookies"];
+    [aCoder encodeObject:_userID forKey:@"userid"];
+    [aCoder encodeObject:_userName forKey:@"name"];
+    [aCoder encodeObject:_banned forKey:@"banned"];
+    [aCoder encodeObject:_liked forKey:@"liked"];
+    [aCoder encodeObject:_plyaed forKey:@"played"];
     
     
 }
@@ -50,37 +50,37 @@
 {
     if([self init])
     {
-        _IsNotLogin = [aDecoder decodeObjectForKey:@"login"];
-        _Cookies = [aDecoder decodeObjectForKey:@"cookies"];
-        _UserID = [aDecoder decodeObjectForKey:@"userid"];
-        _UserName = [aDecoder decodeObjectForKey:@"name"];
-        _Banned = [aDecoder decodeObjectForKey:@"banned"];
-        _Liked = [aDecoder decodeObjectForKey:@"liked"];
-        _Plyaed = [aDecoder decodeObjectForKey:@"played"];
+        _isNotLogin = [aDecoder decodeObjectForKey:@"login"];
+        _cookies = [aDecoder decodeObjectForKey:@"cookies"];
+        _userID = [aDecoder decodeObjectForKey:@"userid"];
+        _userName = [aDecoder decodeObjectForKey:@"name"];
+        _banned = [aDecoder decodeObjectForKey:@"banned"];
+        _liked = [aDecoder decodeObjectForKey:@"liked"];
+        _plyaed = [aDecoder decodeObjectForKey:@"played"];
     }
     return self;
 }
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"IsNotLogin":_IsNotLogin,
-                                                                         @"Cookies":_Cookies,
-                                                                         @"UserID":_UserID,
-                                                                         @"UserName":_UserName,
-                                                                         @"Banned":_Banned,
-                                                                         @"Liked":_Liked,
-                                                                         @"Played":_Plyaed}];
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"IsNotLogin":_isNotLogin,
+                                                                         @"Cookies":_cookies,
+                                                                         @"UserID":_userID,
+                                                                         @"UserName":_userName,
+                                                                         @"Banned":_banned,
+                                                                         @"Liked":_liked,
+                                                                         @"Played":_plyaed}];
 }
 
 -(NSString *)debugDescription
 {
-    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"IsNotLogin":_IsNotLogin,
-                                                                         @"Cookies":_Cookies,
-                                                                         @"UserID":_UserID,
-                                                                         @"UserName":_UserName,
-                                                                         @"Banned":_Banned,
-                                                                         @"Liked":_Liked,
-                                                                         @"Played":_Plyaed}];
+    return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"IsNotLogin":_isNotLogin,
+                                                                         @"Cookies":_cookies,
+                                                                         @"UserID":_userID,
+                                                                         @"UserName":_userName,
+                                                                         @"Banned":_banned,
+                                                                         @"Liked":_liked,
+                                                                         @"Played":_plyaed}];
 }
 
 @end
