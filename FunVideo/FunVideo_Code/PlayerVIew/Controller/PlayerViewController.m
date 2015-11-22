@@ -16,6 +16,7 @@
 #import "UIImageView+WebCache.h"
 #import "SongInfo.h"
 #import "ChannelInfo.h"
+#import "NSTimer + FunVideo.h"
 
 
 #define PlayerImage_X_point (FrankieAppWidth-kPlayerImageWidth)/2
@@ -111,12 +112,29 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     [self p_addNotification];
     [self p_setupGesture];
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.02
-                                             target:self
-                                           selector:@selector(p_updateProgress)
-                                           userInfo:nil
-                                            repeats:YES];
+    
+    
+    
+    
+    
+//解决NSTimer保留环问题
+//    timer = [NSTimer scheduledTimerWithTimeInterval:0.02
+//                                             target:self
+//                                           selector:@selector(p_updateProgress)
+//                                           userInfo:nil
+//                                            repeats:YES];
+    
+    
+    __weak PlayerViewController * weakSelf = self;
+     timer = [NSTimer FunVideo_scheduledTimerWithTimeInterval:0.02
+                                                        block:^{[weakSelf p_updateProgress];}
+                                                      repeats:YES];
 }
+
+
+
+
+
 
 -(void)viewDidAppear:(BOOL)animated
 {

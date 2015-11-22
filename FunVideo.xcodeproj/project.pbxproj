@@ -61,6 +61,7 @@
 		1046C5AC1BE3578600E1AB3C /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1046C5AB1BE3578600E1AB3C /* UserInfo.m */; };
 		1046C5AF1BE357AC00E1AB3C /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1046C5AE1BE357AC00E1AB3C /* UserViewController.m */; };
 		10ED87931BF5B63200F4337F /* noneuser.png in Resources */ = {isa = PBXBuildFile; fileRef = 10ED87921BF5B63200F4337F /* noneuser.png */; };
+		10EE94991C01C0DA009164FE /* NSTimer + FunVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EE94981C01C0DA009164FE /* NSTimer + FunVideo.m */; };
 		7187FF7CA19DCFC661048A2E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACD72BB6729449486DA6862 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +158,8 @@
 		1046C5AD1BE357AC00E1AB3C /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = FunVideo_Code/UserView/Controller/UserViewController.h; sourceTree = "<group>"; };
 		1046C5AE1BE357AC00E1AB3C /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = FunVideo_Code/UserView/Controller/UserViewController.m; sourceTree = "<group>"; };
 		10ED87921BF5B63200F4337F /* noneuser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noneuser.png; path = Images.xcassets/noneuser.png; sourceTree = "<group>"; };
+		10EE94971C01C0DA009164FE /* NSTimer + FunVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTimer + FunVideo.h"; path = "FunVideo_Code/APP/NSTimer + FunVideo.h"; sourceTree = "<group>"; };
+		10EE94981C01C0DA009164FE /* NSTimer + FunVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTimer + FunVideo.m"; path = "FunVideo_Code/APP/NSTimer + FunVideo.m"; sourceTree = "<group>"; };
 		4205C882A464B78262698DA0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AACD72BB6729449486DA6862 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8F561267CE883589DBA95C8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 				1046C5761BE0A89300E1AB3C /* AppDelegate.m */,
 				1046C4F21BE0A30000E1AB3C /* Main.storyboard */,
 				1046C4FA1BE0A30000E1AB3C /* LaunchScreen.storyboard */,
+				10EE94971C01C0DA009164FE /* NSTimer + FunVideo.h */,
+				10EE94981C01C0DA009164FE /* NSTimer + FunVideo.m */,
 			);
 			name = APP;
 			sourceTree = "<group>";
@@ -880,6 +885,7 @@
 				1046C4F71BE0A30000E1AB3C /* FunVideo.xcdatamodeld in Sources */,
 				1046C5841BE0A9BC00E1AB3C /* SongInfo.m in Sources */,
 				1046C5871BE0A9EC00E1AB3C /* PlayerViewController.m in Sources */,
+				10EE94991C01C0DA009164FE /* NSTimer + FunVideo.m in Sources */,
 				10228DE41BE8889400249B4E /* ChannelInfo.m in Sources */,
 				1046C5AF1BE357AC00E1AB3C /* UserViewController.m in Sources */,
 				1046C5A51BE3043100E1AB3C /* CaptchaImageInfo.m in Sources */,
