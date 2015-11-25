@@ -17,23 +17,22 @@
 #import "SongInfo.h"
 #import "ChannelInfo.h"
 #import "NSTimer + FunVideo.h"
+#import "Masonry.h"
 
 
-#define PlayerImage_X_point (FrankieAppWidth-kPlayerImageWidth)/2
-static const CGFloat kLabel_Height_Distance  = 20;
-static const CGFloat kLabel_Height           = 30;
-static const CGFloat kLabel_Width            = 200;
-static const CGFloat kButton_X_point         = 35;
-static const CGFloat kButton_Height_Distance = 30;
-static const CGFloat kButton_Width_Distance  = 70;
-static const CGFloat kButton_Height          = 40;
-static const CGFloat kButton_Width           = 40;
-static const CGFloat kPlayerImageWidth       = 200;
-static const CGFloat kPlayerImageHeight      = 200;
-static const CGFloat kPlayerImage_Y_point    = 40;
+static const CGFloat kPlayerImageTop  = 40;
+static const CGFloat kPlayerImageSidesLengthFactor  = 0.56f;
 
+static const CGFloat kTimeLabelTopFactor  = 1.083f;
+static const CGFloat kTimeProgressBarTopFactor  = 1.069f;
+static const CGFloat kChannelLabelTopFactor  = 1.059f;
+static const CGFloat kSongTitleTopFactor  = 1.051f;
+static const CGFloat kSongArtistTopFactor  = 1.045f;
+static const CGFloat kButtonTopFactor  = 1.061f;
 
-
+static const CGFloat kLabelWidthFactor  = 0.56f;
+static const CGFloat kLabelHeigthFactor  = 0.053f;
+static const CGFloat kButtonHeightWidthFactor  = 0.11f;
 
 
 @interface PlayerViewController ()
@@ -108,14 +107,10 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     // Do any additional setup after loading the view.
     appDelegate =[[UIApplication sharedApplication]delegate];
     [self p_setUpUI];
+    [self p_setAutoLayOut];
     [self p_setupPlayerInfo];
     [self p_addNotification];
     [self p_setupGesture];
-    
-    
-    
-    
-    
     
 //解决NSTimer保留环问题
 //    timer = [NSTimer scheduledTimerWithTimeInterval:0.02
@@ -294,6 +289,113 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     }
 }
 
+-(void)p_setAutoLayOut
+{
+    //初始化PlyaerImage界面
+    [playerImage mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(self.view.mas_top).with.offset(kPlayerImageTop);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.height.and.width.equalTo(self.view.mas_width).with.multipliedBy(kPlayerImageSidesLengthFactor);
+    }];
+    
+ 
+    //初始化PlayerImageBlock界面
+    [playerImageBlock mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(self.view.mas_top).with.offset(kPlayerImageTop);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.height.and.width.equalTo(self.view.mas_width).with.multipliedBy(kPlayerImageSidesLengthFactor);
+
+    }];
+    
+    //初始化TimeLabel
+    [timeLabel mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(playerImageBlock.mas_bottom).with.multipliedBy(kTimeLabelTopFactor);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.width.equalTo(self.view.mas_width).with.multipliedBy(kLabelWidthFactor);
+        make.height.equalTo(self.view.mas_height).with.multipliedBy(kLabelHeigthFactor);
+    }];
+    
+    //初始化TimeProgressBar
+    [timeProgressBar mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(timeLabel.mas_bottom).with.multipliedBy(kTimeProgressBarTopFactor);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.width.equalTo(self.view.mas_width).with.multipliedBy(kLabelWidthFactor);
+        //make.height.equalTo(self.view.mas_height).with.multipliedBy(kLabelHeigthFactor);
+        make.width.mas_equalTo(@1);
+    }];
+    
+
+    //初始化ChannelLabel
+    [channelTitle mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(timeProgressBar.mas_bottom).with.multipliedBy(kChannelLabelTopFactor);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.width.equalTo(self.view.mas_width).with.multipliedBy(kLabelWidthFactor);
+        make.height.equalTo(self.view.mas_height).with.multipliedBy(kLabelHeigthFactor);
+    }];
+    
+  
+    //初始化SongTitle
+    [songTitle mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.top.equalTo(channelTitle.mas_bottom).with.multipliedBy(kSongTitleTopFactor);
+         make.centerX.mas_equalTo(self.view.mas_centerX);
+         make.width.equalTo(self.view.mas_width).with.multipliedBy(kLabelWidthFactor);
+         make.height.equalTo(self.view.mas_height).with.multipliedBy(kLabelHeigthFactor);
+     }];
+ 
+    
+    //初始化SongArtist
+    [songArtist mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.top.equalTo(songTitle.mas_bottom).with.multipliedBy(kSongArtistTopFactor);
+         make.centerX.mas_equalTo(self.view.mas_centerX);
+         make.width.equalTo(self.view.mas_width).with.multipliedBy(kLabelWidthFactor);
+         make.height.equalTo(self.view.mas_height).with.multipliedBy(kLabelHeigthFactor);
+     }];
+    
+    
+    
+    //初始化PauseButton
+    [pauseButton mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(songArtist.mas_bottom).with.multipliedBy(kButtonTopFactor);
+        make.centerX.equalTo(self.view.mas_centerX).with.multipliedBy(0.4);
+        make.width.and.height.equalTo(self.view.mas_width).with.multipliedBy(kButtonHeightWidthFactor);
+    }];
+    
+    //初始化LikeButton
+    [likeButton mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(songArtist.mas_bottom).with.multipliedBy(kButtonTopFactor);
+        make.centerX.equalTo(self.view.mas_centerX).with.multipliedBy(0.8);
+        make.width.and.height.equalTo(self.view.mas_width).with.multipliedBy(kButtonHeightWidthFactor);
+    }];
+    
+    
+    //初始化DeleteButton
+    [deleteButton mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(songArtist.mas_bottom).with.multipliedBy(kButtonTopFactor);
+        make.centerX.equalTo(self.view.mas_centerX).with.multipliedBy(1.2);
+        make.width.and.height.equalTo(self.view.mas_width).with.multipliedBy(kButtonHeightWidthFactor);
+    }];
+    
+    
+    //初始化SkipButton
+    [skipButton mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(songArtist.mas_bottom).with.multipliedBy(kButtonTopFactor);
+        make.centerX.equalTo(self.view.mas_centerX).with.multipliedBy(1.6);
+        make.width.and.height.equalTo(self.view.mas_width).with.multipliedBy(kButtonHeightWidthFactor);
+    }];
+    
+}
+
 -(void)p_setUpUI
 {
     //初始化背景颜色
@@ -301,7 +403,6 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     
     //初始化PlyaerImage界面
     playerImage = [[UIImageView alloc]init];
-    playerImage.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point, kPlayerImageWidth, kPlayerImageHeight);
     playerImage.layer.masksToBounds = YES;
     playerImage.layer.cornerRadius = 10;
     [self.view addSubview:playerImage];
@@ -309,7 +410,6 @@ static const CGFloat kPlayerImage_Y_point    = 40;
    
     //初始化PlayerImageBlock界面
     playerImageBlock = [[UIImageView alloc]init];
-    playerImageBlock.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point, kPlayerImageWidth, kPlayerImageHeight);
     [playerImageBlock setImage:[UIImage imageNamed:@"albumBlock"]];
     playerImageBlock.layer.masksToBounds = YES;
     playerImageBlock.layer.cornerRadius = 10;
@@ -321,12 +421,10 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     timeLabel.font = [UIFont systemFontOfSize:15];
     timeLabel.textColor = [UIColor blackColor];
     timeLabel.textAlignment = NSTextAlignmentCenter;
-    timeLabel.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 1, kLabel_Width, kLabel_Height);
     [self.view addSubview:timeLabel];
 
     //初始化TimeProgressBar
     timeProgressBar = [[UIProgressView alloc]init];
-    timeProgressBar.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 3, kLabel_Width, kLabel_Height);
     [self.view addSubview:timeProgressBar];
     
     //初始化ChannelLabel
@@ -335,7 +433,6 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     channelTitle.font = [UIFont systemFontOfSize:15];
     channelTitle.textColor = [UIColor blackColor];
     channelTitle.textAlignment = NSTextAlignmentCenter;
-    channelTitle.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 5, kLabel_Width, kLabel_Height);
     [self.view addSubview:channelTitle];
     
     //初始化SongTitle
@@ -344,7 +441,6 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     songTitle.font = [UIFont systemFontOfSize:25];
     songTitle.textColor = [UIColor blackColor];
     songTitle.textAlignment = NSTextAlignmentCenter;
-    songTitle.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 7, kLabel_Width, kLabel_Height);
     [self.view addSubview:songTitle];
     
     //初始化SongArtist
@@ -353,35 +449,30 @@ static const CGFloat kPlayerImage_Y_point    = 40;
     songArtist.font = [UIFont systemFontOfSize:15];
     songArtist.textColor = [UIColor blackColor];
     songArtist.textAlignment = NSTextAlignmentCenter;
-    songArtist.frame = CGRectMake(PlayerImage_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 9, kLabel_Width, kLabel_Height);
     [self.view addSubview:songArtist];
     
     //初始化PauseButton
     pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [pauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
     [pauseButton addTarget:self action:@selector(p_pauseButton) forControlEvents:UIControlEventTouchUpInside];
-    pauseButton.frame = CGRectMake(kButton_X_point, kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance, kButton_Width, kButton_Height);
     [self.view addSubview:pauseButton];
     
     //初始化LikeButton
     likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [likeButton setImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
     [likeButton addTarget:self action:@selector(p_likeButton) forControlEvents:UIControlEventTouchUpInside];
-    likeButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 1,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
     [self.view addSubview:likeButton];
     
     //初始化DeleteButton
     deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [deleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
     [deleteButton addTarget:self action:@selector(p_deleteButton) forControlEvents:UIControlEventTouchUpInside];
-    deleteButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 2,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
     [self.view addSubview:deleteButton];
     
     //初始化SkipButton
     skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [skipButton setImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
     [skipButton addTarget:self action:@selector(p_skipButton) forControlEvents:UIControlEventTouchUpInside];
-    skipButton.frame = CGRectMake(kButton_X_point + kButton_Width_Distance * 3,kPlayerImage_Y_point + kPlayerImageHeight + kLabel_Height_Distance * 10 + kButton_Height_Distance , kButton_Width, kButton_Height);
     [self.view addSubview:skipButton];
 
 }

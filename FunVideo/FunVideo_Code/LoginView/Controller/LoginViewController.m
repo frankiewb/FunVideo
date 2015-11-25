@@ -10,30 +10,27 @@
 #import "UIKIT+AFNetworking.h"
 #import "LoginViewController.h"
 #import "LoginInfo.h"
+#import "Masonry.h"
 #import "Commons.h"
 
 
 
 #define UILOGINVIEWLABELCOLOR [UIColor whiteColor]
 
-static const CGFloat kOrigin_Xpoint              = 10;
-static const CGFloat kOrigin_Ypoint              = 35;
-static const CGFloat kLabelHeight_Distance       = 30;
-static const CGFloat kTextFieldHeight_Distance   = 20;
-static const CGFloat kCaptchaImageWidth_Distance = 10;
+static const CGFloat kHeadLabelTopPoint               = 35;
 
-static const CGFloat kLabel_Field_Width          = 300;
-static const CGFloat kLabel_Field_Height         = 50;
+static const CGFloat kButtonLabelWidthFactor          = 0.83f;
+static const CGFloat kButtonLabelHeightFactor         = 0.08f;
 
-static const CGFloat kCaptcha_Width              = 140;
-static const CGFloat kCaptcha_Height             = 50;
+static const CGFloat kCaptchaTextCenterXFactor        = 0.572f;
+static const CGFloat kCaptchaImageCenterXFactor       = 1.433f;
 
-static const CGFloat kCaptchaImageView_Width     = 150;
-static const CGFloat kCaptchaImageView_Height    = 50;
+static const CGFloat kLoginNameTextFieldTopFactor     = 1.35f;
+static const CGFloat kLoginPassWordTextFieldTopFactor = 1.12f;
+static const CGFloat kCaptchaTopFactor                = 1.085f;
+static const CGFloat kLoginTopFactor                  = 1.164f;
+static const CGFloat kLogoutTopFactor                 = 1.05f;
 
-static const CGFloat kButtonHeight_Distance      = 50;
-static const CGFloat kButton_Width               = 300;
-static const CGFloat kButton_Heigth              = 50;
 
 
 
@@ -79,6 +76,7 @@ static const CGFloat kButton_Heigth              = 50;
 {
     [super viewDidLoad];
     [self p_setupUI];
+    [self p_setUpAutoLayOut];
 }
 
 -(void)p_setupUI
@@ -94,6 +92,12 @@ static const CGFloat kButton_Heigth              = 50;
     
     
     
+    
+    
+    //以下尝试采用Masonry自动布局框架来对页面控件进行自动布局
+    
+    
+    
     /*“登录”标签*/
     loginViewTitle = [[UILabel alloc]init];
     loginViewTitle.text = @"用户登录";
@@ -103,10 +107,9 @@ static const CGFloat kButton_Heigth              = 50;
     loginViewTitle.textAlignment = NSTextAlignmentLeft;
     loginViewTitle.layer.masksToBounds = YES;
     loginViewTitle.layer.cornerRadius = 6;
-    loginViewTitle.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint, kLabel_Field_Width, kLabel_Field_Height);
     [self.view addSubview:loginViewTitle];
     
-    
+
     /*用户名输入框*/
     loginNameTextField = [[UITextField alloc]init];
     loginNameTextField.delegate = self;
@@ -134,10 +137,9 @@ static const CGFloat kButton_Heigth              = 50;
     loginNameTextField.returnKeyType = UIReturnKeyDone;
     //设置键盘外观
     loginNameTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    loginNameTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 1 + kLabelHeight_Distance, kLabel_Field_Width, kLabel_Field_Height);
     [self.view addSubview:loginNameTextField];
     
-    
+
     /*密码输入框*/
     loginPassWordTextField = [[UITextField alloc]init];
     loginPassWordTextField.delegate = self;
@@ -167,10 +169,8 @@ static const CGFloat kButton_Heigth              = 50;
     loginPassWordTextField.secureTextEntry = YES;
     //设置键盘外观
     loginPassWordTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    loginPassWordTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 2 + kLabelHeight_Distance + kTextFieldHeight_Distance * 1, kLabel_Field_Width, kLabel_Field_Height);
     [self.view addSubview:loginPassWordTextField];
-    
-    
+
     
     /*验证码输入框*/
     captchaImageTextField = [[UITextField alloc]init];
@@ -199,7 +199,6 @@ static const CGFloat kButton_Heigth              = 50;
     captchaImageTextField.returnKeyType = UIReturnKeyDone;
     //设置键盘外观
     captchaImageTextField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    captchaImageTextField.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 3 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2, kCaptcha_Width, kCaptcha_Height);
     [self.view addSubview:captchaImageTextField];
     
     /*验证码图片*/
@@ -208,7 +207,6 @@ static const CGFloat kButton_Heigth              = 50;
     captchaImageView.layer.cornerRadius = 10;
     captchaImageView.backgroundColor = UILOGINVIEWLABELCOLOR;
     captchaImageView.userInteractionEnabled = YES;
-    captchaImageView.frame = CGRectMake(kOrigin_Xpoint + kCaptcha_Width + kCaptchaImageWidth_Distance, kOrigin_Ypoint + kLabel_Field_Height * 3 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 , kCaptchaImageView_Width, kCaptchaImageView_Height);
     [self.view addSubview:captchaImageView];
     
     
@@ -218,7 +216,6 @@ static const CGFloat kButton_Heigth              = 50;
     [loginButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     loginButton.backgroundColor = UILOGINVIEWLABELCOLOR;
     [loginButton addTarget:self action:@selector(p_login) forControlEvents:UIControlEventTouchUpInside];
-    loginButton.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 4 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 + kButtonHeight_Distance * 1, kButton_Width, kButton_Heigth);
     [self.view addSubview:loginButton];
     
     /*登出Button*/
@@ -227,7 +224,6 @@ static const CGFloat kButton_Heigth              = 50;
     [cancelButton setTitle:@"取 消" forState:UIControlStateNormal];
     [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     [cancelButton addTarget:self action:@selector(p_cancel) forControlEvents:UIControlEventTouchUpInside];
-    cancelButton.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint + kLabel_Field_Height * 5 + kLabelHeight_Distance + kTextFieldHeight_Distance * 2 + kButtonHeight_Distance * 1.5, kButton_Width, kButton_Heigth);
     [self.view addSubview:cancelButton];
     
     //添加验证码点击更新事件
@@ -236,6 +232,86 @@ static const CGFloat kButton_Heigth              = 50;
     [captchaImageView addGestureRecognizer:singleTap];
     
 }
+
+
+
+
+
+
+
+
+
+
+-(void)p_setUpAutoLayOut
+{
+    //loginViewTitle
+    [loginViewTitle mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.top.equalTo(self.view.mas_top).with.offset(kHeadLabelTopPoint);
+         make.centerX.mas_equalTo(self.view.mas_centerX);
+         make.width.equalTo(self.view.mas_width).with.multipliedBy(kButtonLabelWidthFactor);
+         make.height.equalTo(self.view.mas_height).with.multipliedBy(kButtonLabelHeightFactor);
+     }];
+    
+    //loginNameTextField
+    [loginNameTextField mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.top.equalTo(loginViewTitle.mas_bottom).with.multipliedBy(kLoginNameTextFieldTopFactor);
+         make.centerX.mas_equalTo(self.view.mas_centerX);
+         make.width.equalTo(self.view.mas_width).with.multipliedBy(kButtonLabelWidthFactor);
+         make.height.equalTo(self.view.mas_height).with.multipliedBy(kButtonLabelHeightFactor);
+     }];
+    
+    //loginPassWordTextField
+    [loginPassWordTextField mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.top.equalTo(loginNameTextField.mas_bottom).with.multipliedBy(kLoginPassWordTextFieldTopFactor);
+         make.centerX.mas_equalTo(self.view.mas_centerX);
+         make.width.equalTo(self.view.mas_width).with.multipliedBy(kButtonLabelWidthFactor);
+         make.height.equalTo(self.view.mas_height).with.multipliedBy(kButtonLabelHeightFactor);
+     }];
+    
+    //captchaImageTextField
+    [captchaImageTextField mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         
+         make.top.equalTo(loginPassWordTextField.mas_bottom).with.multipliedBy(kCaptchaTopFactor);
+         make.centerX.equalTo(self.view.mas_centerX).with.multipliedBy(kCaptchaTextCenterXFactor);
+         make.width.equalTo(self.view.mas_width).with.multipliedBy(0.483* kButtonLabelWidthFactor);
+         make.height.equalTo(self.view.mas_height).with.multipliedBy(kButtonLabelHeightFactor);
+     }];
+    
+    //captchaIMageView
+    [captchaImageView mas_makeConstraints:^(MASConstraintMaker *make)
+     {
+         make.top.equalTo(loginPassWordTextField.mas_bottom).with.multipliedBy(kCaptchaTopFactor);
+         make.centerX.equalTo(self.view.mas_centerX).with.multipliedBy(kCaptchaImageCenterXFactor);
+         make.width.equalTo(self.view.mas_width).with.multipliedBy(0.483* kButtonLabelWidthFactor);
+         make.height.equalTo(self.view.mas_height).with.multipliedBy(kButtonLabelHeightFactor);
+     }];
+    
+    //loginButton
+    [loginButton mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(captchaImageTextField.mas_bottom).with.multipliedBy(kLoginTopFactor);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.width.equalTo(self.view.mas_width).with.multipliedBy(kButtonLabelWidthFactor);
+        make.height.equalTo(self.view.mas_height).with.multipliedBy(kButtonLabelHeightFactor);
+    }];
+    
+    
+    //cancelBUtton
+    [cancelButton mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(loginButton.mas_bottom).with.multipliedBy(kLogoutTopFactor);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.width.equalTo(self.view.mas_width).with.multipliedBy(kButtonLabelWidthFactor);
+        make.height.equalTo(self.view.mas_height).with.multipliedBy(kButtonLabelHeightFactor);
+    }];
+    
+}
+
+
 
 -(void)viewWillAppear:(BOOL)animated
 {

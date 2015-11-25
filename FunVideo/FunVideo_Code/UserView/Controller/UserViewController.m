@@ -9,41 +9,35 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "UserViewController.h"
-#include "UserInfo.h"
+#import "UserInfo.h"
 #import "ChannelInfo.h"
-#include "ChannelGroup.h"
-#include "DoubanServer.h"
+#import "ChannelGroup.h"
+#import "DoubanServer.h"
 #import "UIKIT+AFNetworking.h"
 #import "UIImageView+WebCache.h"
-#include "Commons.h"
+#import "Commons.h"
+#import "Masonry.h"
 
 
 
 static const NSString * USERIMAGEURL = @"http://img3.douban.com/icon/ul%@-1.jpg";
-static const CGFloat kOrigin_Xpoint  = 85;
-static const CGFloat kOrigin_Ypoint = 60;
-static const CGFloat kUserImage_Width = 150;
-static const CGFloat kUserImage_Height = 150;
+static const CGFloat kUserViewImageWidthAndHeightFactor = 0.47;
+static const CGFloat UserViewImageHeightDistance = 60;
 
-static const CGFloat kUserName_Xpoint = 60;
-static const CGFloat kUserName_Ypoint = 250;
-static const CGFloat kUserName_Width = 200;
-static const CGFloat kUserName_Height = 50;
+static const CGFloat userNameLabelTopFactor = 1.2;
+static const CGFloat kUserNameLabelWidthFactor = 0.55;
+static const CGFloat kUserNameLabelHeightFactor = 0.1;
 
-static const CGFloat kPlayedLabel_Xpoint = 40;
-static const CGFloat kPlayedLabel_Ypoint = 350;
-static const CGFloat kPlayedLabel_Width = 100;
-static const CGFloat kPlayedLabel_Height = 100;
+static const CGFloat kplayedLabelCenterXFactor = 0.5625;
+static const CGFloat kbannedLabelCenterXFactor = 1.4375;
+static const CGFloat kLabelHeightDistanceFactor = 1.17;
+static const CGFloat kLabelWidthFactor = 0.277;
+static const CGFloat kLabelHeightFactor = 0.177;
 
-static const CGFloat kBannedLabel_Xpoint = 180;
-static const CGFloat kBannedLabel_Ypoint = 350;
-static const CGFloat kBannedLabel_Width = 100;
-static const CGFloat kBannedLabel_Height = 100;
+static const CGFloat kbuttonHeightDistanceFactor = 1.05;
+static const CGFloat kbuttonWidthFactor = 1;
+static const CGFloat kbuttonHeightFactor = 0.15;
 
-static const CGFloat kLogoutButton_Xpoint = 0;
-static const CGFloat kLogoutButton_Ypoint = 500;
-static const CGFloat kLogoutButton_Width  = 320;
-static const CGFloat kLogoutButton_Hegiht = 68;
 
 
 
@@ -83,6 +77,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     userInfo = appDelegate.userInfo;
     doubanServer.delegate = self;
     [self p_setupUI];
+    [self p_setUpAutoLayOut];
     [self p_setUserInfo];
 }
 
@@ -98,14 +93,13 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     {
         userViewImage.clipsToBounds = YES;
     }
-    userViewImage.frame = CGRectMake(kOrigin_Xpoint, kOrigin_Ypoint, kUserImage_Width, kUserImage_Height);
-    userViewImage.layer.cornerRadius = userViewImage.frame.size.width/2.0;
-    
     //给登录图片增加手势
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
                                                                                action:@selector(p_loginImageTapped)];
     [singleTap setNumberOfTapsRequired:1];
     [userViewImage addGestureRecognizer:singleTap];
+    
+    
     [self.view addSubview:userViewImage];
     
     
@@ -113,8 +107,7 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     userNameLabel = [[UILabel alloc]init];
     userNameLabel.backgroundColor = UIBACKGROUNDCOLOR;
     userNameLabel.textAlignment = NSTextAlignmentCenter;
-    [userNameLabel setFont:[UIFont boldSystemFontOfSize:30]];
-    userNameLabel.frame = CGRectMake(kUserName_Xpoint, kUserName_Ypoint, kUserName_Width, kUserName_Height);
+    [userNameLabel setFont:[UIFont boldSystemFontOfSize:30]];    
     [self.view addSubview:userNameLabel];
     
     
@@ -124,7 +117,6 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     playedLabel.backgroundColor = UIBACKGROUNDCOLOR;
     playedLabel.textAlignment = NSTextAlignmentCenter;
     [playedLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    playedLabel.frame = CGRectMake(kPlayedLabel_Xpoint, kPlayedLabel_Ypoint, kPlayedLabel_Width, kPlayedLabel_Height);
     [self.view addSubview:playedLabel];
     
     
@@ -134,21 +126,85 @@ static const CGFloat kLogoutButton_Hegiht = 68;
     bannedLabel.backgroundColor = UIBACKGROUNDCOLOR;
     bannedLabel.textAlignment = NSTextAlignmentCenter;
     [bannedLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    bannedLabel.frame = CGRectMake(kBannedLabel_Xpoint, kBannedLabel_Ypoint, kBannedLabel_Width, kBannedLabel_Height);
     [self.view addSubview:bannedLabel];
     
     /*设置LogoutButton*/
-    
     logoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [logoutButton setTitle:@"登 出" forState:UIControlStateNormal];
     [logoutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
     logoutButton.backgroundColor = UIBACKGROUNDCOLOR;
     [logoutButton addTarget:self action:@selector(p_logout) forControlEvents:UIControlEventTouchUpInside];
-    logoutButton.frame = CGRectMake(kLogoutButton_Xpoint, kLogoutButton_Ypoint, kLogoutButton_Width, kLogoutButton_Hegiht);
     [self.view addSubview:logoutButton];
     
     
 }
+
+
+
+
+
+
+//解决自动布局下圆形生成办法
+-(void)viewDidLayoutSubviews
+{
+    userViewImage.layer.masksToBounds = YES;
+    userViewImage.layer.cornerRadius = userViewImage.frame.size.width/2.0;
+}
+
+
+
+
+-(void)p_setUpAutoLayOut
+{
+    /*设置主View背景*/
+    [userViewImage mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(self.view.mas_top).with.offset(UserViewImageHeightDistance);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.width.and.height.equalTo(self.view.mas_width).with.multipliedBy(kUserViewImageWidthAndHeightFactor);
+    }];
+    
+    /*设置UserNameLabel*/
+    [userNameLabel mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(userViewImage.mas_bottom).with.multipliedBy(userNameLabelTopFactor);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.width.equalTo(self.view.mas_width).with.multipliedBy(kUserNameLabelWidthFactor);
+        make.height.equalTo(self.view.mas_height).with.multipliedBy(kUserNameLabelHeightFactor);
+    }];
+    
+    /*设置PlayedLabel*/
+    [playedLabel mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(userNameLabel.mas_bottom).with.multipliedBy(kLabelHeightDistanceFactor);
+        make.centerX.equalTo(self.view.mas_centerX).with.multipliedBy(kplayedLabelCenterXFactor);
+        make.width.equalTo(self.view.mas_width).with.multipliedBy(kLabelWidthFactor);
+        make.height.equalTo(self.view.mas_height).with.multipliedBy(kLabelHeightFactor);
+    }];
+    
+    /*设置BannedLabel*/
+    [bannedLabel mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(userNameLabel.mas_bottom).with.multipliedBy(kLabelHeightDistanceFactor);
+        make.centerX.equalTo(self.view.mas_centerX).with.multipliedBy(kbannedLabelCenterXFactor);
+        make.width.equalTo(self.view.mas_width).with.multipliedBy(kLabelWidthFactor);
+        make.height.equalTo(self.view.mas_height).with.multipliedBy(kLabelHeightFactor);
+        
+    }];
+    
+    /*设置LogoutButton*/
+    [logoutButton mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(playedLabel.mas_bottom).with.multipliedBy(kbuttonHeightDistanceFactor);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+        make.width.equalTo(self.view.mas_width).with.multipliedBy(kbuttonWidthFactor);
+        make.height.equalTo(self.view.mas_height).with.multipliedBy(kbuttonHeightFactor);
+    }];
+}
+
+
+
+
 
 -(void)doubanDelegate_logoutSuccessful
 {
