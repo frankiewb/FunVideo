@@ -371,4 +371,16 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
 }
 
 
+//Portrait = 正常竖屏
+//UpsideDown ＝ 竖着倒转
+//Landscape Left ＝ 横屏且按钮在左边
+//Landscape Right = 横屏且按钮在右边
+
+//是否支持屏幕旋转
+- (BOOL)shouldAutorotate
+{
+    //不支持自动旋转，则默认正常竖屏Portrait
+    return NO;
+}
+
 @end
