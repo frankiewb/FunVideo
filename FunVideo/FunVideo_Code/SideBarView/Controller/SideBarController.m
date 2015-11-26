@@ -12,23 +12,20 @@
 #import "UserViewController.h"
 #import "ChannelTableViewController.h"
 #import "Commons.h"
+#import "Masonry.h"
 
 
 #define UISIDEBARCOLOR [UIColor colorWithRed:1/255.0 green:1/255.0 blue:1/255.0 alpha:0.5]
-#define kMainButton_Xpoint FrankieAppWidth - 50
-static const CGFloat kMainButton_Ypoint              = 40;
-static const CGFloat kMainButton_Height              = 40;
-static const CGFloat kMainButton_Width               = 40;
-static const CGFloat kFunctionButton_Xpoint          = 10;
-static const CGFloat kFunctionButton_Ypoint          = 50;
-static const CGFloat kFunctionButton_Heigth_Distance = 80;
-static const CGFloat kFunctionButton_Width           = 40;
-static const CGFloat kFunctionButton_Height          = 40;
-static const CGFloat kBackgroundView_Width           = 60;
 
 
-
-
+static const CGFloat kBackGroundViewWidthFactor = 0.17;
+static const CGFloat kMainButtonTop = 40;
+static const CGFloat kMainButtonRightFactor = 0.972f;
+static const CGFloat kMainButtonWidthAndHeightFactor = 0.111f;
+static const CGFloat kFunctionButtonTop = 50;
+static const CGFloat kFunctionButtonHeightDistanceFactor = 0.141;
+static const CGFloat kFunctionButtonLeft = 10;
+static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 
 
 @interface SideBarController()
@@ -81,6 +78,7 @@ static const CGFloat kBackgroundView_Width           = 60;
     doubanServer = [[DoubanServer alloc]init];
     doubanServer.delegate = self;
     [self p_setUpUI];
+    [self p_setUpAutoLayout];
     UIStoryboard * mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     playerVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"playerVC"];
     userVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"userVC"];
@@ -91,6 +89,47 @@ static const CGFloat kBackgroundView_Width           = 60;
     
     self.viewControllers = @[playerVC,channelVC,userVC];
 }
+
+
+
+-(void)p_setUpAutoLayout
+{
+    //设置BackgroundMenuView
+    [backgroundMenuView mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(self.view.mas_top);
+        make.left.equalTo(self.view.mas_right);
+        make.height.mas_equalTo(self.view.mas_height);
+        make.width.equalTo(self.view.mas_width).with.multipliedBy(kBackGroundViewWidthFactor);
+        
+    }];
+    
+    
+    //设置MainViewButton
+    [mainViewButton mas_makeConstraints:^(MASConstraintMaker *make)
+    {
+        make.top.equalTo(self.view.mas_top).with.offset(kMainButtonTop);
+        make.right.equalTo(self.view.mas_right).with.multipliedBy(kMainButtonRightFactor);
+        make.width.and.height.equalTo(self.view.mas_width).with.multipliedBy(kMainButtonWidthAndHeightFactor);
+    }];
+    
+    //设定4个button位置
+    int buttonIndexTag = 0;
+    for(UIButton * button in buttonList)
+    {
+        [button mas_makeConstraints:^(MASConstraintMaker *make)
+        {
+
+            make.top.equalTo(backgroundMenuView.mas_top).with.offset(kMainButtonTop + buttonIndexTag*kFunctionButtonHeightDistanceFactor * FrankieAppHeigth);
+            make.left.equalTo(backgroundMenuView.mas_left).with.offset(kFunctionButtonLeft);
+            make.width.and.height.equalTo(self.view.mas_width).with.multipliedBy(kFunctionButtonWidthAndHeightFactor);
+            
+        }];
+        buttonIndexTag++;
+    }
+
+}
+
 
 
 -(void)p_setUpUI
@@ -106,17 +145,14 @@ static const CGFloat kBackgroundView_Width           = 60;
     
     //设置BackgroundMenuView
     backgroundMenuView = [[UIView alloc]init];
-    backgroundMenuView.frame = CGRectMake(FrankieAppWidth, 0,kBackgroundView_Width,FrankieAppHeigth);
     backgroundMenuView.backgroundColor = UISIDEBARCOLOR;
     [self.view addSubview:backgroundMenuView];
 
     
     //设置MainViewButton
     mainViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    mainViewButton.bounds = CGRectMake(0,0,kMainButton_Width,kMainButton_Height);
-    [mainViewButton setImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
+    [mainViewButton setBackgroundImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
     [mainViewButton addTarget:self action:@selector(p_showMenu) forControlEvents:UIControlEventTouchUpInside];
-    mainViewButton.frame = CGRectMake(kMainButton_Xpoint, kMainButton_Ypoint, kMainButton_Width, kMainButton_Height);
     [self.view addSubview:mainViewButton];
     UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
                                                                                 action:@selector(p_dismissMenu)];
@@ -131,13 +167,9 @@ static const CGFloat kBackgroundView_Width           = 60;
     for(UIImage * image in [imageList copy])
     {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setImage:image forState:UIControlStateNormal];
-        button.frame = CGRectMake(kFunctionButton_Xpoint, kFunctionButton_Ypoint +
-                                  kFunctionButton_Heigth_Distance * buttonIndexTag, kFunctionButton_Width, kMainButton_Height);
-        
+        [button setBackgroundImage:image forState:UIControlStateNormal];
         button.tag = buttonIndexTag;
         button.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 70, 0);
-        
         [button addTarget:self action:@selector(p_onMenuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [backgroundMenuView addSubview:button];
         [buttonList addObject:button];
@@ -243,7 +275,7 @@ static const CGFloat kBackgroundView_Width           = 60;
            
             mainViewButton.alpha = 0.0;
             mainViewButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -70, 0);
-            backgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -kBackgroundView_Width, 0);
+            backgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -FrankieAppWidth * kBackGroundViewWidthFactor, 0);
         }];
     });
     

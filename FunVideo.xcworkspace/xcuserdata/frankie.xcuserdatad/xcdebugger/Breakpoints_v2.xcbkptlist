@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "469525285.462233"
+            timestampString = "470237535.661299"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "-doubanLogout"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "469525285.462233"
+            timestampString = "470237535.661299"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
+            startingLineNumber = "356"
+            endingLineNumber = "356"
             landmarkName = "-doubanSongOperationWithType:"
             landmarkType = "5">
          </BreakpointContent>

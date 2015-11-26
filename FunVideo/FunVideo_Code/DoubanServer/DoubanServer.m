@@ -228,7 +228,6 @@ static const NSInteger WORKSTUDY_MHz           = 153;
                                         @"captcha_id":_captchaImageInfo.captchaID};
     doubanServerManager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    
     [doubanServerManager POST:LOGINURLSTRING
                    parameters:doubanLoginParam
                       success:^(AFHTTPRequestOperation * operation, id responseObject)

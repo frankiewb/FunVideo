@@ -28,11 +28,11 @@ static const CGFloat kTimeProgressBarTopFactor  = 1.069f;
 static const CGFloat kChannelLabelTopFactor  = 1.059f;
 static const CGFloat kSongTitleTopFactor  = 1.051f;
 static const CGFloat kSongArtistTopFactor  = 1.045f;
-static const CGFloat kButtonTopFactor  = 1.061f;
+static const CGFloat kButtonTopFactor  = 1.15f;
 
 static const CGFloat kLabelWidthFactor  = 0.56f;
 static const CGFloat kLabelHeigthFactor  = 0.053f;
-static const CGFloat kButtonHeightWidthFactor  = 0.11f;
+static const CGFloat kButtonHeightWidthFactor  = 0.083f;
 
 
 @interface PlayerViewController ()
@@ -453,25 +453,25 @@ static const CGFloat kButtonHeightWidthFactor  = 0.11f;
     
     //初始化PauseButton
     pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [pauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
+    [pauseButton setBackgroundImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
     [pauseButton addTarget:self action:@selector(p_pauseButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
     
     //初始化LikeButton
     likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [likeButton setImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
+    [likeButton setBackgroundImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
     [likeButton addTarget:self action:@selector(p_likeButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:likeButton];
     
     //初始化DeleteButton
     deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [deleteButton setImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+    [deleteButton setBackgroundImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
     [deleteButton addTarget:self action:@selector(p_deleteButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:deleteButton];
     
     //初始化SkipButton
     skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [skipButton setImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
+    [skipButton setBackgroundImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
     [skipButton addTarget:self action:@selector(p_skipButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:skipButton];
 
@@ -485,7 +485,7 @@ static const CGFloat kButtonHeightWidthFactor  = 0.11f;
         isPlaying = NO;
         playerImage.alpha = 0.2f;
         playerImageBlock.image = [UIImage imageNamed:@"albumBlock2"];
-        [pauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
+        [pauseButton setBackgroundImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
         [appDelegate.VideoPlayer pause];
         //关闭计时器
         [timer setFireDate:[NSDate distantFuture]];
@@ -495,7 +495,7 @@ static const CGFloat kButtonHeightWidthFactor  = 0.11f;
         isPlaying = YES;
         playerImage.alpha = 1.0f;
         playerImageBlock.image = [UIImage imageNamed:@"albumBlock"];
-        [pauseButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
+        [pauseButton setBackgroundImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
         [appDelegate.VideoPlayer play];
         //开启计时器
         [timer setFireDate:[NSDate date]];
@@ -507,14 +507,14 @@ static const CGFloat kButtonHeightWidthFactor  = 0.11f;
     if(![appDelegate.playerInfo.currentSong.songIsLike intValue])
     {
         appDelegate.playerInfo.currentSong.songIsLike = @"1";
-        [likeButton setImage:[UIImage imageNamed:@"heart2"] forState:UIControlStateNormal];
+        [likeButton setBackgroundImage:[UIImage imageNamed:@"heart2"] forState:UIControlStateNormal];
         [doubanServer doubanSongOperationWithType:@"r"];
         
     }
     else
     {
         appDelegate.playerInfo.currentSong.songIsLike = @"0";
-        [likeButton setImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
+        [likeButton setBackgroundImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
     }
 }
 
