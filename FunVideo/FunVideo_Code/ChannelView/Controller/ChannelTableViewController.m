@@ -18,7 +18,7 @@
 
 
 
-static const CGFloat kTITLE_HEIGHT  = 40;
+static const CGFloat kTITLE_HEIGHT  = 30;
 static const CGFloat kFOOTER_HEIGHT = 1;
 static const CGFloat kROW_HEIGHT    = 60;
 static const CGFloat kORIGIN_X      = 0;
@@ -155,6 +155,7 @@ static const CGFloat kORIGIN_Y      = 0;
     cell.detailTextLabel.text = channelInfo.channelIntro;
     cell.imageView.layer.cornerRadius = cell.imageView.bounds.size.width/2.0;
     cell.imageView.layer.masksToBounds = YES;
+    cell.contentView.backgroundColor = UIBACKGROUNDCOLOR;
     [cell.imageView setImage:[UIImage imageNamed:@"noneuser.png"]];
     NSLog(@"LoadNonUserPic successful");
 
@@ -230,10 +231,11 @@ static const CGFloat kORIGIN_Y      = 0;
 #pragma 设置分组标题内容高度
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section
 {
-    if(section == 0)
-    {
-        return kTITLE_HEIGHT + 20;
-    }
+    return kTITLE_HEIGHT;
+}
+#pragma 设置分组标题高度
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return kTITLE_HEIGHT;
 }
 

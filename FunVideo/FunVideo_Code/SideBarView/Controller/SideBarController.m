@@ -16,7 +16,7 @@
 
 
 //#define UISIDEBARCOLOR [UIColor colorWithRed:1/255.0 green:1/255.0 blue:1/255.0 alpha:0.5]
-#define UISIDEBARCOLOR [UIColor colorWithRed:255/255.0f green:248/255.0f blue:146/255.0f alpha:0.9]
+
 
 static const CGFloat kBackGroundViewWidthFactor = 0.17;
 static const CGFloat kMainButtonTop = 40;
