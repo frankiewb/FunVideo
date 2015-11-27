@@ -434,7 +434,6 @@ static const CGFloat kButtonHeightWidthFactor  = 0.083f;
     //初始化TimeProgressBar
     timeProgressBar = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
     [timeProgressBar setProgressTintColor:UIBUTTONCOLOR];
-    timeProgressBar.trackImage = [UIImage imageNamed:@"1"];
     [self.view addSubview:timeProgressBar];
     
     //初始化ChannelLabel
