@@ -34,9 +34,9 @@ static const CGFloat kLabelHeightDistanceFactor = 1.17;
 static const CGFloat kLabelWidthFactor = 0.277;
 static const CGFloat kLabelHeightFactor = 0.177;
 
-static const CGFloat kbuttonHeightDistanceFactor = 1.05;
+static const CGFloat kbuttonHeightDistanceFactor = 1.10;
 static const CGFloat kbuttonWidthFactor = 1;
-static const CGFloat kbuttonHeightFactor = 0.15;
+
 
 
 
@@ -132,7 +132,8 @@ static const CGFloat kbuttonHeightFactor = 0.15;
     logoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [logoutButton setTitle:@"登 出" forState:UIControlStateNormal];
     [logoutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    logoutButton.backgroundColor = UIBACKGROUNDCOLOR;
+    logoutButton.backgroundColor = UIBUTTONCOLOR;
+    [logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [logoutButton addTarget:self action:@selector(p_logout) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:logoutButton];
     
@@ -198,7 +199,7 @@ static const CGFloat kbuttonHeightFactor = 0.15;
         make.top.equalTo(playedLabel.mas_bottom).with.multipliedBy(kbuttonHeightDistanceFactor);
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.width.equalTo(self.view.mas_width).with.multipliedBy(kbuttonWidthFactor);
-        make.height.equalTo(self.view.mas_height).with.multipliedBy(kbuttonHeightFactor);
+        make.bottom.mas_equalTo(self.view.mas_bottom);
     }];
 }
 
@@ -270,9 +271,11 @@ static const CGFloat kbuttonHeightFactor = 0.15;
         userViewImage.userInteractionEnabled = NO;
         
         userNameLabel.text = userInfo.userName;
-        playedLabel.text = [NSString stringWithFormat:@"Played \n \n %@",userInfo.plyaed];
-        bannedLabel.text = [NSString stringWithFormat:@"Banned \n \n %@",userInfo.banned];
+        playedLabel.text = [NSString stringWithFormat:@"已播放 \n \n %@",userInfo.plyaed];
+        bannedLabel.text = [NSString stringWithFormat:@"已禁止 \n \n %@",userInfo.banned];
         logoutButton.hidden = NO;
+        playedLabel.hidden = NO;
+        bannedLabel.hidden = NO;
         
         //此时设置ChannelGroup第一数组第一个cell的值
         if([appDelegate.channelGroup.myRedHeartChannelCellArray count] != 0)
@@ -289,9 +292,11 @@ static const CGFloat kbuttonHeightFactor = 0.15;
         [userViewImage setImage:[UIImage imageNamed:@"login"]];
         userViewImage.userInteractionEnabled = YES;
         userNameLabel.text = @"";
-        playedLabel.text = [NSString stringWithFormat:@"Played \n \n %@",@"0"];;
-        bannedLabel.text = [NSString stringWithFormat:@"Banned \n \n %@",@"0"];
+        playedLabel.text = [NSString stringWithFormat:@"已播放 \n \n %@",@"0"];;
+        bannedLabel.text = [NSString stringWithFormat:@"已禁止 \n \n %@",@"0"];
         logoutButton.hidden = YES;
+        playedLabel.hidden = YES;
+        bannedLabel.hidden = YES;
         
         //此时设置ChannelGroup第一数组第一个cell的值
         if([appDelegate.channelGroup.myRedHeartChannelCellArray count] != 0)

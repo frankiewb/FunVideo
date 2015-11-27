@@ -59,6 +59,7 @@ static const CGFloat kORIGIN_Y      = 0;
     //创建分组样式的UItableView
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(kORIGIN_X, kORIGIN_Y, FrankieAppWidth, FrankieAppHeigth) style:
                       UITableViewStyleGrouped];
+    self.tableView.separatorColor = UIBUTTONCOLOR;
     
     //加载refreshHeaderView
     if(!_refreshHeaderView)
@@ -141,6 +142,7 @@ static const CGFloat kORIGIN_Y      = 0;
     cell.detailTextLabel.text = channelInfo.channelIntro;
     cell.imageView.layer.cornerRadius = cell.imageView.bounds.size.width/2.0;
     cell.imageView.layer.masksToBounds = YES;
+    cell.contentView.backgroundColor = UIBACKGROUNDCOLOR;
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:channelInfo.channelCoverURL] placeholderImage:[UIImage imageNamed:@"defaultcell"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
     {
         NSLog(@"LoadPic successful");
@@ -263,6 +265,17 @@ static const CGFloat kORIGIN_Y      = 0;
         [_delegate showViewWithIndex:0];
 
     }
+    
+}
+
+
+
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView * HeaderView = (UITableViewHeaderFooterView *)view;
+    [HeaderView.textLabel setTextColor:[UIColor whiteColor]];
+    HeaderView.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    [HeaderView.contentView setBackgroundColor:UIBUTTONCOLOR];
     
 }
 

@@ -17,7 +17,9 @@
 
 #define FrankieAppWidth [UIScreen mainScreen].bounds.size.width
 #define FrankieAppHeigth [UIScreen mainScreen].bounds.size.height
-#define UIBACKGROUNDCOLOR [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0]
+//#define UILOGINVIEWLABELCOLOR [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1.0]
+#define UIBACKGROUNDCOLOR [UIColor colorWithRed:240.0f/255.0f green:255.0f/255.0f blue:240.0f/255.0f alpha:1.0]
+#define UIBUTTONCOLOR [UIColor colorWithRed:79/255.0f green:179/255.0f blue:121/255.0f alpha:1.0]
 
 
 #endif /* Commons_h */

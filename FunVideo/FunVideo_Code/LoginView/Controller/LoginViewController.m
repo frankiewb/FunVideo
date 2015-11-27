@@ -17,6 +17,7 @@
 
 #define UILOGINVIEWLABELCOLOR [UIColor whiteColor]
 
+
 static const CGFloat kHeadLabelTopPoint               = 35;
 
 static const CGFloat kButtonLabelWidthFactor          = 0.83f;
@@ -100,7 +101,7 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
     
     /*“登录”标签*/
     loginViewTitle = [[UILabel alloc]init];
-    loginViewTitle.text = @"用户登录";
+    loginViewTitle.text = @"登录";
     loginViewTitle.backgroundColor = UIBACKGROUNDCOLOR;
     loginViewTitle.font = [UIFont systemFontOfSize:30];
     loginViewTitle.textColor = [UIColor blackColor];
@@ -214,15 +215,17 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
     loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
     [loginButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
-    loginButton.backgroundColor = UILOGINVIEWLABELCOLOR;
+    [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    loginButton.backgroundColor = UIBUTTONCOLOR;
     [loginButton addTarget:self action:@selector(p_login) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     
     /*登出Button*/
     cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    cancelButton.backgroundColor = UILOGINVIEWLABELCOLOR;
+    cancelButton.backgroundColor = UIBUTTONCOLOR;
     [cancelButton setTitle:@"取 消" forState:UIControlStateNormal];
     [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(p_cancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelButton];
     
