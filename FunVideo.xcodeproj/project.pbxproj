@@ -11,6 +11,7 @@
 		10228DE41BE8889400249B4E /* ChannelInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 10228DE31BE8889400249B4E /* ChannelInfo.m */; };
 		10228DEA1BE8892E00249B4E /* ChannelTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10228DE91BE8892E00249B4E /* ChannelTableViewController.m */; };
 		10228DED1BE9EE9100249B4E /* ChannelGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 10228DEC1BE9EE9100249B4E /* ChannelGroup.m */; };
+		1028A9811C08823E002AC330 /* track.png in Resources */ = {isa = PBXBuildFile; fileRef = 1028A9801C08823E002AC330 /* track.png */; };
 		1046C4F41BE0A30000E1AB3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1046C4F21BE0A30000E1AB3C /* Main.storyboard */; };
 		1046C4F71BE0A30000E1AB3C /* FunVideo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1046C4F51BE0A30000E1AB3C /* FunVideo.xcdatamodeld */; };
 		1046C4F91BE0A30000E1AB3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1046C4F81BE0A30000E1AB3C /* Assets.xcassets */; };
@@ -90,6 +91,7 @@
 		10228DE91BE8892E00249B4E /* ChannelTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChannelTableViewController.m; path = FunVideo_Code/ChannelView/Controller/ChannelTableViewController.m; sourceTree = "<group>"; };
 		10228DEB1BE9EE9100249B4E /* ChannelGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChannelGroup.h; path = FunVideo_Code/ChannelView/Model/ChannelGroup.h; sourceTree = "<group>"; };
 		10228DEC1BE9EE9100249B4E /* ChannelGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChannelGroup.m; path = FunVideo_Code/ChannelView/Model/ChannelGroup.m; sourceTree = "<group>"; };
+		1028A9801C08823E002AC330 /* track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track.png; sourceTree = "<group>"; };
 		1046C4E61BE0A30000E1AB3C /* FunVideo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FunVideo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1046C4F31BE0A30000E1AB3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1046C4F61BE0A30000E1AB3C /* FunVideo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FunVideo.xcdatamodel; sourceTree = "<group>"; };
@@ -226,6 +228,14 @@
 			children = (
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		1028A97F1C08823E002AC330 /* timeprogressbar.imagest */ = {
+			isa = PBXGroup;
+			children = (
+				1028A9801C08823E002AC330 /* track.png */,
+			);
+			path = timeprogressbar.imagest;
 			sourceTree = "<group>";
 		};
 		1046C4DD1BE0A30000E1AB3C = {
@@ -426,6 +436,7 @@
 		1046C5531BE0A7BE00E1AB3C /* player */ = {
 			isa = PBXGroup;
 			children = (
+				1028A97F1C08823E002AC330 /* timeprogressbar.imagest */,
 				1046C5541BE0A7BE00E1AB3C /* delete.imageset */,
 				1046C5571BE0A7BE00E1AB3C /* heart1.imageset */,
 				1046C55A1BE0A7BE00E1AB3C /* heart2.imageset */,
@@ -779,6 +790,7 @@
 				10218ED81BF48DBC00E1A839 /* defaultcell.png in Resources */,
 				1046C5451BE0A7AC00E1AB3C /* menuChannel.png in Resources */,
 				1046C5481BE0A7AC00E1AB3C /* Contents.json in Resources */,
+				1028A9811C08823E002AC330 /* track.png in Resources */,
 				1046C5311BE0A79E00E1AB3C /* Contents.json in Resources */,
 				1046C56C1BE0A7BE00E1AB3C /* Contents.json in Resources */,
 				1046C4F91BE0A30000E1AB3C /* Assets.xcassets in Resources */,

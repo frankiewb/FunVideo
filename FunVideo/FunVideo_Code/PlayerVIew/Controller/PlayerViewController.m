@@ -124,6 +124,7 @@ static const CGFloat kButtonHeightWidthFactor  = 0.083f;
      timer = [NSTimer FunVideo_scheduledTimerWithTimeInterval:0.02
                                                         block:^{[weakSelf p_updateProgress];}
                                                       repeats:YES];
+    [self p_flashSongInfo];
 }
 
 
@@ -136,7 +137,7 @@ static const CGFloat kButtonHeightWidthFactor  = 0.083f;
     playerImage.layer.cornerRadius = playerImage.bounds.size.width/2.0;
     playerImage.layer.masksToBounds = YES;
     [super viewDidAppear:animated];
-    [self p_flashSongInfo];
+    
 }
 
 
@@ -241,7 +242,7 @@ static const CGFloat kButtonHeightWidthFactor  = 0.083f;
     channelTitle.text = [NSString stringWithFormat:@"♪%@♪",appDelegate.playerInfo.currentChannel.channelName];
     songArtist.text = appDelegate.playerInfo.currentSong.songArtist;
     songTitle.text = appDelegate.playerInfo.currentSong.songTitle;
-    //Chanel没设计呢
+    
     
     //初始化TimeLable的总时间
     totalTimeSeconds = [appDelegate.playerInfo.currentSong.songTimeLong intValue]%60;
@@ -264,6 +265,13 @@ static const CGFloat kButtonHeightWidthFactor  = 0.083f;
     {
         [likeButton setBackgroundImage:[UIImage imageNamed:@"heart2"] forState:UIControlStateNormal];
     }
+    
+    //初始化PauseButton的表示
+    playerImage.alpha = 1.0f;
+    playerImageBlock.image = [UIImage imageNamed:@"albumBlock"];
+    [pauseButton setBackgroundImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
+    
+    //初始化timeprogressbar
     [timer setFireDate:[NSDate date]];
     [self p_configVideoPlayerInfo];
     
@@ -325,7 +333,7 @@ static const CGFloat kButtonHeightWidthFactor  = 0.083f;
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.width.equalTo(self.view.mas_width).with.multipliedBy(kLabelWidthFactor);
         //make.height.equalTo(self.view.mas_height).with.multipliedBy(kLabelHeigthFactor);
-        make.width.mas_equalTo(@1);
+        make.height.mas_equalTo(@3);
     }];
     
 
@@ -424,7 +432,9 @@ static const CGFloat kButtonHeightWidthFactor  = 0.083f;
     [self.view addSubview:timeLabel];
 
     //初始化TimeProgressBar
-    timeProgressBar = [[UIProgressView alloc]init];
+    timeProgressBar = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleDefault];
+    [timeProgressBar setProgressTintColor:UIBUTTONCOLOR];
+    timeProgressBar.trackImage = [UIImage imageNamed:@"1"];
     [self.view addSubview:timeProgressBar];
     
     //初始化ChannelLabel
