@@ -15,13 +15,12 @@
 #import "Masonry.h"
 
 
-//#define UISIDEBARCOLOR [UIColor colorWithRed:1/255.0 green:1/255.0 blue:1/255.0 alpha:0.5]
-static const CGFloat kBackGroundViewWidthFactor = 0.17;
-static const CGFloat kMainButtonTop = 40;
-static const CGFloat kMainButtonRightFactor = 0.972f;
-static const CGFloat kMainButtonWidthAndHeightFactor = 0.111f;
+static const CGFloat kBackGroundViewWidthFactor          = 0.17;
+static const CGFloat kMainButtonTop                      = 40;
+static const CGFloat kMainButtonRightFactor              = 0.972f;
+static const CGFloat kMainButtonWidthAndHeightFactor     = 0.111f;
 static const CGFloat kFunctionButtonHeightDistanceFactor = 0.141;
-static const CGFloat kFunctionButtonLeft = 10;
+static const CGFloat kFunctionButtonLeft                 = 10;
 static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 
 

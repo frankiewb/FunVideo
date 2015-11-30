@@ -10,7 +10,7 @@
 #import "DoubanServer.h"
 #import "EGORefreshTableHeaderView.h"
 
-@interface ChannelTableViewController : UITableViewController<DoubanDelegate,UIGestureRecognizerDelegate,UISearchBarDelegate,EGORefreshTableHeaderDelegate>
+@interface ChannelTableViewController : UITableViewController<DoubanDelegate,UIGestureRecognizerDelegate,EGORefreshTableHeaderDelegate>
 
 @property(nonatomic,weak) id<DoubanDelegate> delegate;
 

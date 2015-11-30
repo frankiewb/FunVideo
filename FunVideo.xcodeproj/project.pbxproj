@@ -45,6 +45,7 @@
 		1046C5AC1BE3578600E1AB3C /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1046C5AB1BE3578600E1AB3C /* UserInfo.m */; };
 		1046C5AF1BE357AC00E1AB3C /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1046C5AE1BE357AC00E1AB3C /* UserViewController.m */; };
 		10B60F411C0BF277001602BD /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = 1046C55F1BE0A7BE00E1AB3C /* next.png */; };
+		10B60F471C0C5182001602BD /* DoubanProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 10B60F461C0C5182001602BD /* DoubanProtocol.m */; };
 		10ED87931BF5B63200F4337F /* noneuser.png in Resources */ = {isa = PBXBuildFile; fileRef = 10ED87921BF5B63200F4337F /* noneuser.png */; };
 		10EE94991C01C0DA009164FE /* NSTimer + FunVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EE94981C01C0DA009164FE /* NSTimer + FunVideo.m */; };
 		7187FF7CA19DCFC661048A2E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AACD72BB6729449486DA6862 /* libPods.a */; };
@@ -142,6 +143,8 @@
 		1046C5AB1BE3578600E1AB3C /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfo.m; path = FunVideo_Code/UserView/Model/UserInfo.m; sourceTree = "<group>"; };
 		1046C5AD1BE357AC00E1AB3C /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserViewController.h; path = FunVideo_Code/UserView/Controller/UserViewController.h; sourceTree = "<group>"; };
 		1046C5AE1BE357AC00E1AB3C /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserViewController.m; path = FunVideo_Code/UserView/Controller/UserViewController.m; sourceTree = "<group>"; };
+		10B60F451C0C5182001602BD /* DoubanProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DoubanProtocol.h; path = FunVideo_Code/DoubanServer/DoubanProtocol.h; sourceTree = "<group>"; };
+		10B60F461C0C5182001602BD /* DoubanProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoubanProtocol.m; path = FunVideo_Code/DoubanServer/DoubanProtocol.m; sourceTree = "<group>"; };
 		10ED87921BF5B63200F4337F /* noneuser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noneuser.png; path = Images.xcassets/noneuser.png; sourceTree = "<group>"; };
 		10EE94971C01C0DA009164FE /* NSTimer + FunVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTimer + FunVideo.h"; path = "FunVideo_Code/APP/NSTimer + FunVideo.h"; sourceTree = "<group>"; };
 		10EE94981C01C0DA009164FE /* NSTimer + FunVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTimer + FunVideo.m"; path = "FunVideo_Code/APP/NSTimer + FunVideo.m"; sourceTree = "<group>"; };
@@ -286,10 +289,10 @@
 				1046C5791BE0A8CB00E1AB3C /* main.m */,
 				1046C5751BE0A88A00E1AB3C /* AppDelegate.h */,
 				1046C5761BE0A89300E1AB3C /* AppDelegate.m */,
-				1046C4F21BE0A30000E1AB3C /* Main.storyboard */,
-				1046C4FA1BE0A30000E1AB3C /* LaunchScreen.storyboard */,
 				10EE94971C01C0DA009164FE /* NSTimer + FunVideo.h */,
 				10EE94981C01C0DA009164FE /* NSTimer + FunVideo.m */,
+				1046C4F21BE0A30000E1AB3C /* Main.storyboard */,
+				1046C4FA1BE0A30000E1AB3C /* LaunchScreen.storyboard */,
 			);
 			name = APP;
 			sourceTree = "<group>";
@@ -551,6 +554,8 @@
 			children = (
 				1046C5911BE0AB4A00E1AB3C /* DoubanServer.h */,
 				1046C5921BE0AB5800E1AB3C /* DoubanServer.m */,
+				10B60F451C0C5182001602BD /* DoubanProtocol.h */,
+				10B60F461C0C5182001602BD /* DoubanProtocol.m */,
 			);
 			name = DoubanServer;
 			sourceTree = "<group>";
@@ -843,6 +848,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10B60F471C0C5182001602BD /* DoubanProtocol.m in Sources */,
 				1046C5811BE0A99800E1AB3C /* PlayerInfo.m in Sources */,
 				1046C5931BE0AB5800E1AB3C /* DoubanServer.m in Sources */,
 				1046C5771BE0A89300E1AB3C /* AppDelegate.m in Sources */,

@@ -200,7 +200,7 @@ static const CGFloat kButtonHeightWidthFactor      = 0.083f;
 }
 
 
--(void)doubanDelegate_getSongListFail
+-(void)getSongListFail
 {
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"获取音乐失败"
                                                                               message:@"请检查网络或者服务器异常"

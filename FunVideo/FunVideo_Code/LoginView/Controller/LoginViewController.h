@@ -10,18 +10,8 @@
 #import "DoubanServer.h"
 
 
-//使用代理
-@protocol LoginViewDelegate <NSObject>
-
-@optional
--(void)loginViewDelegate_setUserInfo;
-
-@end
-
-@interface LoginViewController : UIViewController<UITextFieldDelegate, DoubanDelegate, LoginViewDelegate>
+@interface LoginViewController : UIViewController<UITextFieldDelegate, DoubanDelegate>
 
 @property (weak, nonatomic)id<DoubanDelegate>douban_delegate;
-
-@property (weak, nonatomic)id<LoginViewDelegate>loginView_delegate;
 
 @end

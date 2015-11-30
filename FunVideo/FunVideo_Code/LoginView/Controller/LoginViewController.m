@@ -317,14 +317,14 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
     [self p_loadCaptchaImage];
 }
 
--(void)doubanDelegate_loginSuccessful
+-(void)loginSuccessful
 {
-    [_loginView_delegate loginViewDelegate_setUserInfo];
+    [_douban_delegate FlashUserInfoInUserView];
     NSLog(@"LOGIN_SUCCESSFUL");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)doubanDelegate_loginFail:(NSString *)errorMessege
+-(void)loginFail:(NSString *)errorMessege
 {
     //采用IOS8提供的UIAlerController
     UIAlertController * alerController = [UIAlertController alertControllerWithTitle:@"登录失败"
@@ -337,7 +337,7 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
 }
 
 
--(void)doubanDelegate_setCaptchaImageWithURL:(NSString *) captchaImageURL
+-(void)setCaptchaImageWithURL:(NSString *) captchaImageURL
 {
     [captchaImageView setImageWithURL:[NSURL URLWithString:captchaImageURL] placeholderImage:nil];
 }

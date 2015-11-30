@@ -204,7 +204,7 @@ static const CGFloat kbuttonWidthFactor = 1;
 
 
 
--(void)doubanDelegate_logoutSuccessful
+-(void)logoutSuccessful
 {
     [self p_setUserInfo];
     NSLog(@"LOGOUT_SUCCESSFUL");
@@ -220,8 +220,6 @@ static const CGFloat kbuttonWidthFactor = 1;
     
     //!!!!重要！
     loginVC.douban_delegate = self;
-    loginVC.loginView_delegate = self;
-    
     
     
     
@@ -253,7 +251,7 @@ static const CGFloat kbuttonWidthFactor = 1;
 }
 
 
--(void)loginViewDelegate_setUserInfo
+-(void)FlashUserInfoInUserView
 {
     [self p_setUserInfo];
 }
@@ -283,7 +281,7 @@ static const CGFloat kbuttonWidthFactor = 1;
             userChannelInfo.channelName = userInfo.userName;
             userChannelInfo.channelCoverURL = [NSString stringWithFormat:USERIMAGEURL,userInfo.userID];
             NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.douban_delegate doubanDelegate_reloadTableViewCellWithIndexPath:indexpath];
+            [self.douban_delegate reloadTableViewCellWithIndexPath:indexpath];
         }
     }
     else
@@ -303,7 +301,7 @@ static const CGFloat kbuttonWidthFactor = 1;
             ChannelInfo * UserChannelInfo = [appDelegate.channelGroup.myRedHeartChannelCellArray objectAtIndex:0];
             UserChannelInfo.channelName = @"未登录";
             NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.douban_delegate doubanDelegate_reloadTableViewCellWithIndexPath:indexpath];
+            [self.douban_delegate reloadTableViewCellWithIndexPath:indexpath];
         }
         
     }

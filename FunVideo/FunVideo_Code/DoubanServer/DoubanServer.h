@@ -7,46 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DoubanProtocol.h"
 
 
 @class CaptchaImageInfo;
 @class LoginInfo;
 
-
-//使用代理
-@protocol DoubanDelegate <NSObject>
-
-@optional
-
--(void)doubanDelegate_setCaptchaImageWithURL:(NSString *) captchaImageURL;
-
--(void)doubanDelegate_loginSuccessful;
-
--(void)doubanDelegate_loginFail:(NSString *)errorMessege;
-
--(void)doubanDelegate_getSongListFail;
-
--(void)doubanDelegate_logoutSuccessful;
-
--(void)doubanDelegate_reloadTableView;
-
--(void)doubanDelegate_reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath;
-
-
-//主屏幕显示哪个页面
-//index : 1  PlayerView
-//index : 2  ChannelView
-//index : 3  LoginView
-//index : 4  self
--(void)showViewWithIndex:(NSInteger)index;
-
-@end
-
-
-
-
-@interface DoubanServer : NSObject
-
+@interface DoubanServer : NSObject<DoubanDelegate>
 
 @property(nonatomic,strong) CaptchaImageInfo * captchaImageInfo;
 

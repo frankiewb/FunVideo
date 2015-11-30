@@ -130,7 +130,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
              NSLog(@"GETCHANNELCELL_URL_TYPE_ERROR:%@",channelURLString);
          }
          //刷新ChannelTableView
-         [self.delegate doubanDelegate_reloadTableView];
+         [self.delegate reloadTableView];
          
      }
                      failure:^(AFHTTPRequestOperation *operation, NSError * error)
@@ -201,7 +201,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          [tempCaptchaID replaceOccurrencesOfString:@"\"" withString:@"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [tempCaptchaID length])];
          _captchaImageInfo.captchaID = tempCaptchaID;
          _captchaImageInfo.capthaImgURL = [NSString stringWithFormat:CAPTCHAIMGURLFORMATSTRING,tempCaptchaID];
-         [_delegate doubanDelegate_setCaptchaImageWithURL:_captchaImageInfo.capthaImgURL];
+         [_delegate setCaptchaImageWithURL:_captchaImageInfo.capthaImgURL];
      }
                      failure:^(AFHTTPRequestOperation * operation, NSError *error)
      {
@@ -236,14 +236,14 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          if([(NSNumber *)tempLoginInfoDictionary[@"r"]intValue] == 0)
          {
              userInfo = [userInfo initWithDictionary:tempLoginInfoDictionary];
-             [_delegate doubanDelegate_loginSuccessful];
+             [_delegate loginSuccessful];
              
          }
          else// login fail
          {
 
              NSString * errorMessage = [NSString stringWithFormat:@"Error : %@",[tempLoginInfoDictionary valueForKey:@"err_msg"]];
-             [_delegate doubanDelegate_loginFail:errorMessage];
+             [_delegate loginFail:errorMessage];
              [self doubanLoadCaptchaImage];
          }
          
@@ -291,7 +291,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
      {
          
          appDelegate.userInfo.cookies = nil;
-         [_delegate doubanDelegate_logoutSuccessful];
+         [_delegate logoutSuccessful];
      }
                      failure:^(AFHTTPRequestOperation * operation, NSError * error)
      {
@@ -353,7 +353,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
      }
                      failure:^(AFHTTPRequestOperation * operation, NSError *error)
      {
-         [_delegate doubanDelegate_getSongListFail];
+         [_delegate getSongListFail];
          NSLog(@"DOUBANSONGOPERATION_ERROR:%@",error);
      }];
     
