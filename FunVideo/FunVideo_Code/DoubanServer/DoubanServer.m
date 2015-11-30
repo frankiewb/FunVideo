@@ -19,15 +19,14 @@
 #import "SongInfo.h"
 
 
-
-static const NSString * USERIMAGEURL              = @"http://img3.douban.com/icon/ul%@-1.jpg";
-static const NSString * PLAYERURLFORMATSTRING     = @"http://douban.fm/j/mine/playlist?type=%@&sid=%@&pt=%f&channel=%@&from=mainsite";
-static const NSString * LOGINURLSTRING            = @"http://douban.fm/j/login";
-static const NSString * LOGOUTURLSTRING           = @"http://douban.fm/partner/logout";
-static const NSString * CAPTCHAIDURLSTRING        = @"http://douban.fm/j/new_captcha";
-static const NSString * CAPTCHAIMGURLFORMATSTRING = @"http://douban.fm/misc/captcha?size=m&id=%@";
-static const NSString * LOGINCHANNELURL           = @"http://douban.fm/j/explore/get_login_chls?uk=";
-static const NSString * TOTALCHANNELURL           = @"http://douban.fm/j/explore/up_trending_channels";
+#define PLAYERURLFORMATSTRING     @"http://douban.fm/j/mine/playlist?type=%@&sid=%@&pt=%f&channel=%@&from=mainsite"
+#define USERIMAGEURL              @"http://img3.douban.com/icon/ul%@-1.jpg"
+#define LOGINURLSTRING            @"http://douban.fm/j/login"
+#define LOGOUTURLSTRING           @"http://douban.fm/partner/logout"
+#define CAPTCHAIDURLSTRING        @"http://douban.fm/j/new_captcha"
+#define CAPTCHAIMGURLFORMATSTRING @"http://douban.fm/misc/captcha?size=m&id=%@"
+#define LOGINCHANNELURL           @"http://douban.fm/j/explore/get_login_chls?uk="
+#define TOTALCHANNELURL           @"http://douban.fm/j/explore/up_trending_channels"
 
 //频道：频道ID
 //语言年代兆赫
@@ -236,14 +235,15 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          //r = 0 login successful
          if([(NSNumber *)tempLoginInfoDictionary[@"r"]intValue] == 0)
          {
-             [userInfo initWithDictionary:tempLoginInfoDictionary];
+             userInfo = [userInfo initWithDictionary:tempLoginInfoDictionary];
              [_delegate doubanDelegate_loginSuccessful];
              
          }
          else// login fail
          {
-             UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"yoo～～登陆失败了咩" message:[tempLoginInfoDictionary valueForKey:@"err_msg"] delegate:self cancelButtonTitle:@"GET" otherButtonTitles: nil];
-             [alertView show];
+
+             NSString * errorMessage = [NSString stringWithFormat:@"Error : %@",[tempLoginInfoDictionary valueForKey:@"err_msg"]];
+             [_delegate doubanDelegate_loginFail:errorMessage];
              [self doubanLoadCaptchaImage];
          }
          
@@ -290,7 +290,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
                      success:^(AFHTTPRequestOperation * operation, id responseObject)
      {
          
-         appDelegate.userInfo.Cookies = nil;
+         appDelegate.userInfo.cookies = nil;
          [_delegate doubanDelegate_logoutSuccessful];
      }
                      failure:^(AFHTTPRequestOperation * operation, NSError * error)
@@ -353,12 +353,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
      }
                      failure:^(AFHTTPRequestOperation * operation, NSError *error)
      {
-         UIAlertView *alerView = [[UIAlertView alloc]initWithTitle:@"Yoo~~~~"
-                                                          message:@"登录失败啦～～～"
-                                                         delegate:self
-                                                cancelButtonTitle:@"哦，酱紫～～"
-                                                otherButtonTitles:nil];
-         [alerView show];
+         [_delegate doubanDelegate_getSongListFail];
          NSLog(@"DOUBANSONGOPERATION_ERROR:%@",error);
      }];
     

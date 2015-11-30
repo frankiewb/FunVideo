@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DoubanServer.h"
 
-@interface PlayerViewController : UIViewController
+@interface PlayerViewController : UIViewController<DoubanDelegate>
 
 
 @end

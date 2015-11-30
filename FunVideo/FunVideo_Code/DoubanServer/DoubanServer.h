@@ -22,6 +22,10 @@
 
 -(void)doubanDelegate_loginSuccessful;
 
+-(void)doubanDelegate_loginFail:(NSString *)errorMessege;
+
+-(void)doubanDelegate_getSongListFail;
+
 -(void)doubanDelegate_logoutSuccessful;
 
 -(void)doubanDelegate_reloadTableView;

@@ -13,7 +13,6 @@
 #import "PlayerInfo.h"
 #import "UIKIT+AFNetworking.h"
 #import "UIImageView+WebCache.h"
-#import "EGORefreshTableHeaderView.h"
 #import "Commons.h"
 
 
@@ -270,7 +269,16 @@ static const CGFloat kORIGIN_Y      = 0;
     
 }
 
+-(void)doubanDelegate_getSongListFail
+{
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"登录失败"
+                                                                              message:@"请检查网络或者服务器异常"
+                                                                       preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 
+}
 
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 {

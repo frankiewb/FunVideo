@@ -16,13 +16,10 @@
 
 
 //#define UISIDEBARCOLOR [UIColor colorWithRed:1/255.0 green:1/255.0 blue:1/255.0 alpha:0.5]
-
-
 static const CGFloat kBackGroundViewWidthFactor = 0.17;
 static const CGFloat kMainButtonTop = 40;
 static const CGFloat kMainButtonRightFactor = 0.972f;
 static const CGFloat kMainButtonWidthAndHeightFactor = 0.111f;
-static const CGFloat kFunctionButtonTop = 50;
 static const CGFloat kFunctionButtonHeightDistanceFactor = 0.141;
 static const CGFloat kFunctionButtonLeft = 10;
 static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
@@ -32,34 +29,22 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 {
     //表示侧边栏是否展开
     BOOL SidebarIsOpen;
-    
     //PlayerView
     PlayerViewController * playerVC;
-    
     //LoginView
     LoginViewController * loginVC;
-    
     //UserView
     UserViewController * userVC;
-    
     //ChannelView
     ChannelTableViewController * channelVC;
-    
     //doubanServer
     DoubanServer * doubanServer;
-    
-    
-    
     //SideBar上四个按钮容器
     NSMutableArray * buttonList;
-    
     //表明Sidebar是否打开
     BOOL isSideBarOpen;
-    
-    
     //存放4个导航按钮的View
-    UIView * backgroundMenuView;
-    
+    UIView * backgroundMenuView;    
     //展开存放导航按钮View的Button
     UIButton * mainViewButton;
     

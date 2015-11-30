@@ -20,20 +20,17 @@
 
 
 
-static const NSString * USERIMAGEURL = @"http://img3.douban.com/icon/ul%@-1.jpg";
+#define USERIMAGEURL @"http://img3.douban.com/icon/ul%@-1.jpg"
 static const CGFloat kUserViewImageWidthAndHeightFactor = 0.47;
 static const CGFloat UserViewImageHeightDistance = 60;
-
 static const CGFloat userNameLabelTopFactor = 1.2;
 static const CGFloat kUserNameLabelWidthFactor = 0.55;
 static const CGFloat kUserNameLabelHeightFactor = 0.1;
-
 static const CGFloat kplayedLabelCenterXFactor = 0.5625;
 static const CGFloat kbannedLabelCenterXFactor = 1.4375;
 static const CGFloat kLabelHeightDistanceFactor = 1.17;
 static const CGFloat kLabelWidthFactor = 0.277;
 static const CGFloat kLabelHeightFactor = 0.177;
-
 static const CGFloat kbuttonHeightDistanceFactor = 1.10;
 static const CGFloat kbuttonWidthFactor = 1;
 
@@ -233,24 +230,26 @@ static const CGFloat kbuttonWidthFactor = 1;
 
 -(void)p_logout
 {
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"登出"
-                                                       message:@"主人，你这就要走了咩。。"
-                                                      delegate:self
-                                             cancelButtonTitle:@"算了。。不忍心。。"
-                                             otherButtonTitles:@"朕去意已决，爱卿勿拦！", nil];
-    [alertView show];
-}
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    switch (buttonIndex) {
-        case 0:
-            break;
-        case 1:
-            [doubanServer doubanLogout];
-        default:
-            break;
-    }
+    //采用ios8提出的UIAlertController替换UIAlertView（去处Warning）
+    
+    UIAlertController * alerController = [UIAlertController alertControllerWithTitle:@"登出"
+                                                                             message:@"确定要登出帐号吗？"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消"
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:nil];
+    UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"确定"
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction * action)
+                                {
+                                    [doubanServer doubanLogout];
+                                }];
+    
+    [alerController addAction:cancelAction];
+    [alerController addAction:okAction];
+    [self presentViewController:alerController animated:YES completion:nil];
+    
 }
 
 

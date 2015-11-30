@@ -9,7 +9,6 @@
 #import "PlayerViewController.h"
 #import "PlayerInfo.h"
 #import "Commons.h"
-#import "DoubanServer.h"
 #import "AppDelegate.h"
 #import <AFNetworking/AFNetworking.h>
 #import "UIKIT+AFNetworking.h"
@@ -20,19 +19,17 @@
 #import "Masonry.h"
 
 
-static const CGFloat kPlayerImageTop  = 40;
-static const CGFloat kPlayerImageSidesLengthFactor  = 0.56f;
-
-static const CGFloat kTimeLabelTopFactor  = 1.083f;
-static const CGFloat kTimeProgressBarTopFactor  = 1.069f;
-static const CGFloat kChannelLabelTopFactor  = 1.059f;
-static const CGFloat kSongTitleTopFactor  = 1.051f;
-static const CGFloat kSongArtistTopFactor  = 1.045f;
-static const CGFloat kButtonTopFactor  = 1.15f;
-
-static const CGFloat kLabelWidthFactor  = 0.56f;
-static const CGFloat kLabelHeigthFactor  = 0.053f;
-static const CGFloat kButtonHeightWidthFactor  = 0.083f;
+static const CGFloat kPlayerImageTop               = 40;
+static const CGFloat kPlayerImageSidesLengthFactor = 0.56f;
+static const CGFloat kTimeLabelTopFactor           = 1.083f;
+static const CGFloat kTimeProgressBarTopFactor     = 1.069f;
+static const CGFloat kChannelLabelTopFactor        = 1.059f;
+static const CGFloat kSongTitleTopFactor           = 1.051f;
+static const CGFloat kSongArtistTopFactor          = 1.045f;
+static const CGFloat kButtonTopFactor              = 1.15f;
+static const CGFloat kLabelWidthFactor             = 0.56f;
+static const CGFloat kLabelHeigthFactor            = 0.053f;
+static const CGFloat kButtonHeightWidthFactor      = 0.083f;
 
 
 @interface PlayerViewController ()
@@ -197,9 +194,23 @@ static const CGFloat kButtonHeightWidthFactor  = 0.083f;
 -(void)p_setupPlayerInfo
 {
     doubanServer = [[DoubanServer alloc]initDoubanServer];
+    doubanServer.delegate = self;
     [doubanServer doubanSongOperationWithType:@"n"];
 
 }
+
+
+-(void)doubanDelegate_getSongListFail
+{
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"获取音乐失败"
+                                                                              message:@"请检查网络或者服务器异常"
+                                                                       preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
 
 -(void)p_setupGesture
 {
@@ -230,7 +241,6 @@ static const CGFloat kButtonHeightWidthFactor  = 0.083f;
     
     //重置旋转图片角度
     playerImage.image = nil;
-    NSString * playerImageName = [NSString stringWithFormat:@"%@_imageName",appDelegate.playerInfo.currentSong.songTitle];
     NSURL * imageURL = [NSURL URLWithString:appDelegate.playerInfo.currentSong.songPictureUrl];
     //[_PlayerImage setImageWithURL:imageURL
                  //placeholderImage:[UIImage imageNamed:playerImageName]];

@@ -44,7 +44,7 @@ typedef enum{
 	UIActivityIndicatorView *_activityView;
 }
 
-@property(nonatomic,assign) id <EGORefreshTableHeaderDelegate> delegate;
+@property(nonatomic,retain) id <EGORefreshTableHeaderDelegate> delegate;
 
 - (id)initWithFrame:(CGRect)frame arrowImageName:(NSString *)arrow textColor:(UIColor *)textColor;
 

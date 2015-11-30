@@ -16,16 +16,11 @@
 
 
 #define UILOGINVIEWLABELCOLOR [UIColor whiteColor]
-
-
 static const CGFloat kHeadLabelTopPoint               = 35;
-
 static const CGFloat kButtonLabelWidthFactor          = 0.83f;
 static const CGFloat kButtonLabelHeightFactor         = 0.08f;
-
 static const CGFloat kCaptchaTextCenterXFactor        = 0.572f;
 static const CGFloat kCaptchaImageCenterXFactor       = 1.433f;
-
 static const CGFloat kLoginNameTextFieldTopFactor     = 1.35f;
 static const CGFloat kLoginPassWordTextFieldTopFactor = 1.12f;
 static const CGFloat kCaptchaTopFactor                = 1.085f;
@@ -329,6 +324,17 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)doubanDelegate_loginFail:(NSString *)errorMessege
+{
+    //采用IOS8提供的UIAlerController
+    UIAlertController * alerController = [UIAlertController alertControllerWithTitle:@"登录失败"
+                                                                             message:[NSString stringWithFormat:@"失败原因：%@",errorMessege]
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"了解" style:UIAlertActionStyleCancel handler:nil];
+    [alerController addAction:cancelAction];
+    [self presentViewController:alerController animated:YES completion:nil];
+
+}
 
 
 -(void)doubanDelegate_setCaptchaImageWithURL:(NSString *) captchaImageURL
