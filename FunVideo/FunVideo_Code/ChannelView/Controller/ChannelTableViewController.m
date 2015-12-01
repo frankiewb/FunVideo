@@ -23,6 +23,8 @@ static const CGFloat kROW_HEIGHT    = 60;
 static const CGFloat kORIGIN_X      = 0;
 static const CGFloat kORIGIN_Y      = 0;
 
+//字体设置,以iphone6为基准，向下5s及4，向上6s及6s plus兼容
+static const CGFloat kHeaderFont = 15;
 
 
 @interface ChannelTableViewController()
@@ -284,7 +286,7 @@ static const CGFloat kORIGIN_Y      = 0;
 {
     UITableViewHeaderFooterView * HeaderView = (UITableViewHeaderFooterView *)view;
     [HeaderView.textLabel setTextColor:[UIColor whiteColor]];
-    HeaderView.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    HeaderView.textLabel.font = [UIFont boldSystemFontOfSize:kHeaderFont];
     [HeaderView.contentView setBackgroundColor:UIBUTTONCOLOR];
     
 }

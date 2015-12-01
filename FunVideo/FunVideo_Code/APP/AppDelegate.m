@@ -13,6 +13,7 @@
 #import "PlayerInfo.h"
 #import "ChannelGroup.h"
 #import "SongInfo.h"
+#import "sys/utsname.h"
 
 @interface AppDelegate ()
 {
@@ -44,6 +45,7 @@
         _playerInfo = [[PlayerInfo alloc]initPlayerInfo];
         _channelGroup = [[ChannelGroup alloc]init];
         doubanServer = [[DoubanServer alloc]initDoubanServer];
+        _deviceMode = [self p_getDeviceMode];
         [self p_unArchiveVideoInfo];
                 
         //后台播放FrankieVideoPlayer
@@ -52,6 +54,10 @@
         [session setActive:YES error:nil];
     });
 }
+
+
+
+
 
 //归档
 -(void)p_archiveVideoInfo
@@ -149,6 +155,19 @@
     
     
 }
+
+
+//适配工作暂时只适配iphone4s，iphone5(s),iphone6(s),iphone6(plus)
+-(NSString *)p_getDeviceMode
+{
+    //需要在真机上获取详细的对应表，模拟器上只能看到X86_64
+    NSString * strModel  = [UIDevice currentDevice].model;
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    return deviceString;
+}
+
 
 
 

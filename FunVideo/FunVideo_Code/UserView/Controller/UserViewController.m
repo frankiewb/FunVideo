@@ -34,6 +34,11 @@ static const CGFloat kLabelHeightFactor = 0.177;
 static const CGFloat kbuttonHeightDistanceFactor = 1.10;
 static const CGFloat kbuttonWidthFactor = 1;
 
+//字体设置,以iphone6为基准，向下5s及4，向上6s及6s plus兼容
+static const CGFloat kLabelFont = 20;
+static const CGFloat kBigLabelFont = 30;
+static const CGFloat kButtonFont = 25;
+
 
 
 
@@ -104,7 +109,7 @@ static const CGFloat kbuttonWidthFactor = 1;
     userNameLabel = [[UILabel alloc]init];
     userNameLabel.backgroundColor = UIBACKGROUNDCOLOR;
     userNameLabel.textAlignment = NSTextAlignmentCenter;
-    [userNameLabel setFont:[UIFont boldSystemFontOfSize:30]];    
+    [userNameLabel setFont:[UIFont boldSystemFontOfSize:kBigLabelFont]];
     [self.view addSubview:userNameLabel];
     
     
@@ -113,7 +118,7 @@ static const CGFloat kbuttonWidthFactor = 1;
     playedLabel.numberOfLines = 0;
     playedLabel.backgroundColor = UIBACKGROUNDCOLOR;
     playedLabel.textAlignment = NSTextAlignmentCenter;
-    [playedLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    [playedLabel setFont:[UIFont boldSystemFontOfSize:kLabelFont]];
     [self.view addSubview:playedLabel];
     
     
@@ -122,13 +127,13 @@ static const CGFloat kbuttonWidthFactor = 1;
     bannedLabel.numberOfLines = 0;
     bannedLabel.backgroundColor = UIBACKGROUNDCOLOR;
     bannedLabel.textAlignment = NSTextAlignmentCenter;
-    [bannedLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    [bannedLabel setFont:[UIFont boldSystemFontOfSize:kLabelFont]];
     [self.view addSubview:bannedLabel];
     
     /*设置LogoutButton*/
     logoutButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [logoutButton setTitle:@"登 出" forState:UIControlStateNormal];
-    [logoutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    [logoutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:kButtonFont]];
     logoutButton.backgroundColor = UIBUTTONCOLOR;
     [logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [logoutButton addTarget:self action:@selector(p_logout) forControlEvents:UIControlEventTouchUpInside];

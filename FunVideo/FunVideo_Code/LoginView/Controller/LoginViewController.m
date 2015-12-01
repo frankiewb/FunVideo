@@ -24,8 +24,12 @@ static const CGFloat kCaptchaImageCenterXFactor       = 1.433f;
 static const CGFloat kLoginNameTextFieldTopFactor     = 1.35f;
 static const CGFloat kLoginPassWordTextFieldTopFactor = 1.12f;
 static const CGFloat kCaptchaTopFactor                = 1.085f;
-static const CGFloat kLoginTopFactor                  = 1.164f;
+static const CGFloat kLoginTopFactor                  = 1.2f;
 static const CGFloat kLogoutTopFactor                 = 1.05f;
+
+//字体设置,以iphone6为基准，向下5s及4，向上6s及6s plus兼容
+static const CGFloat kLabelFont = 20;
+static const CGFloat kBigLabelFont = 30;
 
 
 
@@ -98,7 +102,7 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
     loginViewTitle = [[UILabel alloc]init];
     loginViewTitle.text = @"登录";
     loginViewTitle.backgroundColor = UIBACKGROUNDCOLOR;
-    loginViewTitle.font = [UIFont systemFontOfSize:30];
+    loginViewTitle.font = [UIFont systemFontOfSize:kBigLabelFont];
     loginViewTitle.textColor = [UIColor blackColor];
     loginViewTitle.textAlignment = NSTextAlignmentLeft;
     loginViewTitle.layer.masksToBounds = YES;
@@ -114,7 +118,7 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
     loginNameTextField.backgroundColor = UILOGINVIEWLABELCOLOR;
     loginNameTextField.borderStyle = UITextBorderStyleRoundedRect;
     loginNameTextField.textAlignment = NSTextAlignmentLeft;
-    loginNameTextField.font = [UIFont systemFontOfSize:18];
+    loginNameTextField.font = [UIFont systemFontOfSize:kLabelFont];
     //设置输入框右侧一次性清除小叉的按钮
     loginNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     //设置自动纠错
@@ -144,7 +148,7 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
     loginPassWordTextField.backgroundColor = UILOGINVIEWLABELCOLOR;
     loginPassWordTextField.borderStyle = UITextBorderStyleRoundedRect;
     loginPassWordTextField.textAlignment = NSTextAlignmentLeft;
-    loginPassWordTextField.font = [UIFont systemFontOfSize:18];
+    loginPassWordTextField.font = [UIFont systemFontOfSize:kLabelFont];
     //设置输入框右侧一次性清除小叉的按钮
     loginPassWordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     //设置自动纠错
@@ -176,7 +180,7 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
     captchaImageTextField.backgroundColor = UILOGINVIEWLABELCOLOR;
     captchaImageTextField.borderStyle = UITextBorderStyleRoundedRect;
     captchaImageTextField.textAlignment = NSTextAlignmentLeft;
-    captchaImageTextField.font = [UIFont systemFontOfSize:18];
+    captchaImageTextField.font = [UIFont systemFontOfSize:kLabelFont];
     //设置输入框右侧一次性清除小叉的按钮
     captchaImageTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     //设置自动纠错
@@ -209,7 +213,7 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
     /*登录Button*/
     loginButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [loginButton setTitle:@"登 录" forState:UIControlStateNormal];
-    [loginButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    [loginButton.titleLabel setFont:[UIFont boldSystemFontOfSize:kLabelFont]];
     [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     loginButton.backgroundColor = UIBUTTONCOLOR;
     [loginButton addTarget:self action:@selector(p_login) forControlEvents:UIControlEventTouchUpInside];
@@ -219,7 +223,7 @@ static const CGFloat kLogoutTopFactor                 = 1.05f;
     cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     cancelButton.backgroundColor = UIBUTTONCOLOR;
     [cancelButton setTitle:@"取 消" forState:UIControlStateNormal];
-    [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:20]];
+    [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:kLabelFont]];
     [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(p_cancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelButton];

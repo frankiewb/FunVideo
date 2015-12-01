@@ -41,6 +41,11 @@
 @property (strong, nonatomic)ChannelGroup * channelGroup;
 
 
+/**
+ * 表示当前iphone型号
+ */
+@property (copy, nonatomic)NSString * deviceMode;
+
 
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

@@ -31,6 +31,10 @@ static const CGFloat kLabelWidthFactor             = 0.56f;
 static const CGFloat kLabelHeigthFactor            = 0.053f;
 static const CGFloat kButtonHeightWidthFactor      = 0.083f;
 
+//字体设置,以iphone6为基准，向下5s及4，向上6s及6s plus兼容
+static const CGFloat kLabelFont = 18;
+static const CGFloat kBigLabelFont = 22;
+
 
 @interface PlayerViewController ()
 {
@@ -414,6 +418,15 @@ static const CGFloat kButtonHeightWidthFactor      = 0.083f;
     
 }
 
+
+-(void)setFontInPlayerVC:(CGFloat)font
+{
+    
+}
+
+
+
+
 -(void)p_setUpUI
 {
     //初始化背景颜色
@@ -436,7 +449,7 @@ static const CGFloat kButtonHeightWidthFactor      = 0.083f;
     //初始化TimeLabel
     timeLabel = [[UILabel alloc]init];
     timeLabel.backgroundColor = UIBACKGROUNDCOLOR;
-    timeLabel.font = [UIFont systemFontOfSize:15];
+    timeLabel.font = [UIFont systemFontOfSize:kLabelFont];
     timeLabel.textColor = [UIColor blackColor];
     timeLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:timeLabel];
@@ -449,7 +462,7 @@ static const CGFloat kButtonHeightWidthFactor      = 0.083f;
     //初始化ChannelLabel
     channelTitle = [[UILabel alloc]init];
     channelTitle.backgroundColor = UIBACKGROUNDCOLOR;
-    channelTitle.font = [UIFont systemFontOfSize:15];
+    channelTitle.font = [UIFont systemFontOfSize:kLabelFont];
     channelTitle.textColor = [UIColor blackColor];
     channelTitle.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:channelTitle];
@@ -457,7 +470,7 @@ static const CGFloat kButtonHeightWidthFactor      = 0.083f;
     //初始化SongTitle
     songTitle = [[UILabel alloc]init];
     songTitle.backgroundColor = UIBACKGROUNDCOLOR;
-    songTitle.font = [UIFont systemFontOfSize:25];
+    songTitle.font = [UIFont systemFontOfSize:kBigLabelFont];
     songTitle.textColor = [UIColor blackColor];
     songTitle.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:songTitle];
@@ -465,7 +478,7 @@ static const CGFloat kButtonHeightWidthFactor      = 0.083f;
     //初始化SongArtist
     songArtist = [[UILabel alloc]init];
     songArtist.backgroundColor = UIBACKGROUNDCOLOR;
-    songArtist.font = [UIFont systemFontOfSize:15];
+    songArtist.font = [UIFont systemFontOfSize:kLabelFont];
     songArtist.textColor = [UIColor blackColor];
     songArtist.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:songArtist];
