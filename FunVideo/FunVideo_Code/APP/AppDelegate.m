@@ -161,7 +161,6 @@
 -(NSString *)p_getDeviceMode
 {
     //需要在真机上获取详细的对应表，模拟器上只能看到X86_64
-    NSString * strModel  = [UIDevice currentDevice].model;
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];

@@ -17,6 +17,8 @@
 #import "ChannelInfo.h"
 #import "NSTimer + FunVideo.h"
 #import "Masonry.h"
+#import "MarqueeLabel.h"
+
 
 
 static const CGFloat kPlayerImageTop               = 40;
@@ -83,9 +85,10 @@ static const CGFloat kBigLabelFont = 22;
     
     UILabel *channelTitle;
     
-    UILabel *songTitle;
+    //当歌名过长时，提供跑马灯效果
+    MarqueeLabel *songTitle;
     
-    UILabel *songArtist;
+    MarqueeLabel *songArtist;
     
     UIButton *pauseButton;
     
@@ -140,7 +143,6 @@ static const CGFloat kBigLabelFont = 22;
     [super viewDidAppear:animated];
     
 }
-
 
 
 - (void)didReceiveMemoryWarning {
@@ -256,7 +258,6 @@ static const CGFloat kBigLabelFont = 22;
     channelTitle.text = [NSString stringWithFormat:@"♪%@♪",appDelegate.playerInfo.currentChannel.channelName];
     songArtist.text = appDelegate.playerInfo.currentSong.songArtist;
     songTitle.text = appDelegate.playerInfo.currentSong.songTitle;
-    
     
     //初始化TimeLable的总时间
     totalTimeSeconds = [appDelegate.playerInfo.currentSong.songTimeLong intValue]%60;
@@ -419,13 +420,6 @@ static const CGFloat kBigLabelFont = 22;
 }
 
 
--(void)setFontInPlayerVC:(CGFloat)font
-{
-    
-}
-
-
-
 
 -(void)p_setUpUI
 {
@@ -468,7 +462,13 @@ static const CGFloat kBigLabelFont = 22;
     [self.view addSubview:channelTitle];
     
     //初始化SongTitle
-    songTitle = [[UILabel alloc]init];
+    songTitle = [[MarqueeLabel alloc]init];
+    songTitle.scrollDuration = 15.0;
+    songTitle.fadeLength = 10.0f;
+    songTitle.leadingBuffer = 0.0f;
+    songTitle.trailingBuffer = 0.0f;
+    songTitle.animationCurve = UIViewAnimationCurveEaseIn;
+    songTitle.marqueeType = MLLeftRight;
     songTitle.backgroundColor = UIBACKGROUNDCOLOR;
     songTitle.font = [UIFont systemFontOfSize:kBigLabelFont];
     songTitle.textColor = [UIColor blackColor];
@@ -476,7 +476,12 @@ static const CGFloat kBigLabelFont = 22;
     [self.view addSubview:songTitle];
     
     //初始化SongArtist
-    songArtist = [[UILabel alloc]init];
+    songArtist = [[MarqueeLabel alloc]init];
+    songArtist.scrollDuration = 15.0;
+    songArtist.fadeLength = 10.0f;
+    songArtist.leadingBuffer = 0.0f;
+    songArtist.animationCurve = UIViewAnimationCurveEaseIn;
+    songArtist.marqueeType = MLLeftRight;
     songArtist.backgroundColor = UIBACKGROUNDCOLOR;
     songArtist.font = [UIFont systemFontOfSize:kLabelFont];
     songArtist.textColor = [UIColor blackColor];
@@ -575,6 +580,7 @@ static const CGFloat kBigLabelFont = 22;
     }
     [doubanServer doubanSongOperationWithType:@"s"];
 }
+
 
 
 

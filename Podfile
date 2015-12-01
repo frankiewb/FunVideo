@@ -3,3 +3,4 @@ pod ‘AFNetworking’
 pod ‘SDWebImage’
 pod ‘EGOTableViewPullRefreshAndLoadMore’
 pod ‘Masonry’
+pod ‘MarqueeLabel’
