@@ -463,10 +463,8 @@ static const CGFloat kBigLabelFont = 22;
     
     //初始化SongTitle
     songTitle = [[MarqueeLabel alloc]init];
-    songTitle.scrollDuration = 15.0;
+    songTitle.scrollDuration = 10.0f;
     songTitle.fadeLength = 10.0f;
-    songTitle.leadingBuffer = 0.0f;
-    songTitle.trailingBuffer = 0.0f;
     songTitle.animationCurve = UIViewAnimationCurveEaseIn;
     songTitle.marqueeType = MLLeftRight;
     songTitle.backgroundColor = UIBACKGROUNDCOLOR;
@@ -477,9 +475,8 @@ static const CGFloat kBigLabelFont = 22;
     
     //初始化SongArtist
     songArtist = [[MarqueeLabel alloc]init];
-    songArtist.scrollDuration = 15.0;
+    songArtist.scrollDuration = 10.0;
     songArtist.fadeLength = 10.0f;
-    songArtist.leadingBuffer = 0.0f;
     songArtist.animationCurve = UIViewAnimationCurveEaseIn;
     songArtist.marqueeType = MLLeftRight;
     songArtist.backgroundColor = UIBACKGROUNDCOLOR;

@@ -301,12 +301,17 @@ static const CGFloat kButtonFont = 25;
         bannedLabel.hidden = YES;
         
         //此时设置ChannelGroup第一数组第一个cell的值
-        if([appDelegate.channelGroup.myRedHeartChannelCellArray count] != 0)
+        if([appDelegate.channelGroup.myRedHeartChannelCellArray count] != 0 )
         {
             ChannelInfo * UserChannelInfo = [appDelegate.channelGroup.myRedHeartChannelCellArray objectAtIndex:0];
-            UserChannelInfo.channelName = @"未登录";
-            NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.douban_delegate reloadTableViewCellWithIndexPath:indexpath];
+            if(UserChannelInfo.channelCoverURL)
+            {
+                UserChannelInfo.channelName = @"未登录";
+                UserChannelInfo.channelCoverURL = nil;
+                NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+                [self.douban_delegate reloadTableViewCellWithIndexPath:indexpath];
+            }
+            
         }
         
     }

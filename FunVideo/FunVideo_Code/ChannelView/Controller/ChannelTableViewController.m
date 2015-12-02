@@ -12,7 +12,7 @@
 #import "ChannelInfo.h"
 #import "PlayerInfo.h"
 #import "UIKIT+AFNetworking.h"
-#import "UIImageView+WebCache.h"
+#import "ChannelTableViewCell.h"
 #import "Commons.h"
 
 
@@ -136,34 +136,6 @@ static const CGFloat kHeaderFont = 15;
     return [NSDate date];
 }
 
-
--(void)initTableViewCellWithChannelInfo:(ChannelInfo *)channelInfo TableViewCell:(UITableViewCell *)cell
-{
-    cell.textLabel.text = channelInfo.channelName;
-    cell.detailTextLabel.text = channelInfo.channelIntro;
-    cell.imageView.layer.cornerRadius = cell.imageView.bounds.size.width/2.0;
-    cell.imageView.layer.masksToBounds = YES;
-    cell.contentView.backgroundColor = UIBACKGROUNDCOLOR;
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:channelInfo.channelCoverURL] placeholderImage:[UIImage imageNamed:@"defaultcell"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL)
-    {
-        NSLog(@"LoadPic successful");
-    }];
-}
-
--(void)initUserLabelCellWithChannelInfo:(ChannelInfo *)channelInfo TableViewCell:(UITableViewCell *)cell
-{
-    cell.textLabel.text = channelInfo.channelName;
-    cell.detailTextLabel.text = channelInfo.channelIntro;
-    cell.imageView.layer.cornerRadius = cell.imageView.bounds.size.width/2.0;
-    cell.imageView.layer.masksToBounds = YES;
-    cell.contentView.backgroundColor = UIBACKGROUNDCOLOR;
-    [cell.imageView setImage:[UIImage imageNamed:@"noneuser.png"]];
-    NSLog(@"LoadNonUserPic successful");
-
-}
-
-
-
 -(void)reloadTableView
 {
     [self.tableView reloadData];
@@ -198,26 +170,32 @@ static const CGFloat kHeaderFont = 15;
     NSLog(@"生成单元格(组:%li,行%li)",(long)indexPath.section,indexPath.row);
     ChannelInfo * channelInfoCell = [[channelGroup.totalChannelArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     //此方法调用频繁，cell标示声明为静态变量有利于性能优化，此ID表明的是UItableViewCell的类型，有几个类型声明几个ID
-    static NSString * reuseCellID = @"CellIDKey";
-    //首先根据标识去缓存池取
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseCellID];
-    //如果缓存池没有则重新创建并放到缓存池中去
-    if(!cell)
+    static NSString * reuseCellID = @"ChannelCellIDKey";
+    static NSString * reuseUserCellID = @"UserCellIDKey";
+    ChannelTableViewCell * cell = nil;
+    if(0 == indexPath.section)
     {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseCellID];
-    }
-    //cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    //初始化cell
-    if(indexPath.section == 0 && indexPath.row == 0)
-    {
-        if([channelInfoCell.channelName isEqualToString:@"未登录"])
+        //首先根据标识去缓存池取
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseUserCellID];
+        //如果缓存池没有则重新创建并放到缓存池中去
+        if(!cell)
         {
-            [self initUserLabelCellWithChannelInfo:channelInfoCell TableViewCell:cell];
-            return cell;
+             cell = [[ChannelTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseUserCellID isUserCell:YES];
         }
-        
     }
-    [self initTableViewCellWithChannelInfo:channelInfoCell TableViewCell:cell];
+    else
+    {
+        //首先根据标识去缓存池取
+        cell = [tableView dequeueReusableCellWithIdentifier:reuseCellID];
+        //如果缓存池没有则重新创建并放到缓存池中去
+        if(!cell)
+        {
+            cell = [[ChannelTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseCellID isUserCell:NO];
+        }
+
+    }
+    //初始化cell
+    [cell setChannelCellInfo:channelInfoCell];
     return cell;
 }
 
@@ -256,7 +234,7 @@ static const CGFloat kHeaderFont = 15;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChannelInfo * channelInfo = [[channelGroup.totalChannelArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    if(indexPath.section == 0 && indexPath.row == 0)
+    if(0 == indexPath.section && 0 == indexPath.row)
     {
         //跳转至登录页面
         [_delegate showViewWithIndex:2];
@@ -271,7 +249,7 @@ static const CGFloat kHeaderFont = 15;
     
 }
 
--(void)doubanDelegate_getSongListFail
+-(void)getSongListFail
 {
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"登录失败"
                                                                               message:@"请检查网络或者服务器异常"

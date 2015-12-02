@@ -2,22 +2,25 @@
 //  ChannelTableViewCell.h
 //  FunVideo
 //
-//  Created by frankie on 15/11/6.
+//  Created by frankie on 15/12/2.
 //  Copyright © 2015年 FrankieCompany. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "MarqueeLabel.h"
+@class ChannelInfo;
 
 @interface ChannelTableViewCell : UITableViewCell
 
+@property(nonatomic,strong)UIImageView * channelImageView;
 
-#pragma Channel图片
-@property (nonatomic,strong)UIImageView * ChannelImageView;
+@property(nonatomic,strong)UILabel * channelNameLabel;
 
-#pragma Channel主标题
-@property (nonatomic,strong)UILabel * ChannelMainLabel;
+@property(nonatomic,strong)MarqueeLabel * channelDescriptionLabel;
 
-#pragma Channel详细介绍
-@property (nonatomic,strong)UILabel * ChannelDetailLabel;
+
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier isUserCell:(BOOL)isUserCell;
+
+-(void)setChannelCellInfo:(ChannelInfo *)channelInfo;
 
 @end
