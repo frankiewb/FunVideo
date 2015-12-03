@@ -17,11 +17,15 @@
 
 
 
-static const CGFloat kTITLE_HEIGHT  = 30;
-static const CGFloat kFOOTER_HEIGHT = 1;
-static const CGFloat kROW_HEIGHT    = 60;
-static const CGFloat kORIGIN_X      = 0;
-static const CGFloat kORIGIN_Y      = 0;
+static const CGFloat kTitleHeight               = 30;
+static const CGFloat kFootHeight                = 0.1;
+static const CGFloat kRowHeight                 = 60;
+static const CGFloat kOrignTableView_X          = 0;
+static const CGFloat kOrignTableView_Y          = 50;
+static const CGFloat kOrignTitleLabel_X         = 0;
+static const CGFloat kOrignTitleLabel_Y         = 20;
+static const CGFloat kTitleViewHeight           = 30;
+
 
 //字体设置,以iphone6为基准，向下5s及4，向上6s及6s plus兼容
 static const CGFloat kHeaderFont = 15;
@@ -34,9 +38,16 @@ static const CGFloat kHeaderFont = 15;
     ChannelGroup * channelGroup;
     PlayerInfo * playerInfo;
     
+    //tableview
+    UITableView * channeltableView;
+    
+    //ChannelTitleLabel
+    UILabel * channelTitleLabel;
+    
     //refreshView
     EGORefreshTableHeaderView * _refreshHeaderView;
     BOOL _isReloading;
+    
 }
 
 @end
@@ -56,21 +67,34 @@ static const CGFloat kHeaderFont = 15;
     playerInfo = appDelegate.playerInfo;
     doubanServer.delegate = self;
     assert(channelGroup);
+    self.view.backgroundColor = UISIDEBARCOLOR;
+    
+    //创建频道表头
+    channelTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(kOrignTitleLabel_X, kOrignTitleLabel_Y, FrankieAppWidth, kTitleViewHeight)];
+    channelTitleLabel.backgroundColor = UISIDEBARCOLOR;
+    channelTitleLabel.text = @"频道列表";
+    channelTitleLabel.font = [UIFont boldSystemFontOfSize :kHeaderFont];
+    channelTitleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:channelTitleLabel];
+    
 
     //创建分组样式的UItableView
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(kORIGIN_X, kORIGIN_Y, FrankieAppWidth, FrankieAppHeigth) style:
-                      UITableViewStyleGrouped];
-    self.tableView.separatorColor = UIBUTTONCOLOR;
+    channeltableView =[[UITableView alloc] initWithFrame:CGRectMake(kOrignTableView_X, kOrignTableView_Y, FrankieAppWidth, FrankieAppHeigth) style: UITableViewStyleGrouped];
+    channeltableView.separatorColor = UIBUTTONCOLOR;
+    channeltableView.delegate = self;
+    channeltableView.dataSource = self;
     
     //加载refreshHeaderView
     if(!_refreshHeaderView)
     {
-        _refreshHeaderView = [[EGORefreshTableHeaderView alloc]initWithFrame:CGRectMake(0, 0-self.tableView.bounds.size.height, self.tableView.bounds.size.width, self.tableView.bounds.size.height) arrowImageName:@"blackArrow@2x" textColor:[UIColor blackColor]];
+        _refreshHeaderView = [[EGORefreshTableHeaderView alloc]initWithFrame:CGRectMake(0, 0-channeltableView.bounds.size.height, channeltableView.bounds.size.width, channeltableView.bounds.size.height) arrowImageName:@"blackArrow@2x" textColor:[UIColor blackColor]];
         _refreshHeaderView.delegate = self;
-        [self.tableView addSubview:_refreshHeaderView];
+        [channeltableView addSubview:_refreshHeaderView];
         _isReloading = NO;
         
     }
+    [self.view addSubview:channeltableView];
+    
 
 
 }
@@ -89,11 +113,8 @@ static const CGFloat kHeaderFont = 15;
 {
     //  model should call this when its done loading
     _isReloading = NO;
-    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:channeltableView];
 }
-
-
-
 
 
 #pragma mark UIScrollViewDelegate Methods
@@ -138,12 +159,12 @@ static const CGFloat kHeaderFont = 15;
 
 -(void)reloadTableView
 {
-    [self.tableView reloadData];
+    [channeltableView reloadData];
 }
 
 -(void)reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [channeltableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark -数据源方法
@@ -199,7 +220,6 @@ static const CGFloat kHeaderFont = 15;
     return cell;
 }
 
-
 #pragma mark 返回每组头标题名称
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
@@ -210,33 +230,35 @@ static const CGFloat kHeaderFont = 15;
 #pragma 设置分组标题内容高度
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section
 {
-    return kTITLE_HEIGHT;
+    return kTitleHeight;
 }
 #pragma 设置分组标题高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return kTITLE_HEIGHT;
+    return kTitleHeight;
 }
 
 #pragma 设置尾部说明高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return kFOOTER_HEIGHT;
+    return kFootHeight;
 }
 
 #pragma 设置每行高度
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return kROW_HEIGHT;
+    return kRowHeight;
 }
 
 #pragma 点击行
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChannelInfo * channelInfo = [[channelGroup.totalChannelArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if(0 == indexPath.section && 0 == indexPath.row)
     {
         //跳转至登录页面
+       ;
         [_delegate showViewWithIndex:2];
     }
     else
@@ -260,14 +282,19 @@ static const CGFloat kHeaderFont = 15;
 
 }
 
+
 -(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+
 {
     UITableViewHeaderFooterView * HeaderView = (UITableViewHeaderFooterView *)view;
     [HeaderView.textLabel setTextColor:[UIColor whiteColor]];
     HeaderView.textLabel.font = [UIFont boldSystemFontOfSize:kHeaderFont];
     [HeaderView.contentView setBackgroundColor:UIBUTTONCOLOR];
-    
+
 }
+
+
+
 
 
 

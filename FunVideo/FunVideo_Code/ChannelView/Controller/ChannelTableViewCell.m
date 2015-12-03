@@ -150,7 +150,6 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
             _channelImageView.contentMode = UIViewContentModeScaleAspectFit;
             if(!error)
             {
-                NSLog([NSString stringWithFormat:@"Width :%l, Height :%l",image.size.width,image.size.height],nil);
                 NSLog(@"LoadPic successful");
             }
             else
