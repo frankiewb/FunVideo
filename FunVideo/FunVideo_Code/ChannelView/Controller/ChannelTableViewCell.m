@@ -75,7 +75,7 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
     {
         make.left.equalTo(self.contentView.mas_left).offset(kChannelImageViewLeft);
         make.centerY.mas_equalTo(self.contentView.mas_centerY);
-        make.width.mas_equalTo(@45);
+        make.width.and.height.mas_equalTo(@45);
     }];
     
     [_channelNameLabel mas_makeConstraints:^(MASConstraintMaker *make)
@@ -121,7 +121,7 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
      {
          make.left.equalTo(self.contentView.mas_left).offset(kChannelImageViewLeft);
          make.centerY.mas_equalTo(self.contentView.mas_centerY);
-         make.width.mas_equalTo(@45);
+         make.width.and.height.mas_equalTo(@45);
      }];
     
     [_channelNameLabel mas_makeConstraints:^(MASConstraintMaker *make)
@@ -135,8 +135,6 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
 
 -(void)setChannelCellInfo:(ChannelInfo *)channelInfo
 {
-    
-    
     //set channelImageView
     if(channelInfo.channelCoverURL)
     {
@@ -147,7 +145,8 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
             
             _channelImageView.layer.cornerRadius = _channelImageView.bounds.size.width/2.0;
             _channelImageView.layer.masksToBounds = YES;
-            _channelImageView.contentMode = UIViewContentModeScaleAspectFit;
+            _channelImageView.contentMode = UIViewContentModeScaleAspectFill;
+            //_channelImageView.clipsToBounds = YES;
             if(!error)
             {
                 NSLog(@"LoadPic successful");
@@ -160,7 +159,9 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
     }
     else
     {
+
         [_channelImageView setImage:[UIImage imageNamed:@"noneuser.png"]];
+
     }
     
     
@@ -172,9 +173,15 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
     {
         _channelDescriptionLabel.text = channelInfo.channelIntro;
     }
-
-    
     
 }
+
+
+
+
+
+
+
+
 
 @end
