@@ -79,7 +79,7 @@ static const CGFloat kHeaderFont = 15;
     
 
     //创建分组样式的UItableView
-    channeltableView =[[UITableView alloc] initWithFrame:CGRectMake(kOrignTableView_X, kOrignTableView_Y, FrankieAppWidth, FrankieAppHeigth) style: UITableViewStyleGrouped];
+    channeltableView =[[UITableView alloc] initWithFrame:CGRectMake(kOrignTableView_X, kOrignTableView_Y, FrankieAppWidth, FrankieAppHeigth - kOrignTitleLabel_Y - kTitleHeight) style: UITableViewStyleGrouped];
     channeltableView.separatorColor = UIBUTTONCOLOR;
     channeltableView.delegate = self;
     channeltableView.dataSource = self;
