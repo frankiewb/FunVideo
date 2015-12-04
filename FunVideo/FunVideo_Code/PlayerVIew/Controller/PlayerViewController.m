@@ -251,6 +251,10 @@ static const CGFloat kBigLabelFont = 22;
     //[_PlayerImage setImageWithURL:imageURL
                  //placeholderImage:[UIImage imageNamed:playerImageName]];
     //采用SDIMageCache技术缓存
+    
+    
+    
+    //内存膨胀的元凶！！decodeImage函数造成了大量的内存使用！
     [playerImage sd_setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"playerImageName"]];
     NSLog(@"%@",playerImage.image);
     
