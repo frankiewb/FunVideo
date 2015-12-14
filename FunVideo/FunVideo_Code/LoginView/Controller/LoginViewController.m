@@ -41,15 +41,15 @@ static const CGFloat kBigLabelFont = 30;
 @interface LoginViewController()
 {
     
-    DoubanServer * doubanServer;
-    LoginInfo * loginInfo;
-    UILabel * loginViewTitle;
-    UITextField * loginNameTextField;
-    UITextField * loginPassWordTextField;
-    UITextField * captchaImageTextField;
-    UIImageView * captchaImageView;
-    UIButton * loginButton;
-    UIButton * cancelButton;
+    DoubanServer *doubanServer;
+    LoginInfo *loginInfo;
+    UILabel *loginViewTitle;
+    UITextField *loginNameTextField;
+    UITextField *loginPassWordTextField;
+    UITextField *captchaImageTextField;
+    UIImageView *captchaImageView;
+    UIButton *loginButton;
+    UIButton *cancelButton;
     
 }
 
@@ -305,10 +305,10 @@ static const CGFloat kBigLabelFont = 30;
 - (void)loginFail:(NSString *)errorMessege
 {
     //采用IOS8提供的UIAlerController
-    UIAlertController * alerController = [UIAlertController alertControllerWithTitle:@"登录失败"
+    UIAlertController *alerController = [UIAlertController alertControllerWithTitle:@"登录失败"
                                                                              message:[NSString stringWithFormat:@"失败原因：%@",errorMessege]
                                                                       preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"了解" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"了解" style:UIAlertActionStyleCancel handler:nil];
     [alerController addAction:cancelAction];
     [self presentViewController:alerController animated:YES completion:nil];
 

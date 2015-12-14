@@ -14,14 +14,14 @@
 
 
 @property(nonatomic)bool isEmpty;
-@property(nonatomic,copy)NSMutableArray * myRedHeartChannelCellArray;
-@property(nonatomic,copy)NSMutableArray * recomandChannelCellArray;;
-@property(nonatomic,copy)NSMutableArray * laguageChannelCellArray;
-@property(nonatomic,copy)NSMutableArray * songStyleChannelCellArray;
-@property(nonatomic,copy)NSMutableArray * feelingChannelCellArray;
-@property(nonatomic,copy)NSMutableArray * totalChannelArray;
+@property(nonatomic,copy)NSMutableArray *myRedHeartChannelCellArray;
+@property(nonatomic,copy)NSMutableArray *recomandChannelCellArray;;
+@property(nonatomic,copy)NSMutableArray *laguageChannelCellArray;
+@property(nonatomic,copy)NSMutableArray *songStyleChannelCellArray;
+@property(nonatomic,copy)NSMutableArray *feelingChannelCellArray;
+@property(nonatomic,copy)NSMutableArray *totalChannelArray;
 //存放所有CHannel分组Title
-@property(nonatomic,copy)NSMutableArray * channelGroupTitleArray;
+@property(nonatomic,copy)NSMutableArray *channelGroupTitleArray;
 
 
 - (instancetype)init;

@@ -33,19 +33,19 @@ static const CGFloat kHeaderFont = 15;
 
 @interface ChannelTableViewController()
 {
-    DoubanServer * doubanServer;
-    AppDelegate * appDelegate;
-    ChannelGroup * channelGroup;
-    PlayerInfo * playerInfo;
+    DoubanServer *doubanServer;
+    AppDelegate *appDelegate;
+    ChannelGroup *channelGroup;
+    PlayerInfo *playerInfo;
     
     //tableview
-    UITableView * channeltableView;
+    UITableView *channeltableView;
     
     //ChannelTitleLabel
-    UILabel * channelTitleLabel;
+    UILabel *channelTitleLabel;
     
     //refreshView
-    EGORefreshTableHeaderView * _refreshHeaderView;
+    EGORefreshTableHeaderView *_refreshHeaderView;
     BOOL _isReloading;
     
 }
@@ -286,7 +286,7 @@ static const CGFloat kHeaderFont = 15;
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 
 {
-    UITableViewHeaderFooterView * HeaderView = (UITableViewHeaderFooterView *)view;
+    UITableViewHeaderFooterView *HeaderView = (UITableViewHeaderFooterView *)view;
     [HeaderView.textLabel setTextColor:[UIColor whiteColor]];
     HeaderView.textLabel.font = [UIFont boldSystemFontOfSize:kHeaderFont];
     [HeaderView.contentView setBackgroundColor:UIBUTTONCOLOR];

@@ -10,8 +10,8 @@
 
 @interface CaptchaImageInfo : NSObject
 
-@property(nonatomic,copy) NSString * captchaID;
+@property(nonatomic,copy) NSString *captchaID;
 
-@property(nonatomic,copy) NSString * capthaImgURL;
+@property(nonatomic,copy) NSString *capthaImgURL;
 
 @end

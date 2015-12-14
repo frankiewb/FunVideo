@@ -50,10 +50,10 @@ static const CGFloat kBigLabelFont = 22;
     NSMutableString *currentTimeString;
     int totalTImeMinutes;
     int totalTimeSeconds;
-    NSMutableString * totalTImeString;
-    NSMutableString * timerLabelString;
-    ChannelGroup * channelGroup;
-    DoubanServer * doubanServer;
+    NSMutableString *totalTImeString;
+    NSMutableString *timerLabelString;
+    ChannelGroup *channelGroup;
+    DoubanServer *doubanServer;
 
     
     UIImageView *playerImage;
@@ -178,10 +178,10 @@ static const CGFloat kBigLabelFont = 22;
 
 - (void)getSongListFail
 {
-    UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"获取音乐失败"
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"获取音乐失败"
                                                                               message:@"请检查网络或者服务器异常"
                                                                        preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -217,7 +217,7 @@ static const CGFloat kBigLabelFont = 22;
     
     //重置旋转图片角度
     playerImage.image = nil;
-    NSURL * imageURL = [NSURL URLWithString:appDelegate.playerInfo.currentSong.songPictureUrl];
+    NSURL *imageURL = [NSURL URLWithString:appDelegate.playerInfo.currentSong.songPictureUrl];
     //[_PlayerImage setImageWithURL:imageURL
                  //placeholderImage:[UIImage imageNamed:playerImageName]];
     //采用SDIMageCache技术缓存
@@ -272,10 +272,10 @@ static const CGFloat kBigLabelFont = 22;
     {
         if(appDelegate.playerInfo.currentSong.songTitle != nil)
         {
-            NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
             [dict setObject:appDelegate.playerInfo.currentSong.songTitle forKey:MPMediaItemPropertyTitle];
             [dict setObject:appDelegate.playerInfo.currentSong.songArtist forKey:MPMediaItemPropertyArtist];
-            UIImage * playerViewImage = playerImage.image;
+            UIImage *playerViewImage = playerImage.image;
             if(playerViewImage != nil)
             {
                 [dict setObject:[[MPMediaItemArtwork alloc]initWithImage:playerViewImage]forKey:MPMediaItemPropertyArtwork];

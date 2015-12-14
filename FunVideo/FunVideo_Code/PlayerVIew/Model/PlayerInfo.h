@@ -12,8 +12,8 @@
 
 @interface PlayerInfo : NSObject<NSCoding>
 
-@property(nonatomic,strong) ChannelInfo * currentChannel;
-@property(nonatomic,strong) SongInfo * currentSong;
+@property(nonatomic,strong) ChannelInfo *currentChannel;
+@property(nonatomic,strong) SongInfo *currentSong;
 
 - (instancetype)initPlayerInfo;
 

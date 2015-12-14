@@ -29,23 +29,23 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
     //表示侧边栏是否展开
     BOOL SidebarIsOpen;
     //PlayerView
-    PlayerViewController * playerVC;
+    PlayerViewController *playerVC;
     //LoginView
-    LoginViewController * loginVC;
+    LoginViewController *loginVC;
     //UserView
-    UserViewController * userVC;
+    UserViewController *userVC;
     //ChannelView
-    ChannelTableViewController * channelVC;
+    ChannelTableViewController *channelVC;
     //doubanServer
-    DoubanServer * doubanServer;
+    DoubanServer *doubanServer;
     //SideBar上四个按钮容器
-    NSMutableArray * buttonList;
+    NSMutableArray *buttonList;
     //表明Sidebar是否打开
     BOOL isSideBarOpen;
     //存放4个导航按钮的View
-    UIView * backgroundMenuView;    
+    UIView *backgroundMenuView;
     //展开存放导航按钮View的Button
-    UIButton * mainViewButton;
+    UIButton *mainViewButton;
     
 }
 
@@ -63,7 +63,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
     doubanServer.delegate = self;
     [self p_setUpUI];
     [self p_setUpAutoLayout];
-    UIStoryboard * mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     playerVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"playerVC"];
     userVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"userVC"];
     channelVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"channelVC"];
@@ -120,7 +120,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 {
     self.tabBar.hidden = YES;
     //初始化Image队列
-    NSArray * imageList = @[[UIImage imageNamed:@"menuPlayer"],
+    NSArray *imageList = @[[UIImage imageNamed:@"menuPlayer"],
                             [UIImage imageNamed:@"menuChannel"],
                             [UIImage imageNamed:@"menuLogin"],
                             [UIImage imageNamed:@"menuClose.png"]];
@@ -138,7 +138,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
     [mainViewButton setBackgroundImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
     [mainViewButton addTarget:self action:@selector(p_showMenu) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mainViewButton];
-    UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
                                                                                 action:@selector(p_dismissMenu)];
     singleTap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:singleTap];
@@ -148,9 +148,9 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
     
     //生成4个button
     int buttonIndexTag = 0;
-    for(UIImage * image in [imageList copy])
+    for(UIImage *image in [imageList copy])
     {
-        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setBackgroundImage:image forState:UIControlStateNormal];
         button.tag = buttonIndexTag;
         button.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 70, 0);
@@ -231,7 +231,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
         backgroundMenuView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, 0);
     }];
     dispatch_async(dispatch_get_main_queue(), ^{
-        for (UIButton * button in buttonList)
+        for (UIButton *button in buttonList)
         {
             [UIView animateWithDuration:0.4 animations:^{
                
@@ -263,7 +263,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
         }];
     });
     
-    for(UIButton * button in buttonList)
+    for(UIButton *button in buttonList)
     {
         [NSThread sleepForTimeInterval:0.02f];
         dispatch_async(dispatch_get_main_queue(), ^{

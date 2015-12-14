@@ -203,7 +203,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          _captchaImageInfo.capthaImgURL = [NSString stringWithFormat:CAPTCHAIMGURLFORMATSTRING,tempCaptchaID];
          [_delegate setCaptchaImageWithURL:_captchaImageInfo.capthaImgURL];
      }
-                     failure:^(AFHTTPRequestOperation * operation, NSError *error)
+                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"LOADCAPTCHAIMAGE_ERROR:%@",error);
      }];
@@ -242,14 +242,14 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          else// login fail
          {
 
-             NSString * errorMessage = [NSString stringWithFormat:@"Error : %@",[tempLoginInfoDictionary valueForKey:@"err_msg"]];
+             NSString *errorMessage = [NSString stringWithFormat:@"Error : %@",[tempLoginInfoDictionary valueForKey:@"err_msg"]];
              [_delegate loginFail:errorMessage];
              [self doubanLoadCaptchaImage];
          }
          
      }
      
-                      failure:^(AFHTTPRequestOperation * operation, NSError * error)
+                      failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"LOGIN_ERROR:%@",error);
      }];
@@ -271,7 +271,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 
 - (void)doubanLogout
 {
-    NSDictionary * logoutParameters = @{@"source": @"radio",
+    NSDictionary *logoutParameters = @{@"source": @"radio",
                                         @"ck":userInfo.cookies,
                                         @"no_login": @"y"};
     
@@ -287,13 +287,13 @@ static const NSInteger WORKSTUDY_MHz           = 153;
     
     [doubanServerManager GET:LOGOUTURLSTRING
                   parameters:logoutParameters
-                     success:^(AFHTTPRequestOperation * operation, id responseObject)
+                     success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
          appDelegate.userInfo.cookies = nil;
          [_delegate logoutSuccessful];
      }
-                     failure:^(AFHTTPRequestOperation * operation, NSError * error)
+                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"LOGOUT_ERROR:%@",error);
      }];
@@ -320,15 +320,15 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 - (void)doubanSongOperationWithType:(NSString *)type
 {
     //组织服务器请求URL
-    NSString * PlayListUrl = [NSString stringWithFormat:PLAYERURLFORMATSTRING,type,appDelegate.playerInfo.currentSong.songId,appDelegate.VideoPlayer.currentPlaybackTime, appDelegate.playerInfo.currentChannel.channelID];
+    NSString *playListUrl = [NSString stringWithFormat:PLAYERURLFORMATSTRING,type,appDelegate.playerInfo.currentSong.songId,appDelegate.VideoPlayer.currentPlaybackTime, appDelegate.playerInfo.currentChannel.channelID];
     
     doubanServerManager.responseSerializer = [AFJSONResponseSerializer serializer];
-    [doubanServerManager GET:PlayListUrl
+    [doubanServerManager GET:playListUrl
                   parameters:nil
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         NSDictionary * songDictionary = responseObject;
-         for(NSDictionary * song in songDictionary[@"song"])
+         NSDictionary *songDictionary = responseObject;
+         for(NSDictionary *song in songDictionary[@"song"])
          {
             //subtype = T 为广告标示位，如果为T，则不加入播放列表（去广告）
             if([song[@"subtype"]isEqualToString:@"T"])
@@ -351,7 +351,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
         }
          
      }
-                     failure:^(AFHTTPRequestOperation * operation, NSError *error)
+                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          [_delegate getSongListFail];
          NSLog(@"DOUBANSONGOPERATION_ERROR:%@",error);

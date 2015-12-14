@@ -10,10 +10,10 @@
 
 @interface LoginInfo : NSObject
 
-@property(nonatomic,copy) NSString * loginName;
+@property(nonatomic,copy) NSString *loginName;
 
-@property(nonatomic,copy) NSString * passWord;
+@property(nonatomic,copy) NSString *passWord;
 
-@property(nonatomic,copy) NSString * capthchaInputWord;
+@property(nonatomic,copy) NSString *capthchaInputWord;
 
 @end

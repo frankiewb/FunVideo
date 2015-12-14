@@ -11,11 +11,11 @@
 @interface ChannelInfo : NSObject<NSCoding>
 
 
-@property (nonatomic,copy) NSString * channelCoverURL;
-@property (nonatomic,copy) NSString * channelID;
-@property (nonatomic,copy) NSString * channelName;
-@property (nonatomic,copy) NSString * channelIntro;
-@property (nonatomic,copy) NSString * channelBannerURL;
+@property (nonatomic,copy) NSString *channelCoverURL;
+@property (nonatomic,copy) NSString *channelID;
+@property (nonatomic,copy) NSString *channelName;
+@property (nonatomic,copy) NSString *channelIntro;
+@property (nonatomic,copy) NSString *channelBannerURL;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 - (instancetype)initWithChannelInfo:(ChannelInfo *)channelInfo;

@@ -45,21 +45,14 @@ static const CGFloat kButtonFont = 25;
 
 @interface UserViewController()
 {
-    DoubanServer * doubanServer;
-    
-    AppDelegate * appDelegate;
-    
-    UserInfo * userInfo;
-    
-    UIImageView * userViewImage;
-    
-    UILabel * userNameLabel;
-    
-    UILabel * playedLabel;
-    
-    UILabel * bannedLabel;
-    
-    UIButton * logoutButton;
+    DoubanServer *doubanServer;
+    AppDelegate *appDelegate;
+    UserInfo *userInfo;
+    UIImageView *userViewImage;
+    UILabel *userNameLabel;
+    UILabel *playedLabel;
+    UILabel *bannedLabel;
+    UIButton *logoutButton;
 }
 
 
@@ -220,7 +213,7 @@ static const CGFloat kButtonFont = 25;
 - (void)p_loginImageTapped
 {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    LoginViewController * loginVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"loginVC"];
+    LoginViewController *loginVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"loginVC"];
     
     
     //!!!!重要！
@@ -236,13 +229,13 @@ static const CGFloat kButtonFont = 25;
 
     //采用ios8提出的UIAlertController替换UIAlertView（去处Warning）
     
-    UIAlertController * alerController = [UIAlertController alertControllerWithTitle:@"登出"
+    UIAlertController *alerController = [UIAlertController alertControllerWithTitle:@"登出"
                                                                              message:@"确定要登出帐号吗？"
                                                                       preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消"
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                             style:UIAlertActionStyleCancel
                                                           handler:nil];
-    UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"确定"
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定"
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction * action)
                                 {
@@ -282,10 +275,10 @@ static const CGFloat kButtonFont = 25;
         //此时设置ChannelGroup第一数组第一个cell的值
         if([appDelegate.channelGroup.myRedHeartChannelCellArray count] != 0)
         {
-            ChannelInfo * userChannelInfo = [appDelegate.channelGroup.myRedHeartChannelCellArray objectAtIndex:0];
+            ChannelInfo *userChannelInfo = [appDelegate.channelGroup.myRedHeartChannelCellArray objectAtIndex:0];
             userChannelInfo.channelName = userInfo.userName;
             userChannelInfo.channelCoverURL = [NSString stringWithFormat:USERIMAGEURL,userInfo.userID];
-            NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+            NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
             [self.douban_delegate reloadTableViewCellWithIndexPath:indexpath];
         }
     }
@@ -303,12 +296,12 @@ static const CGFloat kButtonFont = 25;
         //此时设置ChannelGroup第一数组第一个cell的值
         if([appDelegate.channelGroup.myRedHeartChannelCellArray count] != 0 )
         {
-            ChannelInfo * UserChannelInfo = [appDelegate.channelGroup.myRedHeartChannelCellArray objectAtIndex:0];
+            ChannelInfo *UserChannelInfo = [appDelegate.channelGroup.myRedHeartChannelCellArray objectAtIndex:0];
             if(UserChannelInfo.channelCoverURL)
             {
                 UserChannelInfo.channelName = @"未登录";
                 UserChannelInfo.channelCoverURL = nil;
-                NSIndexPath * indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+                NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
                 [self.douban_delegate reloadTableViewCellWithIndexPath:indexpath];
             }
             

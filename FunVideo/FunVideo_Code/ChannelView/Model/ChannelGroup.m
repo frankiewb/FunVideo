@@ -27,19 +27,19 @@
         _channelGroupTitleArray = [[NSMutableArray alloc]init];
         
         [_totalChannelArray addObject:_myRedHeartChannelCellArray];
-        NSString * redHeartChannelTitle = @"我的红心兆赫";
+        NSString *redHeartChannelTitle = @"我的红心兆赫";
         [_channelGroupTitleArray addObject:redHeartChannelTitle];
         [_totalChannelArray addObject:_recomandChannelCellArray];
-        NSString * reconmandChannelTitle = @"推荐兆赫";
+        NSString *reconmandChannelTitle = @"推荐兆赫";
         [_channelGroupTitleArray addObject:reconmandChannelTitle];
         [_totalChannelArray addObject:_laguageChannelCellArray];
-        NSString * languageChannelCellTitle = @"语言年代兆赫";
+        NSString *languageChannelCellTitle = @"语言年代兆赫";
         [_channelGroupTitleArray addObject:languageChannelCellTitle];
         [_totalChannelArray addObject:_songStyleChannelCellArray];
-        NSString * songStyleChannelCellTitle = @"风格流派兆赫";
+        NSString *songStyleChannelCellTitle = @"风格流派兆赫";
         [_channelGroupTitleArray addObject:songStyleChannelCellTitle];
         [_totalChannelArray addObject:_feelingChannelCellArray];
-        NSString * feelingChannelCellTitle = @"心情场景兆赫";
+        NSString *feelingChannelCellTitle = @"心情场景兆赫";
         [_channelGroupTitleArray addObject:feelingChannelCellTitle];
         _isEmpty = YES;
     
@@ -100,7 +100,7 @@
 {
     if([self init])
     {
-        NSNumber * isEmpty = [aDecoder decodeObjectForKey:@"isEmpty"];
+        NSNumber *isEmpty = [aDecoder decodeObjectForKey:@"isEmpty"];
         _isEmpty = [isEmpty intValue];
         
         _myRedHeartChannelCellArray = [aDecoder decodeObjectForKey:@"redHeart"];
