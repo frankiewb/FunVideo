@@ -256,7 +256,7 @@ static const CGFloat kButtonFont = 25;
 
 - (void)setUserInfo
 {
-    if(doubanServer == nil)
+    if(!doubanServer)
     {
         doubanServer = [doubanServer initDoubanServer];
     }

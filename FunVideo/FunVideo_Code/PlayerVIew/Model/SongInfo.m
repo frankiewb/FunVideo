@@ -13,7 +13,7 @@
 //默认init直接赋值为空
 - (instancetype)initSongInfoWithDictionary:(NSDictionary *)dic
 {
-    if(self             = [super init])
+    if(self = [super init])
     {
     self.songArtist     = dic[@"artist"];
     self.songTitle      = dic[@"title"];

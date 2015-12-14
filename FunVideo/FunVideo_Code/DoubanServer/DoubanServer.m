@@ -86,8 +86,10 @@ static const NSInteger WORKSTUDY_MHz           = 153;
      {
          NSDictionary *tempChannelsDictionary = responseObject;
          NSDictionary *channelsDictionary = tempChannelsDictionary[@"data"];
-                  
-         if([channelURLString isEqualToString:[NSString stringWithFormat:@"%@%@",LOGINCHANNELURL,appDelegate.userInfo.userID]])
+         BOOL isLoginChannelURL = [channelURLString isEqualToString:
+           [NSString stringWithFormat:@"%@%@",LOGINCHANNELURL,appDelegate.userInfo.userID]];
+         BOOL isTotalChannelURL = [channelURLString isEqualToString:TOTALCHANNELURL];
+         if(isLoginChannelURL)
          {
              [appDelegate.channelGroup removeMyChannelObject];
              //先插入用户labelcell
@@ -107,7 +109,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
              channelGroup.isEmpty = NO;
 
          }
-         else if([channelURLString isEqualToString:TOTALCHANNELURL])
+         else if(isTotalChannelURL)
          {
              [appDelegate.channelGroup removeCommonChannelGroupObject];
              for(NSDictionary *channelCellInfo in channelsDictionary[@"channels"])
@@ -242,7 +244,8 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          else// login fail
          {
 
-             NSString *errorMessage = [NSString stringWithFormat:@"Error : %@",[tempLoginInfoDictionary valueForKey:@"err_msg"]];
+             NSString *errorMessage = [NSString stringWithFormat:@"Error : %@",
+               [tempLoginInfoDictionary valueForKey:@"err_msg"]];
              [_delegate loginFail:errorMessage];
              [self doubanLoadCaptchaImage];
          }
@@ -279,11 +282,6 @@ static const NSInteger WORKSTUDY_MHz           = 153;
     
     //注意这里！！
     doubanServerManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    
-    
-    
-    
     
     [doubanServerManager GET:LOGOUTURLSTRING
                   parameters:logoutParameters

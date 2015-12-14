@@ -194,7 +194,7 @@ static const CGFloat kHeaderFont = 15;
     static NSString * reuseCellID = @"ChannelCellIDKey";
     static NSString * reuseUserCellID = @"UserCellIDKey";
     ChannelTableViewCell * cell = nil;
-    if(0 == indexPath.section)
+    if(indexPath.section == 0)
     {
         //首先根据标识去缓存池取
         cell = [tableView dequeueReusableCellWithIdentifier:reuseUserCellID];
@@ -255,7 +255,7 @@ static const CGFloat kHeaderFont = 15;
 {
     ChannelInfo * channelInfo = [[channelGroup.totalChannelArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if(0 == indexPath.section && 0 == indexPath.row)
+    if(indexPath.section == 0 && indexPath.row == 0)
     {
         //跳转至登录页面
        ;
