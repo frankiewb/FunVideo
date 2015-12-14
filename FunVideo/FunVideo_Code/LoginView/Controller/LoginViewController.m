@@ -67,11 +67,11 @@ static const CGFloat kBigLabelFont = 30;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self p_setupUI];
-    [self p_setUpAutoLayOut];
+    [self setupUI];
+    [self setUpAutoLayOut];
 }
 
-- (void)p_setupUI
+- (void)setupUI
 {
     self.view.backgroundColor =  UIBACKGROUNDCOLOR;
     doubanServer = [[DoubanServer alloc]initDoubanServer];
@@ -197,7 +197,7 @@ static const CGFloat kBigLabelFont = 30;
     [loginButton.titleLabel setFont:[UIFont boldSystemFontOfSize:kLabelFont]];
     [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     loginButton.backgroundColor = UIBUTTONCOLOR;
-    [loginButton addTarget:self action:@selector(p_login) forControlEvents:UIControlEventTouchUpInside];
+    [loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:loginButton];
     
     /*登出Button*/
@@ -206,11 +206,11 @@ static const CGFloat kBigLabelFont = 30;
     [cancelButton setTitle:@"取 消" forState:UIControlStateNormal];
     [cancelButton.titleLabel setFont:[UIFont boldSystemFontOfSize:kLabelFont]];
     [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [cancelButton addTarget:self action:@selector(p_cancel) forControlEvents:UIControlEventTouchUpInside];
+    [cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelButton];
     
     //添加验证码点击更新事件
-    UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(p_loadCaptchaImage)];
+    UITapGestureRecognizer * singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(loadCaptchaImage)];
     [singleTap setNumberOfTapsRequired:1];
     [captchaImageView addGestureRecognizer:singleTap];
     
@@ -218,7 +218,7 @@ static const CGFloat kBigLabelFont = 30;
 
 
 
-- (void)p_setUpAutoLayOut
+- (void)setUpAutoLayOut
 {
     //loginViewTitle
     [loginViewTitle mas_makeConstraints:^(MASConstraintMaker *make)
@@ -292,7 +292,7 @@ static const CGFloat kBigLabelFont = 30;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self p_loadCaptchaImage];
+    [self loadCaptchaImage];
 }
 
 - (void)loginSuccessful
@@ -322,14 +322,14 @@ static const CGFloat kBigLabelFont = 30;
 
 
 
-- (void)p_loadCaptchaImage
+- (void)loadCaptchaImage
 {
     [doubanServer doubanLoadCaptchaImage];
 }
 
 
 
-- (void)p_login
+- (void)login
 {
     loginInfo = [[LoginInfo alloc]init];
     loginInfo.loginName = loginNameTextField.text;
@@ -339,7 +339,7 @@ static const CGFloat kBigLabelFont = 30;
 }
 
 
-- (void)p_cancel
+- (void)cancel
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

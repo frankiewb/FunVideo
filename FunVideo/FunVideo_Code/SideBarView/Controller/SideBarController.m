@@ -61,8 +61,8 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
     [super viewDidLoad];
     doubanServer = [[DoubanServer alloc]init];
     doubanServer.delegate = self;
-    [self p_setUpUI];
-    [self p_setUpAutoLayout];
+    [self setUpUI];
+    [self setUpAutoLayout];
     UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     playerVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"playerVC"];
     userVC = [mainStoryBoard instantiateViewControllerWithIdentifier:@"userVC"];
@@ -76,7 +76,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 
 
 
-- (void)p_setUpAutoLayout
+- (void)setUpAutoLayout
 {
     //设置BackgroundMenuView
     [backgroundMenuView mas_makeConstraints:^(MASConstraintMaker *make)
@@ -116,7 +116,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 
 
 
-- (void)p_setUpUI
+- (void)setUpUI
 {
     self.tabBar.hidden = YES;
     //初始化Image队列
@@ -136,10 +136,10 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
     //设置MainViewButton
     mainViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [mainViewButton setBackgroundImage:[UIImage imageNamed:@"menuIcon"] forState:UIControlStateNormal];
-    [mainViewButton addTarget:self action:@selector(p_showMenu) forControlEvents:UIControlEventTouchUpInside];
+    [mainViewButton addTarget:self action:@selector(showMenu) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:mainViewButton];
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
-                                                                                action:@selector(p_dismissMenu)];
+                                                                                action:@selector(dismissMenu)];
     singleTap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:singleTap];
     
@@ -154,7 +154,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
         [button setBackgroundImage:image forState:UIControlStateNormal];
         button.tag = buttonIndexTag;
         button.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 70, 0);
-        [button addTarget:self action:@selector(p_onMenuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(onMenuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [backgroundMenuView addSubview:button];
         [buttonList addObject:button];
         buttonIndexTag++;
@@ -183,17 +183,17 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 }
 
 
-- (void)p_onMenuButtonClick:(UIButton *)button
+- (void)onMenuButtonClick:(UIButton *)button
 {
     NSInteger index = button.tag;
     [self showViewWithIndex:index];
-    [self p_dismissMenuWithSelection:button];
+    [self dismissMenuWithSelection:button];
 }
 
 
 
 //以下为SideBar的推出动作
-- (void)p_dismissMenuWithSelection:(UIButton *)button
+- (void)dismissMenuWithSelection:(UIButton *)button
 {
   [UIView animateWithDuration:0.3
                         delay:0.0
@@ -203,26 +203,26 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
                    animations:^{
                        button.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.2, 1.2);
                    }completion:^(BOOL finished){
-                       [self p_dismissMenu];
+                       [self dismissMenu];
                    }];
 }
 
 
 
 
-- (void)p_dismissMenu
+- (void)dismissMenu
 {
     if(isSideBarOpen)
     {
         isSideBarOpen = false;
         //[self performSelectorInBackground:@selector(p_performDismissAnimation) withObject:nil];
         //涉及ui采用主线程异步gcd
-        dispatch_async(dispatch_get_main_queue(), ^(void){[self p_performDismissAnimation];});
+        dispatch_async(dispatch_get_main_queue(), ^(void){[self performDismissAnimation];});
     }
 }
 
 
-- (void)p_performDismissAnimation
+- (void)performDismissAnimation
 {
     [UIView animateWithDuration:0.4 animations:^{
        
@@ -242,17 +242,17 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 }
 
 //以下为SideBar的推入动作
-- (void)p_showMenu
+- (void)showMenu
 {
     if(!isSideBarOpen)
     {
         isSideBarOpen = true;
-        [self performSelectorInBackground:@selector(p_performOpenAnimation) withObject:nil];
+        [self performSelectorInBackground:@selector(performOpenAnimation) withObject:nil];
     }
 }
 
 
-- (void)p_performOpenAnimation
+- (void)performOpenAnimation
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.4 animations:^{

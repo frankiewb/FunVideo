@@ -80,11 +80,11 @@ static const CGFloat kBigLabelFont = 22;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     appDelegate =[[UIApplication sharedApplication]delegate];
-    [self p_setUpUI];
-    [self p_setAutoLayOut];
-    [self p_setupPlayerInfo];
-    [self p_addNotification];
-    [self p_setupGesture];
+    [self setUpUI];
+    [self setAutoLayOut];
+    [self setupPlayerInfo];
+    [self addNotification];
+    [self setupGesture];
     
 //解决NSTimer保留环问题
 //    timer = [NSTimer scheduledTimerWithTimeInterval:0.02
@@ -96,9 +96,9 @@ static const CGFloat kBigLabelFont = 22;
     
     __weak PlayerViewController * weakSelf = self;
      timer = [NSTimer FunVideo_scheduledTimerWithTimeInterval:0.02
-                                                        block:^{[weakSelf p_updateProgress];}
+                                                        block:^{[weakSelf updateProgress];}
                                                       repeats:YES];
-    [self p_flashSongInfo];
+    [self flashSongInfo];
 }
 
 
@@ -130,7 +130,7 @@ static const CGFloat kBigLabelFont = 22;
 }
 */
 
-- (void)p_updateProgress
+- (void)updateProgress
 {
     currentTimeMinutes = (unsigned)appDelegate.VideoPlayer.currentPlaybackTime/60;
     currentTImeSeconds = (unsigned)appDelegate.VideoPlayer.currentPlaybackTime%60;
@@ -154,20 +154,20 @@ static const CGFloat kBigLabelFont = 22;
 
 
 
-- (void)p_addNotification
+- (void)addNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(p_startPlay)
+                                             selector:@selector(startPlay)
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(p_flashSongInfo)
+                                             selector:@selector(flashSongInfo)
                                                  name:MPMoviePlayerLoadStateDidChangeNotification
                                                object:nil];
 }
 
 
-- (void)p_setupPlayerInfo
+- (void)setupPlayerInfo
 {
     doubanServer = [[DoubanServer alloc]initDoubanServer];
     doubanServer.delegate = self;
@@ -188,16 +188,16 @@ static const CGFloat kBigLabelFont = 22;
 
 
 
-- (void)p_setupGesture
+- (void)setupGesture
 {
     playerImage.userInteractionEnabled = YES;
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(p_pauseButton)];
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(pauseButton)];
     [singleTap setNumberOfTouchesRequired:1];
     [playerImage addGestureRecognizer:singleTap];
 }
 
 
-- (void)p_startPlay
+- (void)startPlay
 {
     doubanServer = [[DoubanServer alloc]initDoubanServer];
     [doubanServer doubanSongOperationWithType:@"p"];
@@ -205,7 +205,7 @@ static const CGFloat kBigLabelFont = 22;
 
 
 
-- (void)p_flashSongInfo
+- (void)flashSongInfo
 {
     isPlaying = YES;
     if(![self isFirstResponder])
@@ -262,11 +262,11 @@ static const CGFloat kBigLabelFont = 22;
     
     //初始化timeprogressbar
     [timer setFireDate:[NSDate date]];
-    [self p_configVideoPlayerInfo];
+    [self configVideoPlayerInfo];
     
 }
 
-- (void)p_configVideoPlayerInfo
+- (void)configVideoPlayerInfo
 {
     if(NSClassFromString(@"MPNowPlayingInfoCenter"))
     {
@@ -286,7 +286,7 @@ static const CGFloat kBigLabelFont = 22;
     }
 }
 
-- (void)p_setAutoLayOut
+- (void)setAutoLayOut
 {
     //初始化PlyaerImage界面
     [playerImage mas_makeConstraints:^(MASConstraintMaker *make)
@@ -395,7 +395,7 @@ static const CGFloat kBigLabelFont = 22;
 
 
 
-- (void)p_setUpUI
+- (void)setUpUI
 {
     //初始化背景颜色
     self.view.backgroundColor = UIBACKGROUNDCOLOR;
@@ -462,31 +462,31 @@ static const CGFloat kBigLabelFont = 22;
     //初始化PauseButton
     pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [pauseButton setBackgroundImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
-    [pauseButton addTarget:self action:@selector(p_pauseButton) forControlEvents:UIControlEventTouchUpInside];
+    [pauseButton addTarget:self action:@selector(pauseButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pauseButton];
     
     //初始化LikeButton
     likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [likeButton setBackgroundImage:[UIImage imageNamed:@"heart1"] forState:UIControlStateNormal];
-    [likeButton addTarget:self action:@selector(p_likeButton) forControlEvents:UIControlEventTouchUpInside];
+    [likeButton addTarget:self action:@selector(likeButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:likeButton];
     
     //初始化DeleteButton
     deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [deleteButton setBackgroundImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
-    [deleteButton addTarget:self action:@selector(p_deleteButton) forControlEvents:UIControlEventTouchUpInside];
+    [deleteButton addTarget:self action:@selector(deleteButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:deleteButton];
     
     //初始化SkipButton
     skipButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [skipButton setBackgroundImage:[UIImage imageNamed:@"next"] forState:UIControlStateNormal];
-    [skipButton addTarget:self action:@selector(p_skipButton) forControlEvents:UIControlEventTouchUpInside];
+    [skipButton addTarget:self action:@selector(skipButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:skipButton];
 
 }
 
 
-- (IBAction)p_pauseButton
+- (IBAction)pauseButton
 {
     if(isPlaying)
     {
@@ -510,7 +510,7 @@ static const CGFloat kBigLabelFont = 22;
     }
 }
 
-- (IBAction)p_likeButton
+- (IBAction)likeButton
 {
     if(![appDelegate.playerInfo.currentSong.songIsLike intValue])
     {
@@ -526,7 +526,7 @@ static const CGFloat kBigLabelFont = 22;
     }
 }
 
-- (IBAction)p_deleteButton
+- (IBAction)deleteButton
 {
     if(!isPlaying)
     {
@@ -540,7 +540,7 @@ static const CGFloat kBigLabelFont = 22;
 
 }
 
-- (IBAction)p_skipButton
+- (IBAction)skipButton
 {
     [timer setFireDate:[NSDate distantFuture]];
     [appDelegate.VideoPlayer pause];

@@ -45,7 +45,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "278"
             endingLineNumber = "278"
-            landmarkName = "-p_setUserInfo"
+            landmarkName = "-setUserInfo"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

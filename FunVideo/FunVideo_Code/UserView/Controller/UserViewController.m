@@ -71,12 +71,12 @@ static const CGFloat kButtonFont = 25;
     doubanServer = [[DoubanServer alloc]initDoubanServer];
     userInfo = appDelegate.userInfo;
     doubanServer.delegate = self;
-    [self p_setupUI];
-    [self p_setUpAutoLayOut];
-    [self p_setUserInfo];
+    [self setupUI];
+    [self setUpAutoLayOut];
+    [self setUserInfo];
 }
 
-- (void)p_setupUI
+- (void)setupUI
 {
     /*设置主View背景*/
     self.view.backgroundColor = UIBACKGROUNDCOLOR;
@@ -90,7 +90,7 @@ static const CGFloat kButtonFont = 25;
     }
     //给登录图片增加手势
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self
-                                                                               action:@selector(p_loginImageTapped)];
+                                                                               action:@selector(loginImageTapped)];
     [singleTap setNumberOfTapsRequired:1];
     [userViewImage addGestureRecognizer:singleTap];
     
@@ -129,7 +129,7 @@ static const CGFloat kButtonFont = 25;
     [logoutButton.titleLabel setFont:[UIFont boldSystemFontOfSize:kButtonFont]];
     logoutButton.backgroundColor = UIBUTTONCOLOR;
     [logoutButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [logoutButton addTarget:self action:@selector(p_logout) forControlEvents:UIControlEventTouchUpInside];
+    [logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:logoutButton];
     
     
@@ -150,7 +150,7 @@ static const CGFloat kButtonFont = 25;
 
 
 
-- (void)p_setUpAutoLayOut
+- (void)setUpAutoLayOut
 {
     /*设置主View背景*/
     [userViewImage mas_makeConstraints:^(MASConstraintMaker *make)
@@ -204,13 +204,13 @@ static const CGFloat kButtonFont = 25;
 
 - (void)logoutSuccessful
 {
-    [self p_setUserInfo];
+    [self setUserInfo];
     NSLog(@"LOGOUT_SUCCESSFUL");
 }
 
 
 
-- (void)p_loginImageTapped
+- (void)loginImageTapped
 {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *loginVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"loginVC"];
@@ -224,7 +224,7 @@ static const CGFloat kButtonFont = 25;
     [self presentViewController:loginVC animated:YES completion:nil];
 }
 
-- (void)p_logout
+- (void)logout
 {
 
     //采用ios8提出的UIAlertController替换UIAlertView（去处Warning）
@@ -251,10 +251,10 @@ static const CGFloat kButtonFont = 25;
 
 - (void)FlashUserInfoInUserView
 {
-    [self p_setUserInfo];
+    [self setUserInfo];
 }
 
-- (void)p_setUserInfo
+- (void)setUserInfo
 {
     if(doubanServer == nil)
     {
