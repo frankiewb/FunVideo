@@ -51,10 +51,10 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 
 @interface DoubanServer()
 {
-    AppDelegate * appDelegate;
-    AFHTTPRequestOperationManager * doubanServerManager;
-    ChannelGroup * channelGroup;
-    UserInfo * userInfo;
+    AppDelegate *appDelegate;
+    AFHTTPRequestOperationManager *doubanServerManager;
+    ChannelGroup *channelGroup;
+    UserInfo *userInfo;
 }
 
 
@@ -63,44 +63,44 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 
 @implementation DoubanServer
 
--(instancetype)initDoubanServer
+- (instancetype)initDoubanServer
 {
     if(self = [super init])
     {
-        appDelegate = [[UIApplication sharedApplication]delegate];
+        appDelegate         = [[UIApplication sharedApplication]delegate];
         doubanServerManager = [AFHTTPRequestOperationManager manager];
-        channelGroup = appDelegate.channelGroup;
-        userInfo = appDelegate.userInfo;
-        _captchaImageInfo = [[CaptchaImageInfo alloc]init];
+        channelGroup        = appDelegate.channelGroup;
+        userInfo            = appDelegate.userInfo;
+        _captchaImageInfo   = [[CaptchaImageInfo alloc]init];
         
     }
     return self;
 }
 
 //向服务器获取ChannelCell信息
--(void)doubanGetChannelCellWithURLString:(NSString *)channelURLString
+- (void)doubanGetChannelCellWithURLString:(NSString *)channelURLString
 {
     [doubanServerManager GET:channelURLString
                   parameters:nil
                      success:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         NSDictionary * tempChannelsDictionary = responseObject;
-         NSDictionary * channelsDictionary = tempChannelsDictionary[@"data"];
+         NSDictionary *tempChannelsDictionary = responseObject;
+         NSDictionary *channelsDictionary = tempChannelsDictionary[@"data"];
                   
          if([channelURLString isEqualToString:[NSString stringWithFormat:@"%@%@",LOGINCHANNELURL,appDelegate.userInfo.userID]])
          {
              [appDelegate.channelGroup removeMyChannelObject];
              //先插入用户labelcell
-             ChannelInfo * channelCell = [[ChannelInfo alloc]init];
+             ChannelInfo *channelCell = [[ChannelInfo alloc]init];
              channelCell.channelName = appDelegate.userInfo.userName;
              channelCell.channelCoverURL = [NSString stringWithFormat:USERIMAGEURL,userInfo.userID];
              [channelGroup.myRedHeartChannelCellArray addObject:channelCell];
              
              //再插入用户喜爱频道
-             NSDictionary * fav_chlsChannel = channelsDictionary[@"res"];
-             for(NSDictionary * redHeartChannel in fav_chlsChannel[@"fav_chls"])
+             NSDictionary *fav_chlsChannel = channelsDictionary[@"res"];
+             for(NSDictionary *redHeartChannel in fav_chlsChannel[@"fav_chls"])
              {
-                 ChannelInfo * channelCell = [[ChannelInfo alloc]initWithDictionary:redHeartChannel];
+                 ChannelInfo *channelCell = [[ChannelInfo alloc]initWithDictionary:redHeartChannel];
                  [channelGroup.myRedHeartChannelCellArray addObject:channelCell];
                  NSLog(@"填充redHeart歌曲:%@",channelCell.channelName);
              }
@@ -110,14 +110,14 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          else if([channelURLString isEqualToString:TOTALCHANNELURL])
          {
              [appDelegate.channelGroup removeCommonChannelGroupObject];
-             for(NSDictionary * channelCellInfo in channelsDictionary[@"channels"])
+             for(NSDictionary *channelCellInfo in channelsDictionary[@"channels"])
              {
-                ChannelInfo * channelCell = [[ChannelInfo alloc]initWithDictionary:channelCellInfo];
-                [self p_addingIntoChannelArrayWithChannelCell:channelCell];
+                ChannelInfo *channelCell = [[ChannelInfo alloc]initWithDictionary:channelCellInfo];
+                [self addingIntoChannelArrayWithChannelCell:channelCell];
              }
              if ([channelGroup.myRedHeartChannelCellArray count] == 0)
              {
-                 ChannelInfo * channelCell = [[ChannelInfo alloc]init];
+                 ChannelInfo *channelCell = [[ChannelInfo alloc]init];
                  channelCell.channelName = @"未登录";
                  channelCell.channelCoverURL = nil;
                  [channelGroup.myRedHeartChannelCellArray addObject:channelCell];
@@ -142,12 +142,12 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 
 
 //向服务器获取ChannelGroup信息
--(void)doubanGetChannelGroup
+- (void)doubanGetChannelGroup
 {
     
     if(userInfo.cookies)
     {
-        NSString * loginChannelUrl = [NSString stringWithFormat:@"%@%@",LOGINCHANNELURL,appDelegate.userInfo.userID];
+        NSString *loginChannelUrl = [NSString stringWithFormat:@"%@%@",LOGINCHANNELURL,appDelegate.userInfo.userID];
         [self doubanGetChannelCellWithURLString:loginChannelUrl];
     }
     [self doubanGetChannelCellWithURLString:TOTALCHANNELURL];
@@ -157,7 +157,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 
 
 
--(void)p_addingIntoChannelArrayWithChannelCell:(ChannelInfo *)channelCell
+- (void)addingIntoChannelArrayWithChannelCell:(ChannelInfo *)channelCell
 {
     int channelID = [channelCell.channelID intValue];
     switch (channelID) {
@@ -190,7 +190,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 }
 
 //向服务器获取验证码的图片URL
--(void)doubanLoadCaptchaImage
+- (void)doubanLoadCaptchaImage
 {
     doubanServerManager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [doubanServerManager GET:CAPTCHAIDURLSTRING
@@ -217,7 +217,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 //alias:xxxx%40gmail.com
 //form_password:password
 //captcha_id:jOtEZsPFiDVRR9ldW3ELsy57%3en
--(void)doubanLoginWithLoginInfo:(LoginInfo *)loginInfo
+- (void)doubanLoginWithLoginInfo:(LoginInfo *)loginInfo
 {
     NSDictionary * doubanLoginParam = @{@"remember":@"off",
                                         @"source":@"radio",
@@ -269,7 +269,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 //value y #### Response none #### Example none
 
 
--(void)doubanLogout
+- (void)doubanLogout
 {
     NSDictionary * logoutParameters = @{@"source": @"radio",
                                         @"ck":userInfo.cookies,
@@ -317,7 +317,7 @@ static const NSInteger WORKSTUDY_MHz           = 153;
 //p : Use to get a song list when the song in playlist was all played.
 //sid : the song's id
 
--(void)doubanSongOperationWithType:(NSString *)type
+- (void)doubanSongOperationWithType:(NSString *)type
 {
     //组织服务器请求URL
     NSString * PlayListUrl = [NSString stringWithFormat:PLAYERURLFORMATSTRING,type,appDelegate.playerInfo.currentSong.songId,appDelegate.VideoPlayer.currentPlaybackTime, appDelegate.playerInfo.currentChannel.channelID];

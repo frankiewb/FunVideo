@@ -55,7 +55,7 @@ static const CGFloat kHeaderFont = 15;
 @implementation ChannelTableViewController
 
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
     
@@ -101,7 +101,7 @@ static const CGFloat kHeaderFont = 15;
 
 #pragma mark Data Source Loading / Reloading Methods
 
--(void)p_reloadTableViewDataSource
+- (void)p_reloadTableViewDataSource
 {
     //  should be calling your tableviews data source model to reload
     //[appDelegate.channelGroup removeAllChannelGroupObject];
@@ -109,7 +109,7 @@ static const CGFloat kHeaderFont = 15;
     _isReloading = YES;
 }
 
--(void)p_doneLoadingTableViewData
+- (void)p_doneLoadingTableViewData
 {
     //  model should call this when its done loading
     _isReloading = NO;
@@ -119,13 +119,13 @@ static const CGFloat kHeaderFont = 15;
 
 #pragma mark UIScrollViewDelegate Methods
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
 }
 
 
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 }
@@ -134,7 +134,7 @@ static const CGFloat kHeaderFont = 15;
 
 #pragma mark EGORefreshTableHeaderDelegate Methods
 
--(void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {
     [self p_reloadTableViewDataSource];
     //[self performSelector:@selector(p_doneLoadingTableViewData) withObject:nil afterDelay:2.0];
@@ -145,7 +145,7 @@ static const CGFloat kHeaderFont = 15;
     
 }
 
--(BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
 {
     // should return if data source model is reloading
     return _isReloading;
@@ -157,12 +157,12 @@ static const CGFloat kHeaderFont = 15;
     return [NSDate date];
 }
 
--(void)reloadTableView
+- (void)reloadTableView
 {
     [channeltableView reloadData];
 }
 
--(void)reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath
+- (void)reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath
 {
     [channeltableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -170,14 +170,14 @@ static const CGFloat kHeaderFont = 15;
 #pragma mark -数据源方法
 #pragma mark 返回分组数
 
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSLog(@"计算分组数");
     return [channelGroup.totalChannelArray count];
 }
 
 #pragma mark 返回每组行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSLog(@"计算每组(组%li)行数",(long)section);
     return [[channelGroup.totalChannelArray objectAtIndex:section] count];
@@ -185,7 +185,7 @@ static const CGFloat kHeaderFont = 15;
 }
 
 #pragma mark 返回每行的单元格
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     //NSIndexPath是一个结构体，记录了组和行的信息
     NSLog(@"生成单元格(组:%li,行%li)",(long)indexPath.section,indexPath.row);
@@ -221,37 +221,37 @@ static const CGFloat kHeaderFont = 15;
 }
 
 #pragma mark 返回每组头标题名称
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     NSLog(@"生成组(组%li)名称",(long)section);
     return channelGroup.channelGroupTitleArray[section];
 }
 
 #pragma 设置分组标题内容高度
--(CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section
 {
     return kTitleHeight;
 }
 #pragma 设置分组标题高度
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return kTitleHeight;
 }
 
 #pragma 设置尾部说明高度
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return kFootHeight;
 }
 
 #pragma 设置每行高度
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return kRowHeight;
 }
 
 #pragma 点击行
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChannelInfo * channelInfo = [[channelGroup.totalChannelArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -271,7 +271,7 @@ static const CGFloat kHeaderFont = 15;
     
 }
 
--(void)getSongListFail
+- (void)getSongListFail
 {
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"登录失败"
                                                                               message:@"请检查网络或者服务器异常"
@@ -283,7 +283,7 @@ static const CGFloat kHeaderFont = 15;
 }
 
 
--(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
 
 {
     UITableViewHeaderFooterView * HeaderView = (UITableViewHeaderFooterView *)view;

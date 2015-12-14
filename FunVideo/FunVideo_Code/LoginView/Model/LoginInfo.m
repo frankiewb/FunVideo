@@ -10,14 +10,14 @@
 
 @implementation LoginInfo
 
--(NSString *)description
+- (NSString *)description
 {
     return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"LoginName":_loginName,
                                                                          @"LoginPassWord":_passWord,
                                                                          @"CaptchaInputWord":_capthchaInputWord}];
 }
 
--(NSString *)debugDescription
+- (NSString *)debugDescription
 {
     return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"LoginName":_loginName,
                                                                          @"LoginPassWord":_passWord,

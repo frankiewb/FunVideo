@@ -10,7 +10,7 @@
 
 @implementation CaptchaImageInfo
 
--(NSString *)description
+- (NSString *)description
 {
     return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"CaptchaID":_captchaID,
                                                                          @"CaptchaImgURL":_capthaImgURL}];
@@ -18,7 +18,7 @@
 }
 
 
--(NSString *)debugDescription
+- (NSString *)debugDescription
 {
     return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"CaptchaID":_captchaID,
                                                                          @"CaptchaImgURL":_capthaImgURL}];

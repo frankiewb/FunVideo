@@ -14,21 +14,21 @@
 
 @optional
 
--(void)setCaptchaImageWithURL:(NSString *) captchaImageURL;
+- (void)setCaptchaImageWithURL:(NSString *) captchaImageURL;
 
--(void)loginSuccessful;
+- (void)loginSuccessful;
 
--(void)loginFail:(NSString *)errorMessege;
+- (void)loginFail:(NSString *)errorMessege;
 
--(void)logoutSuccessful;
+- (void)logoutSuccessful;
 
--(void)getSongListFail;
+- (void)getSongListFail;
 
--(void)reloadTableView;
+- (void)reloadTableView;
 
--(void)reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath;
+- (void)reloadTableViewCellWithIndexPath:(NSIndexPath *)indexPath;
 
--(void)FlashUserInfoInUserView;
+- (void)FlashUserInfoInUserView;
 
 
 //主屏幕显示哪个页面
@@ -36,6 +36,6 @@
 //index : 2  ChannelView
 //index : 3  LoginView
 //index : 4  self
--(void)showViewWithIndex:(NSInteger)index;
+- (void)showViewWithIndex:(NSInteger)index;
 
 @end

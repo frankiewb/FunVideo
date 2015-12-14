@@ -42,21 +42,13 @@ static const CGFloat kBigLabelFont = 30;
 {
     
     DoubanServer * doubanServer;
-    
     LoginInfo * loginInfo;
-    
     UILabel * loginViewTitle;
-    
     UITextField * loginNameTextField;
-    
     UITextField * loginPassWordTextField;
-    
     UITextField * captchaImageTextField;
-    
     UIImageView * captchaImageView;
-    
     UIButton * loginButton;
-    
     UIButton * cancelButton;
     
 }
@@ -72,31 +64,20 @@ static const CGFloat kBigLabelFont = 30;
 
 @implementation LoginViewController
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
     [self p_setupUI];
     [self p_setUpAutoLayOut];
 }
 
--(void)p_setupUI
+- (void)p_setupUI
 {
     self.view.backgroundColor =  UIBACKGROUNDCOLOR;
     doubanServer = [[DoubanServer alloc]initDoubanServer];
-    
-    
-    
     //设置代理后一定要赋值代理，谁具体代理赋值给谁
     doubanServer.delegate = (id)self;
-    
-    
-    
-    
-    
-    
     //以下尝试采用Masonry自动布局框架来对页面控件进行自动布局
-    
-    
     
     /*“登录”标签*/
     loginViewTitle = [[UILabel alloc]init];
@@ -237,14 +218,7 @@ static const CGFloat kBigLabelFont = 30;
 
 
 
-
-
-
-
-
-
-
--(void)p_setUpAutoLayOut
+- (void)p_setUpAutoLayOut
 {
     //loginViewTitle
     [loginViewTitle mas_makeConstraints:^(MASConstraintMaker *make)
@@ -315,20 +289,20 @@ static const CGFloat kBigLabelFont = 30;
 
 
 
--(void)viewWillAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self p_loadCaptchaImage];
 }
 
--(void)loginSuccessful
+- (void)loginSuccessful
 {
     [_douban_delegate FlashUserInfoInUserView];
     NSLog(@"LOGIN_SUCCESSFUL");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)loginFail:(NSString *)errorMessege
+- (void)loginFail:(NSString *)errorMessege
 {
     //采用IOS8提供的UIAlerController
     UIAlertController * alerController = [UIAlertController alertControllerWithTitle:@"登录失败"
@@ -341,21 +315,21 @@ static const CGFloat kBigLabelFont = 30;
 }
 
 
--(void)setCaptchaImageWithURL:(NSString *) captchaImageURL
+- (void)setCaptchaImageWithURL:(NSString *) captchaImageURL
 {
     [captchaImageView setImageWithURL:[NSURL URLWithString:captchaImageURL] placeholderImage:nil];
 }
 
 
 
--(void)p_loadCaptchaImage
+- (void)p_loadCaptchaImage
 {
     [doubanServer doubanLoadCaptchaImage];
 }
 
 
 
--(void)p_login
+- (void)p_login
 {
     loginInfo = [[LoginInfo alloc]init];
     loginInfo.loginName = loginNameTextField.text;
@@ -365,19 +339,19 @@ static const CGFloat kBigLabelFont = 30;
 }
 
 
--(void)p_cancel
+- (void)p_cancel
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [loginNameTextField resignFirstResponder];
     [loginPassWordTextField resignFirstResponder];
     [captchaImageTextField resignFirstResponder];
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;

@@ -42,15 +42,8 @@ static const CGFloat kBigLabelFont = 22;
 {
 
     AppDelegate * appDelegate;
-
-/**
- *表示当前播放器是否在播放 Yes播放 No不播放
- */
     bool isPlaying;
     
-/**
- *用于TimeProgressBar计时用
- */
     NSTimer *timer;
     int currentTimeMinutes;
     int currentTImeSeconds;
@@ -59,43 +52,20 @@ static const CGFloat kBigLabelFont = 22;
     int totalTimeSeconds;
     NSMutableString * totalTImeString;
     NSMutableString * timerLabelString;
-    
-    
-/**
- * ChannelGroup
- */
     ChannelGroup * channelGroup;
-    
-/**
- *  DoubanServer
- */
     DoubanServer * doubanServer;
-    
-/**
-* PlayerView上的控件，改为全部代码生成
-*/
+
     
     UIImageView *playerImage;
-    
     UIImageView *playerImageBlock;
-    
     UIProgressView *timeProgressBar;
-    
     UILabel *timeLabel;
-    
     UILabel *channelTitle;
-    
-    //当歌名过长时，提供跑马灯效果
     MarqueeLabel *songTitle;
-    
     MarqueeLabel *songArtist;
-    
     UIButton *pauseButton;
-    
     UIButton *likeButton;
-    
     UIButton *deleteButton;
-    
     UIButton *skipButton;
     
 }
@@ -136,7 +106,7 @@ static const CGFloat kBigLabelFont = 22;
 
 
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
     playerImage.layer.cornerRadius = playerImage.bounds.size.width/2.0;
     playerImage.layer.masksToBounds = YES;
@@ -160,7 +130,7 @@ static const CGFloat kBigLabelFont = 22;
 }
 */
 
--(void)p_updateProgress
+- (void)p_updateProgress
 {
     currentTimeMinutes = (unsigned)appDelegate.VideoPlayer.currentPlaybackTime/60;
     currentTImeSeconds = (unsigned)appDelegate.VideoPlayer.currentPlaybackTime%60;
@@ -184,7 +154,7 @@ static const CGFloat kBigLabelFont = 22;
 
 
 
--(void)p_addNotification
+- (void)p_addNotification
 {
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(p_startPlay)
@@ -197,7 +167,7 @@ static const CGFloat kBigLabelFont = 22;
 }
 
 
--(void)p_setupPlayerInfo
+- (void)p_setupPlayerInfo
 {
     doubanServer = [[DoubanServer alloc]initDoubanServer];
     doubanServer.delegate = self;
@@ -206,7 +176,7 @@ static const CGFloat kBigLabelFont = 22;
 }
 
 
--(void)getSongListFail
+- (void)getSongListFail
 {
     UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"获取音乐失败"
                                                                               message:@"请检查网络或者服务器异常"
@@ -218,7 +188,7 @@ static const CGFloat kBigLabelFont = 22;
 
 
 
--(void)p_setupGesture
+- (void)p_setupGesture
 {
     playerImage.userInteractionEnabled = YES;
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(p_pauseButton)];
@@ -227,7 +197,7 @@ static const CGFloat kBigLabelFont = 22;
 }
 
 
--(void)p_startPlay
+- (void)p_startPlay
 {
     doubanServer = [[DoubanServer alloc]initDoubanServer];
     [doubanServer doubanSongOperationWithType:@"p"];
@@ -235,7 +205,7 @@ static const CGFloat kBigLabelFont = 22;
 
 
 
--(void)p_flashSongInfo
+- (void)p_flashSongInfo
 {
     isPlaying = YES;
     if(![self isFirstResponder])
@@ -296,7 +266,7 @@ static const CGFloat kBigLabelFont = 22;
     
 }
 
--(void)p_configVideoPlayerInfo
+- (void)p_configVideoPlayerInfo
 {
     if(NSClassFromString(@"MPNowPlayingInfoCenter"))
     {
@@ -316,7 +286,7 @@ static const CGFloat kBigLabelFont = 22;
     }
 }
 
--(void)p_setAutoLayOut
+- (void)p_setAutoLayOut
 {
     //初始化PlyaerImage界面
     [playerImage mas_makeConstraints:^(MASConstraintMaker *make)
@@ -425,7 +395,7 @@ static const CGFloat kBigLabelFont = 22;
 
 
 
--(void)p_setUpUI
+- (void)p_setUpUI
 {
     //初始化背景颜色
     self.view.backgroundColor = UIBACKGROUNDCOLOR;

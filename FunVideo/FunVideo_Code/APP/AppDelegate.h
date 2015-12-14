@@ -19,32 +19,12 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-/**
- * 必须保证无论跳转哪个页面播放器一直在工作，直至app退出，故须放置在AppDelegate中
- */
 @property (strong, nonatomic)MPMoviePlayerController *VideoPlayer;
-
-/**
- * 保证UserInfo存在于全局
- */
-@property (strong, nonatomic)UserInfo * userInfo;
-
-/**
- * 保证PlayerInfo存在于全局
- */
-@property (strong, nonatomic)PlayerInfo * playerInfo;
-
-/**
- * 保证ChannelGroup存在于全局
- */
-@property (strong, nonatomic)ChannelGroup * channelGroup;
-
-
-/**
- * 表示当前iphone型号
- */
-@property (copy, nonatomic)NSString * deviceMode;
+@property (strong, nonatomic)UserInfo *userInfo;
+@property (strong, nonatomic)PlayerInfo *playerInfo;
+@property (strong, nonatomic)ChannelGroup *channelGroup;
+//表示当前iphone型号
+@property (copy, nonatomic)NSString *deviceMode;
 
 
 

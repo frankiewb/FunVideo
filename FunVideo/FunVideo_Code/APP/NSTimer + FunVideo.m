@@ -10,7 +10,7 @@
 
 @implementation NSTimer(FunVideo)
 
-+(NSTimer *)FunVideo_scheduledTimerWithTimeInterval:(NSTimeInterval)interval block:(void (^)())block repeats:(BOOL)repeats
++ (NSTimer *)FunVideo_scheduledTimerWithTimeInterval:(NSTimeInterval)interval block:(void (^)())block repeats:(BOOL)repeats
 {
     return [self scheduledTimerWithTimeInterval:interval
                                          target:self
@@ -19,7 +19,7 @@
                                         repeats:repeats];
 }
 
-+(void)FunVideo_blockInvoke:(NSTimer *)timer
++ (void)FunVideo_blockInvoke:(NSTimer *)timer
 {
     void (^block)() = timer.userInfo;
     if(block)

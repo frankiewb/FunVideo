@@ -56,7 +56,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 @implementation SideBarController
 
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
     doubanServer = [[DoubanServer alloc]init];
@@ -76,7 +76,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 
 
 
--(void)p_setUpAutoLayout
+- (void)p_setUpAutoLayout
 {
     //设置BackgroundMenuView
     [backgroundMenuView mas_makeConstraints:^(MASConstraintMaker *make)
@@ -116,7 +116,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 
 
 
--(void)p_setUpUI
+- (void)p_setUpUI
 {
     self.tabBar.hidden = YES;
     //初始化Image队列
@@ -167,7 +167,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 //index : 2  ChannelView
 //index : 3  LoginView
 //index : 4  self
--(void)showViewWithIndex:(NSInteger)index
+- (void)showViewWithIndex:(NSInteger)index
 {
     switch (index)
     {
@@ -183,7 +183,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 }
 
 
--(void)p_onMenuButtonClick:(UIButton *)button
+- (void)p_onMenuButtonClick:(UIButton *)button
 {
     NSInteger index = button.tag;
     [self showViewWithIndex:index];
@@ -193,7 +193,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 
 
 //以下为SideBar的推出动作
--(void)p_dismissMenuWithSelection:(UIButton *)button
+- (void)p_dismissMenuWithSelection:(UIButton *)button
 {
   [UIView animateWithDuration:0.3
                         delay:0.0
@@ -210,7 +210,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 
 
 
--(void)p_dismissMenu
+- (void)p_dismissMenu
 {
     if(isSideBarOpen)
     {
@@ -222,7 +222,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 }
 
 
--(void)p_performDismissAnimation
+- (void)p_performDismissAnimation
 {
     [UIView animateWithDuration:0.4 animations:^{
        
@@ -242,7 +242,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 }
 
 //以下为SideBar的推入动作
--(void)p_showMenu
+- (void)p_showMenu
 {
     if(!isSideBarOpen)
     {
@@ -252,7 +252,7 @@ static const CGFloat kFunctionButtonWidthAndHeightFactor = 0.111f;
 }
 
 
--(void)p_performOpenAnimation
+- (void)p_performOpenAnimation
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.4 animations:^{

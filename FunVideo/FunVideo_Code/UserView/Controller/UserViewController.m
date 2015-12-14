@@ -70,7 +70,7 @@ static const CGFloat kButtonFont = 25;
 
 @implementation UserViewController
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     
     [super viewDidLoad];
@@ -83,7 +83,7 @@ static const CGFloat kButtonFont = 25;
     [self p_setUserInfo];
 }
 
--(void)p_setupUI
+- (void)p_setupUI
 {
     /*设置主View背景*/
     self.view.backgroundColor = UIBACKGROUNDCOLOR;
@@ -148,7 +148,7 @@ static const CGFloat kButtonFont = 25;
 
 
 //解决自动布局下圆形生成办法
--(void)viewDidLayoutSubviews
+- (void)viewDidLayoutSubviews
 {
     userViewImage.layer.masksToBounds = YES;
     userViewImage.layer.cornerRadius = userViewImage.frame.size.width/2.0;
@@ -157,7 +157,7 @@ static const CGFloat kButtonFont = 25;
 
 
 
--(void)p_setUpAutoLayOut
+- (void)p_setUpAutoLayOut
 {
     /*设置主View背景*/
     [userViewImage mas_makeConstraints:^(MASConstraintMaker *make)
@@ -209,7 +209,7 @@ static const CGFloat kButtonFont = 25;
 
 
 
--(void)logoutSuccessful
+- (void)logoutSuccessful
 {
     [self p_setUserInfo];
     NSLog(@"LOGOUT_SUCCESSFUL");
@@ -217,7 +217,7 @@ static const CGFloat kButtonFont = 25;
 
 
 
--(void)p_loginImageTapped
+- (void)p_loginImageTapped
 {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController * loginVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"loginVC"];
@@ -231,7 +231,7 @@ static const CGFloat kButtonFont = 25;
     [self presentViewController:loginVC animated:YES completion:nil];
 }
 
--(void)p_logout
+- (void)p_logout
 {
 
     //采用ios8提出的UIAlertController替换UIAlertView（去处Warning）
@@ -256,12 +256,12 @@ static const CGFloat kButtonFont = 25;
 }
 
 
--(void)FlashUserInfoInUserView
+- (void)FlashUserInfoInUserView
 {
     [self p_setUserInfo];
 }
 
--(void)p_setUserInfo
+- (void)p_setUserInfo
 {
     if(doubanServer == nil)
     {

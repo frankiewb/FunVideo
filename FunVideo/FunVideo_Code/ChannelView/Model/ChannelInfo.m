@@ -10,7 +10,7 @@
 
 @implementation ChannelInfo
 
--(instancetype)initWithDictionary:(NSDictionary *)dic
+- (instancetype)initWithDictionary:(NSDictionary *)dic
 {
     if(self = [super init])
     {
@@ -23,7 +23,7 @@
     return self;
 }
 
--(instancetype)initWithChannelInfo:(ChannelInfo *)channelInfo
+- (instancetype)initWithChannelInfo:(ChannelInfo *)channelInfo
 {
     if(self = [super init])
     {
@@ -37,7 +37,7 @@
 }
 
 //编译为二进制
--(void)encodeWithCoder:(NSCoder *)aCoder
+- (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:_channelCoverURL forKey:@"channelcover"];
     [aCoder encodeObject:_channelID forKey:@"channelid"];
@@ -49,7 +49,7 @@
 
 
 //反编译二进制
--(id)initWithCoder:(NSCoder *)aDecoder
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
     if([self init])
     {
@@ -62,7 +62,7 @@
     return self;
 }
 
--(NSString *)description
+- (NSString *)description
 {
     return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"ChannelCoverURL":_channelCoverURL,
                                                                          @"ChannelID":_channelID,
@@ -71,7 +71,7 @@
                                                                          @"ChannelBannerURL":_channelBannerURL}];
 }
 
--(NSString *)debugDescription
+- (NSString *)debugDescription
 {
     return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"ChannelCoverURL":_channelCoverURL,
                                                                          @"ChannelID":_channelID,

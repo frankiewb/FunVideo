@@ -11,7 +11,7 @@
 @implementation SongInfo
 
 //默认init直接赋值为空
--(instancetype)initSongInfoWithDictionary:(NSDictionary *)dic
+- (instancetype)initSongInfoWithDictionary:(NSDictionary *)dic
 {
     if(self             = [super init])
     {
@@ -29,7 +29,7 @@
 
 
 //编译为二进制
--(void)encodeWithCoder:(NSCoder *)aCoder
+- (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:_songArtist forKey:@"artist"];
     [aCoder encodeObject:_songTitle forKey:@"title"];
@@ -43,7 +43,7 @@
 
 
 //反编译二进制
--(id)initWithCoder:(NSCoder *)aDecoder
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
     if([self init])
     {
@@ -58,7 +58,7 @@
     return self;
 }
 
--(NSString *)description
+- (NSString *)description
 {
     return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"SongArtist":_songArtist,
                                                                          @"SongTitle":_songTitle,
@@ -69,7 +69,7 @@
                                                                          @"SongID":_songId}];
 }
 
--(NSString *)debugDescription
+- (NSString *)debugDescription
 {
     return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"SongArtist":_songArtist,
                                                                          @"SongTitle":_songTitle,

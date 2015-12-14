@@ -15,22 +15,22 @@
 
 @interface DoubanServer : NSObject<DoubanDelegate>
 
-@property(nonatomic,strong) CaptchaImageInfo * captchaImageInfo;
+@property(nonatomic,strong) CaptchaImageInfo *captchaImageInfo;
 
 @property(nonatomic,weak) id<DoubanDelegate>delegate;
 
--(instancetype)initDoubanServer;
+- (instancetype)initDoubanServer;
 
--(void)doubanSongOperationWithType:(NSString *)type;
+- (void)doubanSongOperationWithType:(NSString *)type;
 
--(void)doubanLoginWithLoginInfo:(LoginInfo *)loginInfo;
+- (void)doubanLoginWithLoginInfo:(LoginInfo *)loginInfo;
 
--(void)doubanLogout;
+- (void)doubanLogout;
 
--(void)doubanLoadCaptchaImage;
+- (void)doubanLoadCaptchaImage;
 
--(void)doubanGetChannelGroup;
+- (void)doubanGetChannelGroup;
 
--(void)doubanGetChannelCellWithURLString:(NSString *)channelURLString;
+- (void)doubanGetChannelCellWithURLString:(NSString *)channelURLString;
 
 @end

@@ -19,8 +19,8 @@
 @property(nonatomic,strong)MarqueeLabel * channelDescriptionLabel;
 
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier isUserCell:(BOOL)isUserCell;
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier isUserCell:(BOOL)isUserCell;
 
--(void)setChannelCellInfo:(ChannelInfo *)channelInfo;
+- (void)setChannelCellInfo:(ChannelInfo *)channelInfo;
 
 @end

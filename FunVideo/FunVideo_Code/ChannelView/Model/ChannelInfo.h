@@ -17,7 +17,7 @@
 @property (nonatomic,copy) NSString * channelIntro;
 @property (nonatomic,copy) NSString * channelBannerURL;
 
--(instancetype)initWithDictionary:(NSDictionary *)dic;
--(instancetype)initWithChannelInfo:(ChannelInfo *)channelInfo;
+- (instancetype)initWithDictionary:(NSDictionary *)dic;
+- (instancetype)initWithChannelInfo:(ChannelInfo *)channelInfo;
 
 @end

@@ -14,7 +14,7 @@
 @implementation ChannelGroup
 
 
--(instancetype)init
+- (instancetype)init
 {
     if(self = [super init])
     {
@@ -29,30 +29,25 @@
         [_totalChannelArray addObject:_myRedHeartChannelCellArray];
         NSString * redHeartChannelTitle = @"我的红心兆赫";
         [_channelGroupTitleArray addObject:redHeartChannelTitle];
-        
         [_totalChannelArray addObject:_recomandChannelCellArray];
         NSString * reconmandChannelTitle = @"推荐兆赫";
         [_channelGroupTitleArray addObject:reconmandChannelTitle];
-                
         [_totalChannelArray addObject:_laguageChannelCellArray];
         NSString * languageChannelCellTitle = @"语言年代兆赫";
         [_channelGroupTitleArray addObject:languageChannelCellTitle];
-        
         [_totalChannelArray addObject:_songStyleChannelCellArray];
         NSString * songStyleChannelCellTitle = @"风格流派兆赫";
         [_channelGroupTitleArray addObject:songStyleChannelCellTitle];
-        
         [_totalChannelArray addObject:_feelingChannelCellArray];
         NSString * feelingChannelCellTitle = @"心情场景兆赫";
         [_channelGroupTitleArray addObject:feelingChannelCellTitle];
-        
         _isEmpty = YES;
     
     }
     return self;
 }
 
--(void)removeMyChannelObject
+- (void)removeMyChannelObject
 {
     if(_myRedHeartChannelCellArray)
     {
@@ -62,7 +57,7 @@
 
 
 
--(void)removeCommonChannelGroupObject
+- (void)removeCommonChannelGroupObject
 {
     if(_recomandChannelCellArray)
     {
@@ -87,7 +82,7 @@
 
 
 
--(void)encodeWithCoder:(NSCoder *)aCoder
+- (void)encodeWithCoder:(NSCoder *)aCoder
 {
     //int不能直接转为id类型
     NSNumber *isEmpty = [NSNumber numberWithInt:_isEmpty];
@@ -101,7 +96,7 @@
     [aCoder encodeObject:_channelGroupTitleArray forKey:@"channelname"];
 }
 
--(id)initWithCoder:(NSCoder *)aDecoder
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
     if([self init])
     {

@@ -17,7 +17,7 @@
 
 @interface AppDelegate ()
 {
-    DoubanServer * doubanServer;
+    DoubanServer *doubanServer;
 }
 
 @end
@@ -28,25 +28,25 @@
 
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     // Override point for customization after application launch.
-    [self p_initSharedVideoPlayer];
+    [self initSharedVideoPlayer];
     return YES;
 }
 
 
-- (void)p_initSharedVideoPlayer
+- (void)initSharedVideoPlayer
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-       
-        _VideoPlayer = [[MPMoviePlayerController alloc]init];
-        _userInfo = [[UserInfo alloc]init];
-        _playerInfo = [[PlayerInfo alloc]initPlayerInfo];
+        _VideoPlayer  = [[MPMoviePlayerController alloc]init];
+        _userInfo     = [[UserInfo alloc]init];
+        _playerInfo   = [[PlayerInfo alloc]initPlayerInfo];
         _channelGroup = [[ChannelGroup alloc]init];
-        doubanServer = [[DoubanServer alloc]initDoubanServer];
-        _deviceMode = [self p_getDeviceMode];
-        [self p_unArchiveVideoInfo];
+        doubanServer  = [[DoubanServer alloc]initDoubanServer];
+        _deviceMode   = [self getDeviceMode];
+        [self unArchiveVideoInfo];
                 
         //后台播放FrankieVideoPlayer
         AVAudioSession *session = [AVAudioSession sharedInstance];
@@ -60,13 +60,13 @@
 
 
 //归档
--(void)p_archiveVideoInfo
+- (void)archiveVideoInfo
 {
-    NSString * path = [[NSBundle mainBundle]bundlePath];
+    NSString *path = [[NSBundle mainBundle]bundlePath];
     
     //归档playerInfo
     NSLog(@"CurrentSong : %@",_playerInfo.currentSong);
-    NSString *  playerpath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoPlayerInfo.archiver"];
+    NSString *playerpath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoPlayerInfo.archiver"];
     BOOL playerInfoflag = [NSKeyedArchiver archiveRootObject:_playerInfo toFile:playerpath];
     if(playerInfoflag)
     {
@@ -80,7 +80,7 @@
     
     //归档ChannelGroup
     NSLog(@"CurrentChannelGroup: %@",_channelGroup);
-    NSString * channelGroupInfoPath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoChannelInfo.archiver"];
+    NSString *channelGroupInfoPath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoChannelInfo.archiver"];
     BOOL channelInfoflag = [NSKeyedArchiver archiveRootObject:_channelGroup toFile:channelGroupInfoPath];
     if(channelInfoflag)
     {
@@ -92,7 +92,7 @@
     }
     
     //归档UserInfo
-    NSString * userInfoPath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoUserInfo.archiver"];
+    NSString *userInfoPath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoUserInfo.archiver"];
     BOOL userInfoflag = [NSKeyedArchiver archiveRootObject:_userInfo toFile:userInfoPath];
     if(userInfoflag)
     {
@@ -107,13 +107,13 @@
 }
 
 //解档
--(void)p_unArchiveVideoInfo
+- (void)unArchiveVideoInfo
 {
-    NSString * path = [[NSBundle mainBundle]bundlePath];
+    NSString *path = [[NSBundle mainBundle]bundlePath];
     
     //解档playerInfo
-    NSString *  playerPath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoPlayerInfo.archiver"];
-    PlayerInfo * tempPlayerInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:playerPath];
+    NSString *playerPath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoPlayerInfo.archiver"];
+    PlayerInfo *tempPlayerInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:playerPath];
     if(tempPlayerInfo)
     {
         _playerInfo = tempPlayerInfo;
@@ -127,8 +127,8 @@
     
     
     //解档ChannelGroup
-    NSString * channelGroupInfoPath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoChannelInfo.archiver"];
-    ChannelGroup * tempChannelGroupInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:channelGroupInfoPath];
+    NSString *channelGroupInfoPath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoChannelInfo.archiver"];
+    ChannelGroup *tempChannelGroupInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:channelGroupInfoPath];
     if(tempChannelGroupInfo)
     {
         _channelGroup = tempChannelGroupInfo;
@@ -140,8 +140,8 @@
     }
     
     //解档UserInfo
-    NSString * userInfopath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoUserInfo.archiver"];
-    UserInfo * tempUserInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:userInfopath];
+    NSString *userInfopath = [[NSString alloc]initWithFormat:@"%@%@",path,@"/FunVideoUserInfo.archiver"];
+    UserInfo *tempUserInfo = [NSKeyedUnarchiver unarchiveObjectWithFile:userInfopath];
     if(tempUserInfo)
     {
         _userInfo = tempUserInfo;
@@ -158,7 +158,7 @@
 
 
 //适配工作暂时只适配iphone4s，iphone5(s),iphone6(s),iphone6(plus)
--(NSString *)p_getDeviceMode
+- (NSString *)getDeviceMode
 {
     //需要在真机上获取详细的对应表，模拟器上只能看到X86_64
     struct utsname systemInfo;
@@ -194,7 +194,7 @@
     
     //当app进入后台需要将playerInfo以及ChannelInfo保存
     
-    [self p_archiveVideoInfo];
+    [self archiveVideoInfo];
     
 }
 
@@ -203,7 +203,7 @@
     
     //当app进入前台时解档读取playerInfo及ChannelInfo
     
-    [self p_unArchiveVideoInfo];
+    [self unArchiveVideoInfo];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

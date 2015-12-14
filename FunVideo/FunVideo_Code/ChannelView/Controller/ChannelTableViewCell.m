@@ -21,7 +21,7 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
 
 
 
--(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier isUserCell:(BOOL)isUserCell
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier isUserCell:(BOOL)isUserCell
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
@@ -42,7 +42,7 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
     
 }
 
--(instancetype)initChannelTableViewCell
+- (instancetype)initChannelTableViewCell
 {
     self.contentView.backgroundColor = UIBACKGROUNDCOLOR;
     //ChannelImageView
@@ -69,7 +69,7 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
 }
 
 
--(void)setUpFrame
+- (void)setUpFrame
 {
     [_channelImageView mas_makeConstraints:^(MASConstraintMaker *make)
     {
@@ -95,7 +95,7 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
     }];
 }
 
--(instancetype)initChannelTableViewCellForUserCellCase
+- (instancetype)initChannelTableViewCellForUserCellCase
 {
     self.contentView.backgroundColor = UIBACKGROUNDCOLOR;
     //ChannelImageView
@@ -114,7 +114,7 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
 
 
 
--(void)setUpFrameForUserCellCase
+- (void)setUpFrameForUserCellCase
 {
     
     [_channelImageView mas_makeConstraints:^(MASConstraintMaker *make)
@@ -133,7 +133,7 @@ static const CGFloat kChannelLabelleftFactor = 1.3f;
      }];
 }
 
--(void)setChannelCellInfo:(ChannelInfo *)channelInfo
+- (void)setChannelCellInfo:(ChannelInfo *)channelInfo
 {
     //set channelImageView
     if(channelInfo.channelCoverURL)
