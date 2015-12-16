@@ -36,6 +36,16 @@
     return self;
 }
 
+- (instancetype)initWithChannelName:(NSString *)channelName ChannelCoverURL:(NSString *)channelCoverURL
+{
+    if(self = [super init])
+    {
+        _channelName = channelName;
+        _channelCoverURL = channelCoverURL;
+    }
+    return self;
+}
+
 //编译为二进制
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {

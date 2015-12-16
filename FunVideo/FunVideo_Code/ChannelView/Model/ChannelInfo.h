@@ -18,6 +18,7 @@
 @property (nonatomic,copy) NSString *channelBannerURL;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
+- (instancetype)initWithChannelName:(NSString *)channelName ChannelCoverURL:(NSString *)channelCoverURL;
 - (instancetype)initWithChannelInfo:(ChannelInfo *)channelInfo;
 
 @end

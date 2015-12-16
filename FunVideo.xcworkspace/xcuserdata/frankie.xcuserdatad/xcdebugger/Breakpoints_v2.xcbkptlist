@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FunVideo/FunVideo_Code/DoubanServer/DoubanServer.m"
-            timestampString = "471779640.049022"
+            timestampString = "471923323.87609"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "354"
-            endingLineNumber = "354"
+            startingLineNumber = "353"
+            endingLineNumber = "353"
             landmarkName = "-doubanSongOperationWithType:"
             landmarkType = "5">
          </BreakpointContent>

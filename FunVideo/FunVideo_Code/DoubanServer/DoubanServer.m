@@ -93,9 +93,9 @@ static const NSInteger WORKSTUDY_MHz           = 153;
          {
              [appDelegate.channelGroup removeMyChannelObject];
              //先插入用户labelcell
-             ChannelInfo *channelCell = [[ChannelInfo alloc]init];
-             channelCell.channelName = appDelegate.userInfo.userName;
-             channelCell.channelCoverURL = [NSString stringWithFormat:USERIMAGEURL,userInfo.userID];
+             
+             ChannelInfo *channelCell = [[ChannelInfo alloc]
+                                         initWithChannelName:appDelegate.userInfo.userName ChannelCoverURL:[NSString stringWithFormat:USERIMAGEURL,userInfo.userID]];
              [channelGroup.myRedHeartChannelCellArray addObject:channelCell];
              
              //再插入用户喜爱频道
@@ -119,9 +119,8 @@ static const NSInteger WORKSTUDY_MHz           = 153;
              }
              if ([channelGroup.myRedHeartChannelCellArray count] == 0)
              {
-                 ChannelInfo *channelCell = [[ChannelInfo alloc]init];
-                 channelCell.channelName = @"未登录";
-                 channelCell.channelCoverURL = nil;
+                 
+                 ChannelInfo * channelCell = [[ChannelInfo alloc]initWithChannelName:@"未登录" ChannelCoverURL:nil];
                  [channelGroup.myRedHeartChannelCellArray addObject:channelCell];
              }
              channelGroup.isEmpty = NO;
