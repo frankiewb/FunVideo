@@ -258,7 +258,6 @@ static const CGFloat kHeaderFont = 15;
     if(indexPath.section == 0 && indexPath.row == 0)
     {
         //跳转至登录页面
-       ;
         [_delegate showViewWithIndex:2];
     }
     else
@@ -266,9 +265,7 @@ static const CGFloat kHeaderFont = 15;
         playerInfo.currentChannel = [playerInfo.currentChannel initWithChannelInfo:channelInfo];
         [doubanServer doubanSongOperationWithType:@"n"];
         [_delegate showViewWithIndex:0];
-
     }
-    
 }
 
 - (void)getSongListFail

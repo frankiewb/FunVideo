@@ -17,7 +17,7 @@
                                                                          @"CaptchaInputWord":_capthchaInputWord}];
 }
 
-- (NSString *)debugDescription
+-(NSString *)debugDescription
 {
     return [NSString stringWithFormat:@"<%@: %p, %@",[self class],self,@{@"LoginName":_loginName,
                                                                          @"LoginPassWord":_passWord,
